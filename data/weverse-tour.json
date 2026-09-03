@@ -1,0 +1,28 @@
+{
+  "source": "https://spot.weverse.io/bts-arirang-tour",
+  "sourceLabel": "Weverse Spot · BTS WORLD TOUR ‘ARIRANG’",
+  "city": "Santiago",
+  "country": "Chile",
+  "venue": "Estadio Nacional",
+  "lastUpdated": "2026-09-03T20:00:00Z",
+  "shows": [
+    {
+      "label": "Show 1",
+      "dateISO": "2026-10-14T00:00:00-03:00",
+      "pretty": "14 octubre",
+      "venue": "Estadio Nacional"
+    },
+    {
+      "label": "Show 2",
+      "dateISO": "2026-10-16T00:00:00-03:00",
+      "pretty": "16 octubre",
+      "venue": "Estadio Nacional"
+    },
+    {
+      "label": "Show 3",
+      "dateISO": "2026-10-17T00:00:00-03:00",
+      "pretty": "17 octubre",
+      "venue": "Estadio Nacional"
+    }
+  ]
+}

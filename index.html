@@ -1,0 +1,2973 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BTS Chile · ARMY Scrapbook</title>
+  <meta name="theme-color" content="#f6f0fb" />
+  <style>
+    :root{
+      --bg:#eee7fb;
+      --card:rgba(255,255,255,.38);
+      --card2:rgba(255,255,255,.24);
+      --purple:#7c4dd6;
+      --purple2:#9a6be7;
+      --lav:#3f2b5f;
+      --ink:#35254f;
+      --muted:#77658f;
+      --line:rgba(104,69,154,.18);
+      --glass:rgba(255,255,255,.34);
+      --glass-strong:rgba(255,255,255,.52);
+      --shadow:0 18px 55px rgba(73,44,108,.14);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--ink);
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 12% 3%, rgba(255,255,255,.95), transparent 23%),
+        radial-gradient(circle at 86% 8%, rgba(231,209,255,.82), transparent 28%),
+        radial-gradient(circle at 50% 62%, rgba(255,236,250,.58), transparent 36%),
+        linear-gradient(180deg,#f5f0ff 0%,#ece2f8 48%,#f7f1ff 100%);
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.28;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,.95) 0 1px, transparent 1.3px),
+        radial-gradient(circle, rgba(126,82,188,.20) 0 1px, transparent 1.3px);
+      background-size:95px 95px,155px 155px;
+      background-position:10px 20px,50px 30px;
+      mask-image:linear-gradient(to bottom,#000,transparent 75%);
+      z-index:-1;
+    }
+
+    input,select,button{font:inherit}
+
+    .shell{
+      width:min(1060px, calc(100% - 24px));
+      margin:0 auto;
+      padding:34px 0 48px;
+    }
+
+    .mini-head{
+      text-align:center;
+      padding:12px 10px 26px;
+    }
+    .mini-head .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 13px;
+      border-radius:999px;
+      border:1px solid rgba(105,71,154,.16);
+      background:rgba(255,255,255,.38);
+      color:#67458f;
+      box-shadow:0 8px 24px rgba(73,44,108,.08);
+      backdrop-filter:blur(14px);
+      font-size:.78rem;
+      font-weight:800;
+      letter-spacing:.11em;
+      text-transform:uppercase;
+    }
+    .mini-head h1{
+      margin:14px 0 7px;
+      font-size:clamp(2rem,5vw,3.8rem);
+      line-height:.98;
+      letter-spacing:-.045em;
+    }
+    .mini-head h1 span{
+      background:linear-gradient(90deg,#513372,#8050c8,#b260a5);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .mini-head p{
+      margin:0 auto;
+      max-width:680px;
+      color:var(--muted);
+      line-height:1.55;
+      font-size:.94rem;
+    }
+
+    .section{
+      margin:0 0 22px;
+      padding:24px;
+      border:1px solid rgba(255,255,255,.68);
+      border-radius:28px;
+      background:linear-gradient(145deg,rgba(255,255,255,.48),rgba(255,255,255,.23));
+      box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.72);
+      backdrop-filter:blur(22px) saturate(125%);
+      -webkit-backdrop-filter:blur(22px) saturate(125%);
+    }
+    .section h2{
+      margin:0 0 8px;
+      font-size:clamp(1.35rem,3vw,1.75rem);
+      letter-spacing:-.03em;
+    }
+    .lead{
+      margin:0 0 20px;
+      color:var(--muted);
+      line-height:1.6;
+      font-size:.95rem;
+    }
+
+    .countdown-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:10px;
+      width:100%;
+    }
+    
+    .count-card{
+      min-width:0;
+      padding:16px 12px;
+      min-height:165px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.72);
+      background:
+        linear-gradient(145deg,rgba(255,255,255,.50),rgba(242,227,255,.26)),
+        rgba(255,255,255,.22);
+      box-shadow:0 12px 28px rgba(79,48,116,.08), inset 0 1px 0 rgba(255,255,255,.75);
+      backdrop-filter:blur(18px);
+    }
+    .count-card .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:12px;
+      color:#7957a3;
+      font-size:.74rem;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.11em;
+    }
+    .count-card h3{
+      margin:0 0 6px;
+      font-size:1.18rem;
+    }
+    .count-card p{
+      margin:0 0 16px;
+      color:#806d98;
+      font-size:.9rem;
+    }
+    .units{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:7px;
+    }
+    .unit{
+      text-align:center;
+      padding:10px 6px;
+      border-radius:15px;
+      border:1px solid rgba(103,70,151,.12);
+      background:rgba(255,255,255,.36);
+    }
+    .unit strong{
+      display:block;
+      margin-bottom:4px;
+      color:#4b326b;
+      font-size:1.14rem;
+    }
+    .unit span{
+      color:#8c77a5;
+      font-size:.67rem;
+      text-transform:uppercase;
+      letter-spacing:.07em;
+    }
+    .done{
+      display:none;
+      margin-top:10px;
+      color:#f4caff;
+      font-weight:800;
+    }
+
+    .top-songs{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin:0 0 20px;
+    }
+    .song-chip{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      padding:10px 16px;
+      border-radius:999px;
+      border:1px solid rgba(105,71,154,.14);
+      background:linear-gradient(135deg,rgba(255,255,255,.55),rgba(234,216,255,.34));
+      color:#5b3e7b;
+      box-shadow:0 8px 20px rgba(79,48,116,.06);
+      font-size:.9rem;
+      font-weight:780;
+    }
+    .song-chip b{
+      padding:4px 8px;
+      border-radius:999px;
+      background:rgba(113,74,170,.10);
+      color:#735299;
+      font-size:.75rem;
+    }
+
+    .toolbar{
+      display:grid;
+      grid-template-columns:1.3fr .8fr .7fr;
+      gap:10px;
+      margin-bottom:14px;
+    }
+    .field input,.field select{
+      width:100%;
+      min-height:48px;
+      padding:0 14px;
+      color:var(--ink);
+      border:1px solid rgba(102,68,150,.16);
+      border-radius:16px;
+      outline:none;
+      background:rgba(255,255,255,.48);
+    }
+    .field input::placeholder{color:#9a87ae}
+    .field input:focus,.field select:focus{
+      border-color:#a16af0;
+      box-shadow:0 0 0 4px rgba(161,106,240,.12);
+    }
+    option{background:#f7f1ff;color:#432f5d}
+
+    .table-wrap{
+      overflow:auto;
+      border:1px solid rgba(195,156,255,.13);
+      border-radius:19px;
+    }
+    table{
+      width:100%;
+      min-width:760px;
+      border-collapse:collapse;
+      background:rgba(255,255,255,.20);
+    }
+    th,td{
+      padding:13px 14px;
+      border-bottom:1px solid rgba(105,71,154,.08);
+      text-align:left;
+      vertical-align:top;
+      font-size:.9rem;
+    }
+    th{
+      position:sticky;
+      top:0;
+      z-index:1;
+      background:rgba(242,233,252,.94);
+      color:#61457f;
+      font-size:.78rem;
+      letter-spacing:.075em;
+      text-transform:uppercase;
+    }
+    tbody tr:hover{background:rgba(255,255,255,.30)}
+    .count-pill{
+      display:inline-flex;
+      min-width:40px;
+      justify-content:center;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(190,150,255,.16);
+      background:rgba(164,104,246,.18);
+      font-weight:800;
+    }
+    .summary{
+      margin-top:11px;
+      color:#9587aa;
+      font-size:.82rem;
+    }
+
+    
+    .bt21-wrap{
+      margin:0 0 22px;
+      display:flex;
+      justify-content:center;
+    }
+    .bt21-card{
+      width:min(100%, 520px);
+      padding:18px;
+      border-radius:28px;
+      border:1px solid rgba(255,255,255,.70);
+      background:linear-gradient(145deg,rgba(255,255,255,.50),rgba(245,232,255,.28));
+      box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.72);
+      backdrop-filter:blur(22px);
+      text-align:center;
+    }
+    .bt21-card img{
+      width:min(100%, 340px);
+      display:block;
+      margin:0 auto 12px;
+      border-radius:24px;
+      background:linear-gradient(180deg,#7ec0ff,#61a9ea);
+      box-shadow:
+        0 10px 30px rgba(0,0,0,.22),
+        0 0 0 1px rgba(255,255,255,.05) inset;
+    }
+    .bt21-card h3{
+      margin:0 0 6px;
+      font-size:1.18rem;
+      letter-spacing:-.02em;
+      color:#4a3268;
+    }
+    .bt21-card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.55;
+      font-size:.92rem;
+    }
+
+
+    
+    .city-details{
+      display:inline-block;
+      min-width:150px;
+    }
+    .city-details summary{
+      cursor:pointer;
+      list-style:none;
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      padding:7px 11px;
+      border-radius:999px;
+      border:1px solid rgba(190,150,255,.17);
+      background:rgba(164,104,246,.12);
+      color:#654783;
+      font-size:.82rem;
+      font-weight:780;
+      user-select:none;
+    }
+    .city-details summary::-webkit-details-marker{display:none}
+    .city-details summary::after{
+      content:"▾";
+      font-size:.72rem;
+      opacity:.8;
+      transition:transform .18s ease;
+    }
+    .city-details[open] summary::after{
+      transform:rotate(180deg);
+    }
+    .city-list{
+      display:grid;
+      gap:7px;
+      margin-top:9px;
+      padding:10px 12px;
+      min-width:220px;
+      border-radius:14px;
+      border:1px solid rgba(190,150,255,.13);
+      background:rgba(255,255,255,.38);
+    }
+    .city-entry{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      font-size:.82rem;
+      line-height:1.4;
+    }
+    .city-entry strong{
+      color:#553a72;
+      font-weight:760;
+    }
+    .city-entry span{
+      color:#816e97;
+      text-align:right;
+      white-space:nowrap;
+    }
+
+
+    
+    .songs-details{
+      margin-top:4px;
+      border:1px solid rgba(192,150,255,.16);
+      border-radius:20px;
+      overflow:hidden;
+      background:rgba(255,255,255,.22);
+    }
+    .songs-details > summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      padding:15px 17px;
+      color:#5f427d;
+      font-weight:820;
+      background:linear-gradient(135deg,rgba(235,218,255,.62),rgba(255,255,255,.30));
+      user-select:none;
+    }
+    .songs-details > summary::-webkit-details-marker{display:none}
+    .songs-details > summary::after{
+      content:"▾";
+      flex:0 0 auto;
+      font-size:.8rem;
+      color:#8060a6;
+      transition:transform .18s ease;
+    }
+    .songs-details[open] > summary::after{
+      transform:rotate(180deg);
+    }
+    .songs-details-body{
+      padding:14px;
+      border-top:1px solid rgba(105,71,154,.10);
+    }
+
+
+    .bets-section{
+      position:relative;
+      overflow:hidden;
+    }
+    .bets-section::after{
+      content:"💜";
+      position:absolute;
+      right:-18px;
+      top:-30px;
+      font-size:8rem;
+      opacity:.055;
+      transform:rotate(14deg);
+      pointer-events:none;
+    }
+    .bets-heading{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+      margin-bottom:18px;
+    }
+    .bets-tag{
+      flex:0 0 auto;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.46);
+      border:1px solid rgba(104,69,154,.13);
+      color:#74519b;
+      font-size:.74rem;
+      font-weight:850;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+    }
+    .bet-form{
+      display:grid;
+      grid-template-columns:1fr .8fr;
+      gap:12px;
+      padding:16px;
+      border-radius:22px;
+      background:rgba(255,255,255,.28);
+      border:1px solid rgba(255,255,255,.65);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.72);
+    }
+    .bet-field{display:grid;gap:7px}
+    .bet-field label{
+      color:#67517f;
+      font-size:.78rem;
+      font-weight:800;
+    }
+    .bet-field input,.bet-field select{
+      width:100%;
+      min-height:46px;
+      padding:0 13px;
+      border-radius:14px;
+      border:1px solid rgba(104,69,154,.15);
+      background:rgba(255,255,255,.56);
+      color:#3f2b5f;
+      outline:none;
+    }
+    .bet-field input:focus,.bet-field select:focus{
+      border-color:#9b76cd;
+      box-shadow:0 0 0 4px rgba(138,99,190,.10);
+    }
+    .bet-picks{
+      grid-column:1/-1;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+    }
+    .bet-actions{
+      grid-column:1/-1;
+      display:flex;
+      flex-wrap:wrap;
+      gap:9px;
+      align-items:center;
+    }
+    .btn{
+      border:0;
+      border-radius:14px;
+      min-height:44px;
+      padding:0 16px;
+      cursor:pointer;
+      font-weight:850;
+      transition:transform .16s ease, box-shadow .16s ease;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{
+      color:white;
+      background:linear-gradient(135deg,#7a50b6,#a06ad0);
+      box-shadow:0 10px 24px rgba(104,66,151,.20);
+    }
+    .btn-soft{
+      color:#684789;
+      background:rgba(255,255,255,.50);
+      border:1px solid rgba(104,69,154,.14);
+    }
+    .bet-note{
+      margin:0;
+      color:#857398;
+      font-size:.76rem;
+      line-height:1.45;
+    }
+    .bets-board{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:11px;
+    }
+    .bet-card{
+      padding:15px;
+      border-radius:19px;
+      background:linear-gradient(145deg,rgba(255,255,255,.50),rgba(245,231,255,.30));
+      border:1px solid rgba(255,255,255,.72);
+      box-shadow:0 9px 24px rgba(76,48,107,.07);
+    }
+    .bet-card-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:10px;
+    }
+    .bet-card strong{color:#533874}
+    .bet-date{
+      color:#76569a;
+      font-size:.73rem;
+      font-weight:850;
+      padding:5px 8px;
+      border-radius:999px;
+      background:rgba(119,77,171,.09);
+    }
+    .bet-list{
+      display:grid;
+      gap:6px;
+      margin:0;
+      padding:0;
+      list-style:none;
+      color:#715d87;
+      font-size:.86rem;
+    }
+    .bet-list b{color:#4f3969}
+    .bet-delete{
+      margin-top:11px;
+      border:0;
+      background:transparent;
+      color:#9a779b;
+      font-size:.74rem;
+      cursor:pointer;
+      padding:0;
+    }
+    .bets-empty{
+      grid-column:1/-1;
+      padding:15px;
+      border-radius:16px;
+      border:1px dashed rgba(104,69,154,.20);
+      color:#89759e;
+      text-align:center;
+      background:rgba(255,255,255,.20);
+      font-size:.86rem;
+    }
+    .copy-status{
+      min-height:20px;
+      color:#76549c;
+      font-size:.78rem;
+      font-weight:750;
+    }
+
+    @media(max-width:850px){
+      .toolbar{grid-template-columns:1fr 1fr}
+      .toolbar .search{grid-column:1/-1}
+    }
+    
+  
+
+    .sync-strip{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:center;
+      gap:7px 10px;
+      margin:16px auto 0;
+      padding:10px 13px;
+      width:max-content;
+      max-width:100%;
+      border:1px solid rgba(105,71,154,.12);
+      border-radius:999px;
+      background:rgba(255,255,255,.34);
+      color:#806d98;
+      font-size:.74rem;
+      box-shadow:0 8px 20px rgba(79,48,116,.05);
+      backdrop-filter:blur(14px);
+    }
+    .sync-strip strong{color:#5b3e7b}
+    .sync-dot{
+      width:8px;height:8px;border-radius:50%;
+      background:#8b63cc;
+      box-shadow:0 0 0 4px rgba(139,99,204,.10);
+      flex:0 0 auto;
+    }
+    .sync-dot.live{background:#5caa7a;box-shadow:0 0 0 4px rgba(92,170,122,.12)}
+    .sync-dot.fallback{background:#d39b55;box-shadow:0 0 0 4px rgba(211,155,85,.12)}
+    .sync-source{
+      color:#7651a2;
+      font-weight:750;
+      text-decoration:none;
+    }
+    .sync-source:hover{text-decoration:underline}
+    .sync-sep{opacity:.45}
+
+    @media(max-width:560px){
+      body{
+        background:
+          radial-gradient(circle at 50% 0%, rgba(255,255,255,.92), transparent 30%),
+          linear-gradient(180deg,#f5f0ff 0%,#ece2f8 55%,#f7f1ff 100%);
+      }
+
+      .shell{
+        width:100%;
+        padding:12px 10px 30px;
+      }
+
+      .mini-head{
+        padding:10px 4px 18px;
+      }
+
+      .mini-head .badge{
+        font-size:.68rem;
+        padding:7px 10px;
+        letter-spacing:.08em;
+      }
+
+      .mini-head h1{
+        font-size:2rem;
+        margin:12px 0 6px;
+      }
+
+      .mini-head p{
+        font-size:.86rem;
+        line-height:1.45;
+      }
+
+      .bt21-wrap{
+        margin-bottom:14px;
+      }
+
+      .bt21-card{
+        width:100%;
+        padding:12px;
+        border-radius:22px;
+      }
+
+      .bt21-card img{
+        width:min(100%,260px);
+        border-radius:18px;
+        margin-bottom:8px;
+      }
+
+      .bt21-card h3{
+        font-size:1rem;
+      }
+
+      .section{
+        padding:16px 12px;
+        border-radius:20px;
+        margin-bottom:14px;
+      }
+
+      .section h2{
+        font-size:1.18rem;
+      }
+
+      .lead{
+        font-size:.86rem;
+        margin-bottom:14px;
+      }
+
+      .countdown-grid{
+        grid-template-columns:repeat(3,minmax(0,1fr));
+        gap:7px;
+      }
+
+      .count-card{
+        padding:12px 7px;
+        min-height:145px;
+        border-radius:17px;
+      }
+
+      .count-card .kicker{
+        font-size:.58rem;
+        letter-spacing:.05em;
+        margin-bottom:7px;
+      }
+
+      .count-card h3{
+        font-size:.82rem;
+        line-height:1.15;
+        margin-bottom:4px;
+      }
+
+      .count-card p{
+        font-size:.72rem;
+        margin-bottom:9px;
+      }
+
+      .units{
+        grid-template-columns:repeat(2,1fr);
+        gap:5px;
+      }
+
+      .unit{
+        padding:6px 3px;
+        border-radius:11px;
+      }
+
+      .unit strong{
+        font-size:.9rem;
+        margin-bottom:2px;
+      }
+
+      .unit span{
+        font-size:.5rem;
+        letter-spacing:.03em;
+      }
+
+      .top-songs{
+        gap:7px;
+        margin-bottom:14px;
+      }
+
+      .song-chip{
+        padding:8px 10px;
+        font-size:.78rem;
+        gap:6px;
+      }
+
+      .song-chip b{
+        padding:3px 6px;
+        font-size:.68rem;
+      }
+
+      .songs-details > summary{
+        padding:13px 14px;
+        font-size:.86rem;
+      }
+
+      .songs-details-body{
+        padding:10px;
+      }
+
+      .toolbar{
+        grid-template-columns:1fr;
+        gap:8px;
+      }
+
+      .toolbar .search{
+        grid-column:auto;
+      }
+
+      .field input,.field select{
+        min-height:44px;
+        font-size:.86rem;
+      }
+
+      .table-wrap{
+        border-radius:14px;
+      }
+
+      table{
+        min-width:0;
+        width:100%;
+      }
+
+      th,td{
+        padding:10px 8px;
+        font-size:.78rem;
+      }
+
+      th{
+        font-size:.65rem;
+      }
+
+      th:first-child,
+      td:first-child{
+        display:none;
+      }
+
+      .count-pill{
+        min-width:34px;
+        padding:5px 8px;
+      }
+
+      .city-details{
+        min-width:0;
+      }
+
+      .city-details summary{
+        padding:6px 8px;
+        font-size:.7rem;
+      }
+
+      .city-list{
+        min-width:180px;
+        padding:8px;
+      }
+
+      .city-entry{
+        font-size:.72rem;
+        gap:8px;
+      }
+
+      .summary{
+        font-size:.72rem;
+      }
+    }
+
+  
+
+    @media(max-width:650px){
+      .bets-heading{display:block}
+      .bets-tag{display:inline-flex;margin-top:6px}
+      .bet-form{grid-template-columns:1fr;padding:13px}
+      .bet-picks{grid-template-columns:1fr}
+      .bets-board{grid-template-columns:1fr}
+      .bet-actions .btn{flex:1 1 140px}
+    }
+
+    @media(max-width:400px){
+      .mini-head p{display:none}
+    }
+
+  
+    .preview-note{
+      display:none;
+    }
+    @media(max-width:560px){
+      .countdown-grid{
+        grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+      }
+      .count-card{
+        min-width:0 !important;
+      }
+    }
+
+
+    /* v2: foto BTS + ciudades compactas al tocar una canción */
+    .bt21-card{width:min(100%,760px);}
+    .bt21-card img{width:100%;max-width:690px;aspect-ratio:16/9;object-fit:cover;object-position:center;border-radius:24px;}
+    .song-toggle{
+      appearance:none;
+      border:1px solid transparent;
+      background:transparent;
+      padding:5px 8px;
+      margin:-5px -8px;
+      color:#51366e;
+      font:inherit;
+      font-weight:820;
+      cursor:pointer;
+      text-align:left;
+      line-height:1.25;
+      border-radius:10px;
+      display:inline-block;
+      position:relative;
+      transform:translateY(0) scale(1);
+      transition:transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease, border-color .18s ease;
+    }
+    .song-toggle:hover{
+      color:#7445aa;
+      background:rgba(255,255,255,.72);
+      border-color:rgba(130,88,174,.15);
+      box-shadow:0 7px 16px rgba(91,55,126,.14);
+      transform:translateY(-3px) scale(1.015);
+    }
+    .song-toggle:active{
+      transform:translateY(-1px) scale(.995);
+      box-shadow:0 3px 9px rgba(91,55,126,.10);
+    }
+    .song-toggle:focus-visible{
+      outline:2px solid rgba(123,77,178,.50);
+      outline-offset:3px;
+      background:rgba(255,255,255,.72);
+    }
+    .song-toggle::after{content:"  ♡";font-size:.72em;opacity:.5;}
+    .song-toggle[aria-expanded="true"]::after{content:"  ✦";opacity:.8;}
+    .city-details.song-cities{display:block;min-width:0;}
+    .city-details.song-cities > summary{display:none;}
+    .city-details.song-cities .city-list{
+      min-width:0;width:max-content;max-width:100%;margin-top:5px;padding:6px 8px;gap:3px;
+      border-radius:11px;background:rgba(255,255,255,.46);
+    }
+    .city-details.song-cities .city-entry{gap:9px;font-size:.72rem;line-height:1.25;}
+    .city-details.song-cities .city-entry strong{font-size:.72rem;}
+    .city-details.song-cities .city-entry span{font-size:.68rem;}
+    .song-chip{
+      cursor:pointer;
+      transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    .song-chip:hover{
+      transform:translateY(-3px);
+      box-shadow:0 8px 18px rgba(91,55,126,.14);
+      background:rgba(255,255,255,.78);
+    }
+    .song-chip:active{transform:translateY(-1px);}
+
+    @media(max-width:560px){
+      .bt21-card img{width:100%;max-width:none;aspect-ratio:16/10;}
+      .song-toggle{font-size:.82rem;}
+      .city-details.song-cities .city-list{width:100%;}
+      .city-details.song-cities .city-entry{font-size:.66rem;gap:6px;}
+      .city-details.song-cities .city-entry strong,.city-details.song-cities .city-entry span{font-size:.66rem;}
+    }
+
+  
+    .delulu-tools{
+      grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:10px;
+      margin-top:2px;padding:8px 10px;border:1px dashed #d8c3e8;border-radius:12px;
+      background:rgba(250,245,255,.72);font-family:var(--hand);font-size:.64rem;color:#806b94;
+    }
+    .delulu-tools button{
+      border:1px solid #d4bde6;background:#fffafc;color:#6c4b94;border-radius:999px;padding:7px 10px;
+      font-family:var(--hand);font-size:.64rem;cursor:pointer;transition:.18s ease;
+    }
+    .delulu-tools button:hover{transform:translateY(-2px) rotate(-1deg);box-shadow:0 5px 10px rgba(98,65,125,.11);background:#fff}
+    .setlist-sync{
+      display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:-4px 0 13px;padding:7px 10px;
+      border:1px dashed #d6c3e5;border-radius:11px;background:rgba(255,255,255,.58);
+      font:600 .62rem system-ui;color:#7d6a8d;
+    }
+    .setlist-sync a{color:#6d4ea0;text-decoration:none;font-weight:800}
+    .setlist-sync a:hover{text-decoration:underline}
+    .setlist-dot{width:7px;height:7px;border-radius:50%;background:#bea9cf;box-shadow:0 0 0 3px rgba(190,169,207,.16)}
+    .setlist-dot.live{background:#61b985;box-shadow:0 0 0 3px rgba(97,185,133,.16)}
+    .setlist-dot.fallback{background:#e1ad61;box-shadow:0 0 0 3px rgba(225,173,97,.16)}
+
+  
+    .peek-cities a{display:inline-flex;align-items:baseline;gap:5px;padding:5px 8px;border-radius:999px;background:#fff;border:1px solid #e1d4ec;font-size:.63rem;text-decoration:none;color:inherit;transition:.16s ease}.peek-cities a:hover{transform:translateY(-2px);border-color:#b99add}
+    .city-list a.city-entry{text-decoration:none;color:inherit}
+
+  </style>
+
+  <style id="scrapbook-v5">
+    :root{
+      --paper:#fbf8fd;
+      --paper2:#f5eefb;
+      --purple:#7650c7;
+      --purple-dark:#4d3579;
+      --purple-soft:#c8b1ef;
+      --lavender:#eadcf8;
+      --pink:#f3afd0;
+      --coral:#ff7f79;
+      --ink:#493b58;
+      --muted:#81718f;
+      --line:#d9c7e9;
+      --yellow:#f4c75f;
+      --green:#9ac7a6;
+      --blue:#a9c5eb;
+      --shadow:0 18px 50px rgba(91,61,121,.12);
+      --hand:"Segoe Print","Bradley Hand","Comic Sans MS",cursive;
+    }
+
+    html{scroll-padding-top:88px}
+    body{
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 12% 8%,rgba(255,255,255,.92),transparent 24%),
+        radial-gradient(circle at 86% 18%,rgba(231,214,248,.72),transparent 26%),
+        repeating-linear-gradient(0deg,rgba(112,78,153,.025) 0 1px,transparent 1px 5px),
+        #eee7f4;
+      overflow-x:hidden;
+    }
+    body::before{
+      opacity:.45;
+      background-image:
+        radial-gradient(circle, rgba(118,80,199,.12) 0 1px, transparent 1.2px),
+        radial-gradient(circle, rgba(236,146,190,.12) 0 1px, transparent 1.2px);
+      background-size:82px 82px,133px 133px;
+      mask-image:none;
+    }
+
+    .binder{
+      position:fixed;z-index:30;left:0;top:70px;bottom:30px;width:46px;
+      display:flex;flex-direction:column;justify-content:space-around;align-items:center;
+      pointer-events:none;
+    }
+    .binder::before{
+      content:"";position:absolute;left:0;top:-70px;bottom:-30px;width:27px;
+      background:linear-gradient(90deg,#c5a8ec,#eee4fb 56%,rgba(255,255,255,.3));
+      border-right:1px solid rgba(112,77,156,.18);
+      box-shadow:4px 0 18px rgba(91,61,121,.08);
+    }
+    .binder i{
+      position:relative;display:block;width:44px;height:14px;margin-left:3px;
+      border:4px solid #8f76b7;border-left:0;border-radius:0 18px 18px 0;
+      background:linear-gradient(180deg,#fdfbff,#d7c8ea);
+      box-shadow:0 2px 4px rgba(62,43,82,.16);opacity:.9;
+    }
+    .float-doodles{position:fixed;inset:0;z-index:-1;pointer-events:none;color:#9d7bd0;font-family:var(--hand)}
+    .float-doodles span{position:absolute;opacity:.28;font-size:26px;animation:drift 8s ease-in-out infinite alternate}
+    .float-doodles span:nth-child(1){left:5%;top:16%}.float-doodles span:nth-child(2){right:4%;top:25%;animation-delay:-2s}.float-doodles span:nth-child(3){left:7%;bottom:12%;animation-delay:-4s}.float-doodles span:nth-child(4){right:7%;bottom:22%;animation-delay:-1s}.float-doodles span:nth-child(5){right:14%;top:58%;animation-delay:-5s}
+    @keyframes drift{to{transform:translateY(-10px) rotate(7deg)}}
+
+    .shell.scrap-page{
+      width:min(1180px,calc(100% - 76px));
+      margin:22px auto 34px;padding:18px 22px 26px;
+      border:1px solid rgba(125,89,167,.2);border-radius:30px;
+      background:
+        repeating-linear-gradient(0deg,rgba(118,80,199,.018) 0 1px,transparent 1px 4px),
+        linear-gradient(180deg,rgba(255,255,255,.93),rgba(249,245,252,.96));
+      box-shadow:0 28px 80px rgba(75,54,98,.16),inset 0 0 0 6px rgba(255,255,255,.48);
+      position:relative;overflow:hidden;
+    }
+    .shell.scrap-page::after{
+      content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;
+      background-image:radial-gradient(rgba(89,62,116,.25) .45px,transparent .45px);
+      background-size:5px 5px;mix-blend-mode:multiply;
+    }
+    .shell.scrap-page > *{position:relative;z-index:1}
+
+    .scrap-nav{
+      min-height:62px;padding:4px 12px 14px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:24px;
+      border-bottom:1px solid rgba(109,77,148,.12);
+    }
+    .brand{text-decoration:none;color:#29222f;line-height:1;display:flex;flex-direction:column;font-family:var(--hand);transform:rotate(-2deg)}
+    .brand span{font-weight:900;font-size:1.15rem}.brand small{font-size:.72rem;color:#6d4ba3;margin-top:2px}
+    .nav-links{display:flex;justify-content:center;gap:24px;align-items:center}
+    .nav-links a{color:#66566f;text-decoration:none;font-size:.84rem;padding:8px 2px;position:relative}
+    .nav-links a:hover,.nav-links a.active{color:#5f3ca8}
+    .nav-links a.active::after{content:"";height:2px;border-radius:4px;background:#7248c6;position:absolute;left:0;right:0;bottom:1px;transform:rotate(-1deg)}
+    .join-pill{font-family:var(--hand);text-decoration:none;color:#6d4ba3;background:#f7f0fc;border:1px solid #cdb9e5;border-radius:999px;padding:9px 14px;box-shadow:0 6px 14px rgba(92,61,125,.08);font-size:.78rem;white-space:nowrap}
+    .join-pill:hover{transform:translateY(-2px);box-shadow:0 10px 18px rgba(92,61,125,.12)}
+
+    .scrap-hero{
+      margin:18px 4px 24px;min-height:300px;border-radius:24px;overflow:hidden;position:relative;
+      background:linear-gradient(100deg,#ff827d 0%,#ff7b76 46%,#f97b7a 100%);
+      box-shadow:0 12px 28px rgba(150,77,91,.14);border:1px solid rgba(255,255,255,.65);
+    }
+    .scrap-hero::before{
+      content:"";position:absolute;inset:0;opacity:.16;pointer-events:none;
+      background-image:radial-gradient(rgba(255,255,255,.95) 1px,transparent 1px);background-size:28px 28px;
+    }
+    .hero-photo-wrap{position:absolute;right:0;top:0;width:72%;height:100%;overflow:hidden}
+    .hero-photo-wrap::before{content:"";position:absolute;z-index:2;inset:0;background:linear-gradient(90deg,#ff807b 0%,rgba(255,128,123,.65) 8%,transparent 29%);pointer-events:none}
+    .hero-photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:center 47%;display:block;filter:saturate(.96) contrast(.98)}
+
+    .paper-note{
+      position:absolute;z-index:4;left:42px;top:48px;width:300px;min-height:188px;padding:28px 30px 22px;
+      background:#fffdf9;box-shadow:0 10px 24px rgba(90,45,65,.17);transform:rotate(-4deg);
+      clip-path:polygon(1% 2%,99% 0,98% 97%,93% 99%,88% 97%,81% 100%,75% 97%,68% 100%,60% 98%,53% 100%,46% 98%,39% 100%,32% 97%,25% 100%,18% 98%,10% 100%,2% 97%);
+    }
+    .paper-note::before{content:"";position:absolute;left:20px;top:18px;bottom:18px;width:1px;background:#efb8bf;opacity:.6}
+    .note-lines{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 31px,rgba(108,143,190,.1) 31px 32px);pointer-events:none}
+    .washi{position:absolute;display:block;background:repeating-linear-gradient(45deg,#c9b2ed 0 8px,#e6d8f7 8px 16px);opacity:.95;box-shadow:0 3px 8px rgba(83,57,107,.12)}
+    .washi-top{width:118px;height:27px;left:-22px;top:-12px;transform:rotate(7deg)}
+    .hero-title{position:relative;font-family:var(--hand);font-size:3rem;font-weight:900;line-height:.88;color:#594092;letter-spacing:-.08em}
+    .hero-title span{color:#8a68c9;font-size:2.65rem}
+    .hero-subtitle{position:relative;margin:18px 0 0 12px;padding:6px 10px;background:#e8d5f5;color:#6c4c91;display:inline-block;font-family:var(--hand);font-size:.92rem;transform:rotate(1deg)}
+    .purple-sticker{position:absolute;right:32px;top:35px;z-index:5;width:76px;height:76px;border-radius:28% 42% 32% 46%;display:flex;align-items:center;justify-content:center;flex-direction:column;background:linear-gradient(145deg,#8f68d2,#6840af);color:#fff;border:4px solid rgba(255,255,255,.82);box-shadow:0 9px 18px rgba(79,48,111,.2);transform:rotate(7deg);font-size:1.45rem}
+    .purple-sticker small{font-size:.5rem;line-height:1.05;text-align:center;font-weight:800;letter-spacing:.05em}
+    .hero-tag{position:absolute;right:32px;bottom:21px;z-index:5;background:#e7d2f2;padding:7px 12px;color:#63468f;font-family:var(--hand);font-size:.72rem;transform:rotate(-2deg);box-shadow:0 4px 8px rgba(79,48,111,.11)}
+    .hero-doodle{position:absolute;z-index:5;color:#fff;font-family:var(--hand);text-shadow:0 2px 5px rgba(115,64,79,.12)}
+    .doodle-star{left:34%;top:35px;font-size:38px;transform:rotate(-12deg)}.doodle-heart{left:39%;top:94px;font-size:30px;transform:rotate(10deg)}.doodle-spark{right:16%;bottom:42px;font-size:28px}
+
+    .scrap-pair{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(320px,.85fr);gap:16px;align-items:start}
+    .section{
+      margin:0 0 18px;padding:20px;border-radius:20px;border:1.5px solid #d6c3e7;
+      background:rgba(255,253,255,.72);box-shadow:0 8px 20px rgba(88,57,116,.07);backdrop-filter:blur(8px);
+      position:relative;
+    }
+    .section::after{content:"";position:absolute;inset:6px;border:1px dashed rgba(128,88,174,.08);border-radius:15px;pointer-events:none}
+    .section h2{font-family:var(--hand);font-weight:700;color:#5e438a;font-size:clamp(1.25rem,2vw,1.65rem);letter-spacing:-.035em}
+    .section h2 em{font-style:normal;color:#805eb1;font-weight:500}
+    .lead{color:#7f708d;font-size:.86rem}
+    .corner-sticker{position:absolute;left:-10px;top:-13px;font-size:27px;transform:rotate(-12deg);filter:drop-shadow(0 4px 4px rgba(82,54,107,.1))}
+
+    .countdown-section{padding-top:23px}
+    .countdown-grid{gap:11px}
+    .count-card{
+      min-height:0;padding:16px 12px 13px;border-radius:13px;border:1px solid #dac8e8;background:linear-gradient(180deg,#fff,#f2e8fa);
+      box-shadow:3px 5px 0 rgba(187,158,220,.18);transform:rotate(-.3deg);position:relative;
+    }
+    .count-card:nth-child(2){transform:rotate(.35deg)}.count-card:nth-child(3){transform:rotate(-.15deg)}
+    .count-card::before{content:"";position:absolute;left:12px;right:12px;top:48px;border-top:1px dashed rgba(128,91,165,.25)}
+    .count-card .kicker{font-family:var(--hand);text-transform:none;letter-spacing:0;color:#695291;font-size:.74rem;margin-bottom:5px}
+    .count-card h3{display:none}.count-card p{font-family:var(--hand);font-weight:700;color:#634a8b;font-size:.88rem;margin:0 0 13px;padding-bottom:9px}
+    .units{gap:2px}.unit{padding:8px 1px;border:0;background:transparent;border-radius:0}.unit strong{font-family:var(--hand);font-size:1.16rem;color:#544064;margin:0}.unit span{font-size:.56rem;letter-spacing:.02em;color:#84758d}
+    .done{font-family:var(--hand);color:#7856a3}
+    .sync-strip{margin-top:12px;border:0;background:#f5ecfa;border-radius:8px;padding:7px 10px;font-family:var(--hand);color:#806a92;font-size:.7rem;box-shadow:none}
+    .sync-strip strong{color:#68498f}.sync-dot{width:7px;height:7px}
+
+    .bets-section{padding-top:18px;overflow:visible}
+    .bets-section::before{content:"";position:absolute;z-index:3;left:19px;top:-10px;width:72px;height:22px;background:repeating-linear-gradient(45deg,#cbb5ed 0 7px,#e9dcf6 7px 14px);opacity:.85;transform:rotate(7deg)}
+    .bets-heading{display:block}.bets-heading .lead{margin-top:6px!important;font-family:var(--hand);font-size:.76rem;line-height:1.4}
+    .bets-tag{position:absolute;right:18px;top:18px;background:transparent;border:0;color:#8c72a5;font-family:var(--hand);font-size:.7rem;padding:0;transform:rotate(3deg)}
+    .bet-form{padding:0;border:0;background:transparent;box-shadow:none}
+    .bet-field label{font-family:var(--hand);font-size:.7rem;color:#6c5683}
+    .bet-field input,.bet-field select,.toolbar input,.toolbar select{
+      background:#fffefa;border:1px solid #d9c7e6;border-radius:11px;color:#54445e;box-shadow:inset 0 -1px rgba(109,80,143,.05);font-size:.78rem;
+    }
+    .bet-picks{gap:8px}
+    .bet-picks .bet-field{padding:11px 9px 9px;border-radius:13px;border:1px solid #dccbe8;background:#fffaf0;transform:rotate(-.4deg)}
+    .bet-picks .bet-field:nth-child(2){background:#f5fbf4;transform:rotate(.5deg)}
+    .bet-picks .bet-field:nth-child(3){background:#faf6ff;transform:rotate(-.2deg)}
+    .bet-picks .bet-field:nth-child(1) label::before{content:"⭐ ";}.bet-picks .bet-field:nth-child(2) label::before{content:"🍀 ";}.bet-picks .bet-field:nth-child(3) label::before{content:"✦ ";}
+    .bet-picks .bet-field label{font-size:.78rem}.bet-picks .bet-field input{background:transparent;border-width:0 0 1px;border-radius:0;padding-left:0}
+    .bet-actions{align-items:center}.btn{border-radius:999px;font-family:var(--hand);font-size:.75rem;box-shadow:none}.btn-primary{background:#7954c4}.btn-soft{background:#f2e8f8;color:#684b91;border-color:#d7c5e6}
+    .btn:hover{transform:translateY(-2px) rotate(-.4deg)}
+    .bet-note{font-family:var(--hand);font-size:.62rem;color:#998aa3}
+    .bets-board{gap:8px}.bet-card{border-radius:12px;background:#fffefa;border:1px solid #d8c6e4;box-shadow:3px 4px 0 rgba(182,155,207,.14);transform:rotate(-.2deg)}
+    .bet-card:nth-child(even){transform:rotate(.35deg)}.bet-card-top strong{font-family:var(--hand);color:#60468b}.bet-date{font-family:var(--hand);font-size:.68rem}.bet-list{font-size:.72rem}.bet-delete{font-family:var(--hand);font-size:.63rem}
+    .bets-empty{font-family:var(--hand);background:#f8f1fb;border-style:dashed;border-radius:10px}
+
+    .tracker-section{margin-top:1px;padding:22px 22px 20px}
+    .tracker-section::before{content:"";position:absolute;right:22px;top:-8px;width:76px;height:20px;background:linear-gradient(90deg,rgba(246,207,109,.6),rgba(233,205,250,.75));transform:rotate(-5deg);opacity:.72}
+    .tracker-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}.tracker-heading h2{margin-bottom:1px}.hand-note{font-family:var(--hand);font-size:.7rem;color:#9a8aa4;margin:0}.mini-sticker{font-family:var(--hand);font-size:.66rem;background:#fff5cf;border:1px solid #ead9a2;padding:6px 9px;transform:rotate(3deg);box-shadow:2px 3px 0 rgba(155,125,70,.09);white-space:nowrap}.tracker-lead{margin-top:10px;margin-bottom:14px}
+    .top-songs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-bottom:10px}
+    .song-chip{
+      appearance:none;width:100%;min-height:44px;padding:8px 9px;border:1px solid #dacbe7;border-radius:10px;background:#fff;color:#65536f;
+      font-family:var(--hand);font-weight:600;font-size:.73rem;display:flex;align-items:center;justify-content:center;gap:6px;box-shadow:2px 3px 0 rgba(181,155,207,.12);cursor:pointer;position:relative;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease,background .18s ease;
+    }
+    .song-chip:nth-child(4n+1){background:#faf5ff}.song-chip:nth-child(4n+2){background:#fffaf0}.song-chip:nth-child(4n+3){background:#f5fbff}.song-chip:nth-child(4n){background:#f7fcf6}
+    .song-chip span{font-size:.72rem;color:#7d5cc1}.song-chip b{position:absolute;right:5px;top:4px;padding:1px 4px;border-radius:999px;background:#eadcf8;color:#7655a1;font:600 .5rem system-ui}
+    .song-chip:hover,.song-chip:focus-visible{transform:translateY(-5px) rotate(-.5deg);box-shadow:0 9px 16px rgba(102,66,137,.15);border-color:#9b6ede;background:#fff;outline:none}
+    .song-chip.selected{transform:translateY(-4px);border:2px solid #8457d1;box-shadow:0 7px 0 rgba(132,87,209,.08);background:#fbf7ff}
+
+    .song-peek{margin:10px 0 14px;padding:13px 14px;border:1.5px dashed #b697d5;border-radius:14px;background:linear-gradient(90deg,#faf5ff,#fff);animation:peekIn .22s ease both}
+    .song-peek[hidden]{display:none}@keyframes peekIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+    .peek-title{display:flex;gap:8px;align-items:center;margin-bottom:8px;font-family:var(--hand)}.peek-title strong{color:#644394}.peek-title small{margin-left:auto;color:#9a86aa;font-size:.62rem}
+    .peek-cities{display:flex;gap:6px;flex-wrap:wrap}.peek-cities span{display:inline-flex;align-items:baseline;gap:5px;padding:5px 8px;border-radius:999px;background:#fff;border:1px solid #e1d4ec;font-size:.63rem}.peek-cities b{color:#665274}.peek-cities small{color:#9988a4;font-size:.58rem}
+    .peek-more{margin-top:9px;padding:0;border:0;background:none;color:#7653aa;font:600 .66rem var(--hand);cursor:pointer}.peek-more:hover{text-decoration:underline}
+
+    .songs-details{border:1px dashed #c9b3df;background:#faf6fd;border-radius:14px;box-shadow:none}.songs-details > summary{font-family:var(--hand);color:#704fa0;background:transparent;border-radius:13px}.songs-details-body{background:transparent}
+    .toolbar{border-bottom:1px dashed #ddd0e8;padding-bottom:12px}.table-wrap{border:1px solid #e2d8e8;border-radius:12px;background:#fffefa;box-shadow:none}
+    table{font-size:.76rem}thead th{background:#f3ebf8;color:#6f5c7d}.song-toggle{font-family:var(--hand);color:#60478a}.song-toggle:hover{background:#f5ecfb;transform:translateY(-2px);box-shadow:0 5px 9px rgba(96,68,122,.08)}.count-pill{background:#e8d9f7;color:#6d4b9f}.city-details.song-cities .city-entry{background:#fbf7fd;border-color:#e2d6ec}
+
+    .scrap-footer{margin:8px 2px 0;padding:18px 18px 10px;border-top:8px solid #8c68c2;background:linear-gradient(rgba(125,87,173,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(125,87,173,.045) 1px,transparent 1px);background-size:18px 18px;display:flex;align-items:center;gap:20px;color:#755d86;font-family:var(--hand)}
+    .footer-note{position:relative;background:#fffbe9;padding:8px 15px;transform:rotate(-4deg);box-shadow:3px 4px 0 rgba(143,112,159,.12);white-space:nowrap}.footer-washi{width:50px;height:13px;left:-8px;top:-6px;transform:rotate(-5deg)}.scrap-footer p{margin:0;flex:1;font-size:.72rem}.footer-doodles{font-size:1.25rem;color:#8c68c2;letter-spacing:.35em}
+
+    @media(max-width:980px){
+      .scrap-pair{grid-template-columns:1fr}.top-songs{grid-template-columns:repeat(4,minmax(0,1fr))}.hero-photo-wrap{width:78%}.paper-note{left:25px;width:270px}.scrap-nav{grid-template-columns:auto 1fr}.join-pill{display:none}
+    }
+    @media(max-width:720px){
+      .binder{display:none}.shell.scrap-page{width:min(100% - 16px,1180px);margin:8px auto 18px;padding:10px;border-radius:22px}.scrap-nav{display:flex;justify-content:space-between;padding:5px 6px 12px}.nav-links{gap:9px;overflow:auto;justify-content:flex-start}.nav-links a{font-size:.7rem;white-space:nowrap}.brand{flex:0 0 auto}
+      .scrap-hero{min-height:355px;margin:12px 0 16px}.hero-photo-wrap{width:100%;height:66%;top:auto;bottom:0}.hero-photo-wrap::before{background:linear-gradient(180deg,#ff817c 0%,rgba(255,129,124,.45) 12%,transparent 35%)}.hero-photo-wrap img{object-position:center 48%}.paper-note{left:17px;top:20px;width:214px;min-height:145px;padding:21px 22px 16px}.hero-title{font-size:2.25rem}.hero-title span{font-size:2rem}.hero-subtitle{font-size:.72rem;margin-top:11px}.purple-sticker{width:57px;height:57px;right:14px;top:14px;font-size:1.05rem}.purple-sticker small{font-size:.38rem}.hero-tag{right:14px;bottom:10px;font-size:.57rem}.doodle-star{left:64%;top:85px}.doodle-heart{left:78%;top:118px}.doodle-spark{display:none}
+      .section{padding:17px 13px;border-radius:17px}.countdown-grid{grid-template-columns:1fr}.count-card{display:grid;grid-template-columns:auto 1fr;align-items:center;column-gap:10px}.count-card::before{display:none}.count-card p{grid-column:1;padding:0;margin:0}.count-card .kicker{grid-column:1}.units{grid-column:2;grid-row:1/3}.sync-strip{font-size:.62rem;flex-wrap:wrap}
+      .bet-picks{grid-template-columns:1fr}.top-songs{grid-template-columns:repeat(2,minmax(0,1fr))}.tracker-heading{display:block}.mini-sticker{display:inline-block;margin-top:7px}.scrap-footer{flex-wrap:wrap;gap:10px}.scrap-footer p{flex-basis:65%}
+    }
+    @media(max-width:420px){.nav-links a:nth-child(3){display:none}.paper-note{width:190px}.top-songs{grid-template-columns:1fr 1fr}.peek-title{flex-wrap:wrap}.peek-title small{margin-left:0}.scrap-footer p{font-size:.64rem}}
+  
+    /* Bandera chilena dibujada en CSS para que siempre se vea como bandera,
+       incluso en navegadores que muestran el emoji 🇨🇱 como las letras CL. */
+    .cl-flag{
+      display:inline-block; width:22px; height:15px; border-radius:2px;
+      position:relative; overflow:hidden; vertical-align:-2px; margin-right:6px;
+      background:linear-gradient(to bottom,#fff 0 50%,#d52b1e 50% 100%);
+      box-shadow:0 0 0 1px rgba(66,42,95,.14),0 2px 5px rgba(80,48,115,.12);
+      flex:0 0 auto;
+    }
+    .cl-flag::before{
+      content:""; position:absolute; left:0; top:0; width:7.5px; height:7.5px; background:#0039a6;
+    }
+    .cl-flag::after{
+      content:"★"; position:absolute; left:1.3px; top:-1.8px; width:5px; height:7px;
+      font-family:Arial,sans-serif; font-size:5.5px; line-height:8px; text-align:center; color:white;
+    }
+    .flag-line{display:inline-flex;align-items:center;gap:0;}
+</style>
+</head>
+<body>
+  <div class="binder" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="float-doodles" aria-hidden="true"><span>♡</span><span>✦</span><span>☆</span><span>☾</span><span>♡</span></div>
+  <main class="shell scrap-page">
+
+    <nav class="scrap-nav" aria-label="Navegación principal">
+      <a class="brand" href="#inicio"><span>BTS</span><small>♡ ARMY ☺</small></a>
+      <div class="nav-links">
+        <a href="#inicio" class="active">Inicio</a>
+        <a href="#cuentaRegresiva">Santiago</a>
+        <a href="#armyBets">ARMY Bets</a>
+        <a href="#songTracker">Canciones</a>
+      </div>
+      <a class="join-pill" href="#armyBets">Únete al delulu ♡</a>
+    </nav>
+
+    <section class="scrap-hero" id="inicio" aria-label="BTS Chile · Santiago">
+      <div class="hero-doodle doodle-star">☆</div>
+      <div class="hero-doodle doodle-heart">♡</div>
+      <div class="hero-doodle doodle-spark">✦</div>
+      <div class="paper-note">
+        <span class="washi washi-top"></span>
+        <div class="note-lines"></div>
+        <div class="hero-title">BTS<br><span>Chile</span></div>
+        <div class="hero-subtitle">Santiago te espera ♡</div>
+      </div>
+      <div class="hero-photo-wrap">
+        <img src="assets/bts-santiago.png" alt="BTS en fotografía grupal">
+      </div>
+      <div class="purple-sticker">💜<small>WE PURPLE<br>YOU</small></div>
+      <div class="hero-tag">14 · 16 · 17 OCT 🇨🇱</div>
+    </section>
+
+
+    <div class="scrap-pair">
+    <section class="section countdown-section" id="cuentaRegresiva">
+      <span class="corner-sticker">💎</span>
+      <h2>⏳ Cuenta regresiva <em>para Santiago</em> ♡</h2>
+      <div class="countdown-grid" id="countdownGrid">
+        <article class="count-card">
+          <div class="kicker flag-line"><span class="cl-flag" aria-label="Bandera de Chile"></span>Show 1</div>
+          <h3>Santiago, Chile</h3>
+          <p class="flag-line"><span class="cl-flag" aria-hidden="true"></span>14 octubre</p>
+          <div class="units" id="units-0">
+            <div class="unit"><strong>40</strong><span>días</span></div>
+            <div class="unit"><strong>8</strong><span>horas</span></div>
+            <div class="unit"><strong>23</strong><span>min</span></div>
+            <div class="unit"><strong>59</strong><span>seg</span></div>
+          </div>
+          <div class="done" id="done-0">¡Ya llegó la fecha! 💜</div>
+        </article>
+
+        <article class="count-card">
+          <div class="kicker flag-line"><span class="cl-flag" aria-label="Bandera de Chile"></span>Show 2</div>
+          <h3>Santiago, Chile</h3>
+          <p class="flag-line"><span class="cl-flag" aria-hidden="true"></span>16 octubre</p>
+          <div class="units" id="units-1">
+            <div class="unit"><strong>42</strong><span>días</span></div>
+            <div class="unit"><strong>8</strong><span>horas</span></div>
+            <div class="unit"><strong>23</strong><span>min</span></div>
+            <div class="unit"><strong>59</strong><span>seg</span></div>
+          </div>
+          <div class="done" id="done-1">¡Ya llegó la fecha! 💜</div>
+        </article>
+
+        <article class="count-card">
+          <div class="kicker flag-line"><span class="cl-flag" aria-label="Bandera de Chile"></span>Show 3</div>
+          <h3>Santiago, Chile</h3>
+          <p class="flag-line"><span class="cl-flag" aria-hidden="true"></span>17 octubre</p>
+          <div class="units" id="units-2">
+            <div class="unit"><strong>43</strong><span>días</span></div>
+            <div class="unit"><strong>8</strong><span>horas</span></div>
+            <div class="unit"><strong>23</strong><span>min</span></div>
+            <div class="unit"><strong>59</strong><span>seg</span></div>
+          </div>
+          <div class="done" id="done-2">¡Ya llegó la fecha! 💜</div>
+        </article>
+      </div>
+      <div class="sync-strip" id="syncStatus" aria-live="polite">
+        <span class="sync-dot" id="syncDot"></span>
+        <span><strong>Fechas oficiales</strong> · sincronización automática</span>
+        <span class="sync-sep">•</span>
+        <a class="sync-source" href="https://spot.weverse.io/bts-arirang-tour" target="_blank" rel="noopener">Weverse Spot ↗</a>
+        <span class="sync-sep">•</span>
+        <span id="syncText">cargando…</span>
+      </div>
+    </section>
+
+    <section class="section bets-section" id="armyBets">
+      <div class="bets-heading">
+        <div>
+          <h2>🔮 ARMY Bets · Santiago</h2>
+          <p class="lead" style="margin-bottom:0">Cada una puede dejar su predicción para las tres noches: una segura, una sorpresa y una carta salvaje. El buscador tiene un catálogo gigante para que el delulu no tenga límites 💜</p>
+        </div>
+        <div class="bets-tag">modo delulu: ON ✨</div>
+      </div>
+
+      <form class="bet-form" id="betForm">
+        <div class="bet-field">
+          <label for="armyName">Nombre / apodo ARMY</label>
+          <input id="armyName" maxlength="28" placeholder="Ej. Caro 💜" required>
+        </div>
+        <div class="bet-field">
+          <label for="betDate">Fecha</label>
+          <select id="betDate" required>
+            <option value="14 octubre">14 de octubre</option>
+            <option value="16 octubre">16 de octubre</option>
+            <option value="17 octubre">17 de octubre</option>
+          </select>
+        </div>
+
+        <div class="bet-picks">
+          <div class="bet-field">
+            <label for="safePick">💜 La segura</label>
+            <input id="safePick" list="songOptions" placeholder="La que sí o sí cantan" required>
+          </div>
+          <div class="bet-field">
+            <label for="surprisePick">✨ La sorpresa</label>
+            <input id="surprisePick" list="songOptions" placeholder="La que nos mataría escuchar" required>
+          </div>
+          <div class="bet-field">
+            <label for="wildPick">🔥 Wild card</label>
+            <input id="wildPick" list="songOptions" placeholder="La apuesta más delulu" required>
+          </div>
+        </div>
+        <datalist id="songOptions"></datalist>
+        <div class="delulu-tools">
+          <span>💿 <b id="deluluCount">catálogo delulu</b> · BTS, unidades, joyitas japonesas y solos. Igual puedes escribir cualquier canción aunque no aparezca ✨</span>
+          <button type="button" id="randomDelulu">🎲 inspiración delulu</button>
+        </div>
+
+        <div class="bet-actions">
+          <button class="btn btn-primary" type="submit">Guardar mi apuesta 💜</button>
+          <button class="btn btn-soft" type="button" id="copyBets">Copiar tablero</button>
+          <p class="bet-note">Se guarda en este navegador. Para que todas vean exactamente el mismo tablero en distintos teléfonos necesitaremos conectarlo a una base compartida.</p>
+        </div>
+        <div class="copy-status" id="copyStatus" aria-live="polite"></div>
+      </form>
+
+      <div class="bets-board" id="betsBoard"></div>
+    </section>
+
+    </div>
+
+    <section class="section tracker-section" id="songTracker">
+      <div class="tracker-heading"><div><h2>🎧 Song Tracker · <em>gira</em> ♡</h2><p class="hand-note">Toca una canción para ver sus ciudades pequeñitas ↓</p></div><span class="mini-sticker">✦ historial vivo</span></div>
+      <p class="lead tracker-lead">Las más repetidas quedan arriba. El listado completo sigue guardado debajo para buscar, ordenar y revisar cada fecha.</p>
+      <div class="setlist-sync" aria-live="polite">
+        <span class="setlist-dot" id="setlistDot"></span>
+        <span id="setlistSyncText">Song Tracker: usando respaldo local</span>
+        <span>·</span>
+        <a href="https://www.setlist.fm/setlists/bts-3bdd50e4.html" target="_blank" rel="noopener">datos de setlist.fm ↗</a>
+      </div>
+
+      <div class="top-songs" id="topSongs"><span class="song-chip">Best Of Me<b>3x</b></span>
+<span class="song-chip">Boy In Luv<b>3x</b></span>
+<span class="song-chip">Boy With Luv<b>3x</b></span>
+<span class="song-chip">Dope<b>3x</b></span>
+<span class="song-chip">Go Go<b>3x</b></span>
+<span class="song-chip">Magic Shop<b>3x</b></span>
+<span class="song-chip">Mikrokosmos<b>3x</b></span>
+<span class="song-chip">Permission to Dance<b>3x</b></span>
+<span class="song-chip">Silver Spoon<b>3x</b></span>
+<span class="song-chip">Airplane Pt.2<b>2x</b></span>
+<span class="song-chip">Anpanman<b>2x</b></span>
+<span class="song-chip">Blood, Sweat & Tears<b>2x</b></span>
+      </div>
+      <div class="song-peek" id="songPeek" hidden aria-live="polite"></div>
+
+      <details class="songs-details">
+        <summary>Ver listado completo de canciones</summary>
+        <div class="songs-details-body">
+          <div class="toolbar">
+            <div class="field search">
+              <input id="songSearch" type="search" placeholder="🔎 Buscar canción... ej. Spring Day, Magic Shop, Dope">
+            </div>
+            <div class="field">
+              <select id="sortSongs">
+                <option value="count-desc">Más repetidas</option>
+                <option value="count-asc">Menos repetidas</option>
+                <option value="name-asc">A → Z</option>
+                <option value="name-desc">Z → A</option>
+              </select>
+            </div>
+            <div class="field">
+              <select id="repeatFilter">
+                <option value="">Todas</option>
+                <option value="1">Solo 1 vez</option>
+                <option value="2">2 veces o más</option>
+                <option value="3">3 veces o más</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Canción</th>
+                  <th>Veces</th>
+                  <th colspan="2">Ciudades y fechas</th>
+                </tr>
+              </thead>
+              <tbody id="songTableBody">
+        <tr>
+          <td>1</td>
+          <td><strong>Best Of Me</strong></td>
+          <td><span class="count-pill">3</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 3 ciudades</summary>
+              <div class="city-list"><div class="city-entry"><strong>El Paso</strong><span>3 mayo</span></div><div class="city-entry"><strong>Madrid</strong><span>27 junio</span></div><div class="city-entry"><strong>Baltimore</strong><span>11 agosto</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>2</td>
+          <td><strong>Boy In Luv</strong></td>
+          <td><span class="count-pill">3</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 3 ciudades</summary>
+              <div class="city-list"><div class="city-entry"><strong>Ciudad de México</strong><span>7 mayo</span></div><div class="city-entry"><strong>Baltimore</strong><span>10 agosto</span></div><div class="city-entry"><strong>Los Ángeles</strong><span>1 septiembre</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>3</td>
+          <td><strong>Boy With Luv</strong></td>
+          <td><span class="count-pill">3</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 3 ciudades</summary>
+              <div class="city-list"><div class="city-entry"><strong>Tampa</strong><span>26 abril</span></div><div class="city-entry"><strong>Bruselas</strong><span>1 julio</span></div><div class="city-entry"><strong>París</strong><span>17 julio</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>4</td>
+          <td><strong>Dope</strong></td>
+          <td><span class="count-pill">3</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 3 ciudades</summary>
+              <div class="city-list"><div class="city-entry"><strong>Tokio</strong><span>18 abril</span></div><div class="city-entry"><strong>Stanford</strong><span>17 mayo</span></div><div class="city-entry"><strong>Toronto</strong><span>22 agosto</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>5</td>
+          <td><strong>Go Go</strong></td>
+          <td><span class="count-pill">3</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 3 ciudades</summary>
+              <div class="city-list"><div class="city-entry"><strong>Las Vegas</strong><span>23 mayo</span></div><div class="city-entry"><strong>East Rutherford</strong><span>2 agosto</span></div><div class="city-entry"><strong>Arlington</strong><span>16 agosto</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>6</td>
+          <td><strong>Magic Shop</strong></td>
+          <td><span class="count-pill">3</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 3 ciudades</summary>
+              <div class="city-list"><div class="city-entry"><strong>Tampa</strong><span>25 abril</span></div><div class="city-entry"><strong>Busan</strong><span>12 junio</span></div><div class="city-entry"><strong>Los Ángeles</strong><span>1 septiembre</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>7</td>
+          <td><strong>Mikrokosmos</strong></td>
+          <td><span class="count-pill">3</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 3 ciudades</summary>
+              <div class="city-list"><div class="city-entry"><strong>Goyang</strong><span>9 abril</span></div><div class="city-entry"><strong>Madrid</strong><span>27 junio</span></div><div class="city-entry"><strong>Chicago</strong><span>28 agosto</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>8</td>
+          <td><strong>Permission to Dance</strong></td>
+          <td><span class="count-pill">3</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 3 ciudades</summary>
+              <div class="city-list"><div class="city-entry"><strong>Tampa</strong><span>25 abril</span></div><div class="city-entry"><strong>Las Vegas</strong><span>23 mayo</span></div><div class="city-entry"><strong>Arlington</strong><span>16 agosto</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>9</td>
+          <td><strong>Silver Spoon</strong></td>
+          <td><span class="count-pill">3</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 3 ciudades</summary>
+              <div class="city-list"><div class="city-entry"><strong>Tampa</strong><span>28 abril</span></div><div class="city-entry"><strong>Múnich</strong><span>11 julio</span></div><div class="city-entry"><strong>Los Ángeles</strong><span>2 septiembre</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>10</td>
+          <td><strong>Airplane Pt.2</strong></td>
+          <td><span class="count-pill">2</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 2 ciudades</summary>
+              <div class="city-list"><div class="city-entry"><strong>Ciudad de México</strong><span>10 mayo</span></div><div class="city-entry"><strong>Madrid</strong><span>26 junio</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>11</td>
+          <td><strong>Anpanman</strong></td>
+          <td><span class="count-pill">2</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 2 ciudades</summary>
+              <div class="city-list"><div class="city-entry"><strong>Stanford</strong><span>16 mayo</span></div><div class="city-entry"><strong>Las Vegas</strong><span>27 mayo</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>12</td>
+          <td><strong>Blood, Sweat & Tears</strong></td>
+          <td><span class="count-pill">2</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 2 ciudades</summary>
+              <div class="city-list"><div class="city-entry"><strong>Stanford</strong><span>17 mayo</span></div><div class="city-entry"><strong>Múnich</strong><span>12 julio</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>13</td>
+          <td><strong>Dionysus</strong></td>
+          <td><span class="count-pill">2</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 2 ciudades</summary>
+              <div class="city-list"><div class="city-entry"><strong>El Paso</strong><span>3 mayo</span></div><div class="city-entry"><strong>Londres</strong><span>6 julio</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>14</td>
+          <td><strong>DNA</strong></td>
+          <td><span class="count-pill">2</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 2 ciudades</summary>
+              <div class="city-list"><div class="city-entry"><strong>Goyang</strong><span>11 abril</span></div><div class="city-entry"><strong>Arlington</strong><span>17 agosto</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>15</td>
+          <td><strong>I Need U</strong></td>
+          <td><span class="count-pill">2</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 2 ciudades</summary>
+              <div class="city-list"><div class="city-entry"><strong>Goyang</strong><span>9 abril</span></div><div class="city-entry"><strong>Stanford</strong><span>19 mayo</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>16</td>
+          <td><strong>Just One Day</strong></td>
+          <td><span class="count-pill">2</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 2 ciudades</summary>
+              <div class="city-list"><div class="city-entry"><strong>Ciudad de México</strong><span>9 mayo</span></div><div class="city-entry"><strong>Baltimore</strong><span>11 agosto</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>17</td>
+          <td><strong>Life Goes On</strong></td>
+          <td><span class="count-pill">2</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 2 ciudades</summary>
+              <div class="city-list"><div class="city-entry"><strong>Tampa</strong><span>28 abril</span></div><div class="city-entry"><strong>Londres</strong><span>6 julio</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>18</td>
+          <td><strong>N.O</strong></td>
+          <td><span class="count-pill">2</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 2 ciudades</summary>
+              <div class="city-list"><div class="city-entry"><strong>Stanford</strong><span>16 mayo</span></div><div class="city-entry"><strong>Foxborough</strong><span>6 agosto</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>19</td>
+          <td><strong>No More Dream</strong></td>
+          <td><span class="count-pill">2</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 2 ciudades</summary>
+              <div class="city-list"><div class="city-entry"><strong>Stanford</strong><span>19 mayo</span></div><div class="city-entry"><strong>Foxborough</strong><span>5 agosto</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>20</td>
+          <td><strong>ON</strong></td>
+          <td><span class="count-pill">2</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 2 ciudades</summary>
+              <div class="city-list"><div class="city-entry"><strong>El Paso</strong><span>2 mayo</span></div><div class="city-entry"><strong>Bruselas</strong><span>2 julio</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>21</td>
+          <td><strong>One More Night</strong></td>
+          <td><span class="count-pill">2</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>Busan</strong><span>12 junio</span></div><div class="city-entry"><strong>Busan</strong><span>12 junio</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>22</td>
+          <td><strong>Outro: Wings</strong></td>
+          <td><span class="count-pill">2</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 2 ciudades</summary>
+              <div class="city-list"><div class="city-entry"><strong>El Paso</strong><span>2 mayo</span></div><div class="city-entry"><strong>Madrid</strong><span>26 junio</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>23</td>
+          <td><strong>Pied Piper</strong></td>
+          <td><span class="count-pill">2</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 2 ciudades</summary>
+              <div class="city-list"><div class="city-entry"><strong>Tampa</strong><span>26 abril</span></div><div class="city-entry"><strong>Múnich</strong><span>11 julio</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>24</td>
+          <td><strong>Run</strong></td>
+          <td><span class="count-pill">2</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 2 ciudades</summary>
+              <div class="city-list"><div class="city-entry"><strong>Goyang</strong><span>12 abril</span></div><div class="city-entry"><strong>East Rutherford</strong><span>1 agosto</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>25</td>
+          <td><strong>Save Me</strong></td>
+          <td><span class="count-pill">2</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 2 ciudades</summary>
+              <div class="city-list"><div class="city-entry"><strong>Tokio</strong><span>17 abril</span></div><div class="city-entry"><strong>Londres</strong><span>7 julio</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>26</td>
+          <td><strong>So What</strong></td>
+          <td><span class="count-pill">2</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 2 ciudades</summary>
+              <div class="city-list"><div class="city-entry"><strong>Ciudad de México</strong><span>7 mayo</span></div><div class="city-entry"><strong>París</strong><span>18 julio</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>27</td>
+          <td><strong>Spring Day</strong></td>
+          <td><span class="count-pill">2</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 2 ciudades</summary>
+              <div class="city-list"><div class="city-entry"><strong>Goyang</strong><span>12 abril</span></div><div class="city-entry"><strong>Ciudad de México</strong><span>10 mayo</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>28</td>
+          <td><strong>Tomorrow</strong></td>
+          <td><span class="count-pill">2</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 2 ciudades</summary>
+              <div class="city-list"><div class="city-entry"><strong>Bruselas</strong><span>1 julio</span></div><div class="city-entry"><strong>Chicago</strong><span>27 agosto</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>29</td>
+          <td><strong>134340</strong></td>
+          <td><span class="count-pill">1</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>Chicago</strong><span>28 agosto</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>30</td>
+          <td><strong>Attack on Bangtan</strong></td>
+          <td><span class="count-pill">1</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>Las Vegas</strong><span>27 mayo</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>31</td>
+          <td><strong>Autumn Leaves</strong></td>
+          <td><span class="count-pill">1</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>East Rutherford</strong><span>2 agosto</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>32</td>
+          <td><strong>Black Swan</strong></td>
+          <td><span class="count-pill">1</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>Las Vegas</strong><span>24 mayo</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>33</td>
+          <td><strong>Boyz With Fun</strong></td>
+          <td><span class="count-pill">1</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>Las Vegas</strong><span>28 mayo</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>34</td>
+          <td><strong>Butterfly</strong></td>
+          <td><span class="count-pill">1</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>Arlington</strong><span>17 agosto</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>35</td>
+          <td><strong>Crystal Snow</strong></td>
+          <td><span class="count-pill">1</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>Tokio</strong><span>17 abril</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>36</td>
+          <td><strong>Danger</strong></td>
+          <td><span class="count-pill">1</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>Las Vegas</strong><span>28 mayo</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>37</td>
+          <td><strong>DDAENG</strong></td>
+          <td><span class="count-pill">1</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>Busan</strong><span>12 junio</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>38</td>
+          <td><strong>Dimple</strong></td>
+          <td><span class="count-pill">1</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>Busan</strong><span>12 junio</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>39</td>
+          <td><strong>Dis-ease</strong></td>
+          <td><span class="count-pill">1</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>East Rutherford</strong><span>1 agosto</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>40</td>
+          <td><strong>For You</strong></td>
+          <td><span class="count-pill">1</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>Tokio</strong><span>18 abril</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>41</td>
+          <td><strong>For Youth</strong></td>
+          <td><span class="count-pill">1</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>Bruselas</strong><span>2 julio</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>42</td>
+          <td><strong>Hip Hop Phile</strong></td>
+          <td><span class="count-pill">1</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>Chicago</strong><span>27 agosto</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>43</td>
+          <td><strong>Jump</strong></td>
+          <td><span class="count-pill">1</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>París</strong><span>17 julio</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>44</td>
+          <td><strong>Louder Than Bombs</strong></td>
+          <td><span class="count-pill">1</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>Múnich</strong><span>12 julio</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>45</td>
+          <td><strong>Love Maze</strong></td>
+          <td><span class="count-pill">1</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>Los Ángeles</strong><span>2 septiembre</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>46</td>
+          <td><strong>Ma City</strong></td>
+          <td><span class="count-pill">1</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>Busan</strong><span>12 junio</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>47</td>
+          <td><strong>Make It Right</strong></td>
+          <td><span class="count-pill">1</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>Foxborough</strong><span>6 agosto</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>48</td>
+          <td><strong>Outro: Tear</strong></td>
+          <td><span class="count-pill">1</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>Toronto</strong><span>23 agosto</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>49</td>
+          <td><strong>Paldogangsan</strong></td>
+          <td><span class="count-pill">1</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>Busan</strong><span>12 junio</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>50</td>
+          <td><strong>Paradise</strong></td>
+          <td><span class="count-pill">1</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>Foxborough</strong><span>5 agosto</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>51</td>
+          <td><strong>Spine Breaker</strong></td>
+          <td><span class="count-pill">1</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>Las Vegas</strong><span>24 mayo</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>52</td>
+          <td><strong>Take Two</strong></td>
+          <td><span class="count-pill">1</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>Goyang</strong><span>11 abril</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>53</td>
+          <td><strong>Telepathy</strong></td>
+          <td><span class="count-pill">1</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>Baltimore</strong><span>10 agosto</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>54</td>
+          <td><strong>We Are Bulletproof Pt.2</strong></td>
+          <td><span class="count-pill">1</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>Ciudad de México</strong><span>9 mayo</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>55</td>
+          <td><strong>We Are Bulletproof: The Eternal</strong></td>
+          <td><span class="count-pill">1</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>París</strong><span>18 julio</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>56</td>
+          <td><strong>Wings</strong></td>
+          <td><span class="count-pill">1</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>Toronto</strong><span>22 agosto</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>57</td>
+          <td><strong>Young Forever</strong></td>
+          <td><span class="count-pill">1</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>Londres</strong><span>7 julio</span></div></div>
+            </details>
+          </td>
+        </tr>
+
+        <tr>
+          <td>58</td>
+          <td><strong>Zero O'Clock</strong></td>
+          <td><span class="count-pill">1</span></td>
+          <td colspan="2">
+            <details class="city-details">
+              <summary>Ver 1 ciudad</summary>
+              <div class="city-list"><div class="city-entry"><strong>Toronto</strong><span>23 agosto</span></div></div>
+            </details>
+          </td>
+        </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="summary" id="songSummary">58 canciones en total.</div>
+        </div>
+      </details>
+    </section>
+
+    <footer class="scrap-footer">
+      <div class="footer-note"><span class="washi footer-washi"></span><strong>Borahae ♡</strong></div>
+      <p>Hecho con 💜 para compartir entre ARMY · ¡Nos vemos en Santiago!</p>
+      <div class="footer-doodles">✦ ♡ ☆</div>
+    </footer>
+  </main>
+
+  <script>
+    const btsDeluluCatalog = [
+      "2 Cool 4 Skool",
+      "We Are Bulletproof Pt.2",
+      "No More Dream",
+      "Like",
+      "Path / Road",
+      "O!RUL8,2?",
+      "N.O",
+      "We On",
+      "If I Ruled the World",
+      "Coffee",
+      "BTS Cypher Pt.1",
+      "Attack on Bangtan",
+      "Paldogangsan",
+      "Outro: Luv in Skool",
+      "Intro: Skool Luv Affair",
+      "Boy In Luv",
+      "Where You From",
+      "Just One Day",
+      "Tomorrow",
+      "BTS Cypher Pt.2: Triptych",
+      "Spine Breaker",
+      "Jump",
+      "Outro: Propose",
+      "Miss Right",
+      "Like (Slow Jam Remix)",
+      "Intro: What Am I to You",
+      "Danger",
+      "War of Hormone",
+      "Hip Hop Phile",
+      "Let Me Know",
+      "Rain",
+      "BTS Cypher Pt.3: Killer",
+      "Could You Turn Off Your Cell Phone",
+      "Blanket Kick",
+      "24/7=Heaven",
+      "Look Here",
+      "2nd Grade",
+      "Outro: Does That Make Sense?",
+      "Intro: The Most Beautiful Moment in Life",
+      "I Need U",
+      "Hold Me Tight",
+      "Dope",
+      "Boyz With Fun",
+      "Converse High",
+      "Moving On",
+      "Outro: Love Is Not Over",
+      "Intro: Never Mind",
+      "Run",
+      "Butterfly",
+      "Whalien 52",
+      "Ma City",
+      "Silver Spoon",
+      "Autumn Leaves",
+      "Outro: House of Cards",
+      "House of Cards (Full Length Edition)",
+      "Love Is Not Over (Full Length Edition)",
+      "Fire",
+      "Save Me",
+      "Epilogue: Young Forever",
+      "Intro: Boy Meets Evil",
+      "Blood Sweat & Tears",
+      "Begin",
+      "Lie",
+      "Stigma",
+      "First Love",
+      "Reflection",
+      "MAMA",
+      "Awake",
+      "Lost",
+      "BTS Cypher 4",
+      "Am I Wrong",
+      "21st Century Girl",
+      "2! 3!",
+      "Interlude: Wings",
+      "Spring Day",
+      "Not Today",
+      "Outro: Wings",
+      "A Supplementary Story: You Never Walk Alone",
+      "Intro: Serendipity",
+      "DNA",
+      "Best of Me",
+      "Dimple",
+      "Pied Piper",
+      "MIC Drop",
+      "Go Go",
+      "Outro: Her",
+      "Sea",
+      "Intro: Singularity",
+      "FAKE LOVE",
+      "The Truth Untold",
+      "134340",
+      "Paradise",
+      "Love Maze",
+      "Magic Shop",
+      "Airplane pt.2",
+      "Anpanman",
+      "So What",
+      "Outro: Tear",
+      "Euphoria",
+      "Trivia: Just Dance",
+      "Trivia: Love",
+      "Trivia: Seesaw",
+      "Epiphany",
+      "I'm Fine",
+      "IDOL",
+      "Answer: Love Myself",
+      "Intro: Persona",
+      "Boy With Luv",
+      "Mikrokosmos",
+      "Make It Right",
+      "HOME",
+      "Jamais Vu",
+      "Dionysus",
+      "Interlude: Shadow",
+      "Black Swan",
+      "Filter",
+      "My Time",
+      "Louder than Bombs",
+      "ON",
+      "UGH!",
+      "00:00 (Zero O'Clock)",
+      "Inner Child",
+      "Friends",
+      "Moon",
+      "Respect",
+      "We Are Bulletproof: The Eternal",
+      "Outro: Ego",
+      "Life Goes On",
+      "Fly to My Room",
+      "Blue & Grey",
+      "Telepathy",
+      "Dis-ease",
+      "Stay",
+      "Dynamite",
+      "Butter",
+      "Permission to Dance",
+      "Yet To Come",
+      "Run BTS",
+      "For Youth",
+      "Take Two",
+      "The Planet",
+      "Born Singer",
+      "DDAENG",
+      "Come Back Home",
+      "With Seoul",
+      "Arirang",
+      "Heartbeat",
+      "Dream Glow",
+      "A Brand New Day",
+      "All Night",
+      "Wake Up",
+      "The Stars",
+      "I Like It Pt.2 ~In That Place~",
+      "For You",
+      "Good Day",
+      "Wishing on a Star",
+      "Don't Leave Me",
+      "Let Go",
+      "Crystal Snow",
+      "Lights",
+      "Stay Gold",
+      "Your Eyes Tell",
+      "Film Out",
+      "Waste It on Me",
+      "Savage Love (Laxed – Siren Beat) [BTS Remix]",
+      "My Universe",
+      "Bad Decisions",
+      "Hooligan",
+      "Aliens",
+      "they don't know 'bout us",
+      "Like Animals",
+      "SWIM",
+      "Merry Go Round",
+      "2.0",
+      "NORMAL",
+      "FYA",
+      "Body to Body",
+      "Come Over",
+      "Please",
+      "Into the Sun",
+      "Wild Flower",
+      "Still Life",
+      "Yun",
+      "Closer",
+      "Change pt.2",
+      "Lonely",
+      "Hectic",
+      "No.2",
+      "Come Back to Me",
+      "LOST!",
+      "Domodachi",
+      "Nuts",
+      "Heaven",
+      "Around the world in a day",
+      "Daechwita",
+      "Haegeum",
+      "AMYGDALA",
+      "People",
+      "People Pt.2",
+      "SDL",
+      "Life Goes On (Agust D)",
+      "So Far Away",
+      "Tony Montana",
+      "MORE",
+      "Arson",
+      "Safety Zone",
+      "Future",
+      "Equal Sign",
+      "STOP",
+      "NEURON",
+      "on the street",
+      "Chicken Noodle Soup",
+      "Daydream",
+      "The Astronaut",
+      "Super Tuna",
+      "Running Wild",
+      "I'll Be There",
+      "Another Level",
+      "Falling",
+      "Abyss",
+      "Moon (Jin)",
+      "Like Crazy",
+      "Set Me Free Pt.2",
+      "Who",
+      "Be Mine",
+      "Smeraldo Garden Marching Band",
+      "Slow Dance",
+      "Closer Than This",
+      "Promise",
+      "Love Me Again",
+      "Slow Dancing",
+      "Rainy Days",
+      "Blue",
+      "For Us",
+      "FRI(END)S",
+      "Winter Ahead",
+      "Christmas Tree",
+      "Sweet Night",
+      "Seven",
+      "Standing Next to You",
+      "3D",
+      "Yes or No",
+      "Hate You",
+      "Shot Glass of Tears",
+      "Too Sad to Dance",
+      "Never Let Go",
+      "Still With You",
+      "My You",
+      "Dreamers",
+      "Otsukare",
+      "4 O'Clock",
+      "Adult Child",
+      "Graduation Song",
+      "School of Tears",
+      "Beautiful",
+      "95 Graduation",
+      "Tony Montana (feat. Jimin)"
+];
+    let deluluOptions = [...btsDeluluCatalog];
+
+    let tourData = [
+      {
+        country:"Corea del Sur", city:"Goyang", flag:"🇰🇷",
+        shows:[
+          {date:"9 abril", month:"abril", songs:["Mikrokosmos","I Need U"]},
+          {date:"11 abril", month:"abril", songs:["Take Two","DNA"]},
+          {date:"12 abril", month:"abril", songs:["Spring Day","Run"]}
+        ]
+      },
+      {
+        country:"Japón", city:"Tokio", flag:"🇯🇵",
+        shows:[
+          {date:"17 abril", month:"abril", songs:["Save Me","Crystal Snow"]},
+          {date:"18 abril", month:"abril", songs:["Dope","For You"]}
+        ]
+      },
+      {
+        country:"EE. UU.", city:"Tampa", flag:"🇺🇸",
+        shows:[
+          {date:"25 abril", month:"abril", songs:["Magic Shop","Permission to Dance"]},
+          {date:"26 abril", month:"abril", songs:["Boy With Luv","Pied Piper"]},
+          {date:"28 abril", month:"abril", songs:["Life Goes On","Silver Spoon"]}
+        ]
+      },
+      {
+        country:"EE. UU.", city:"El Paso", flag:"🇺🇸",
+        shows:[
+          {date:"2 mayo", month:"mayo", songs:["ON","Outro: Wings"]},
+          {date:"3 mayo", month:"mayo", songs:["Dionysus","Best Of Me"]}
+        ]
+      },
+      {
+        country:"México", city:"Ciudad de México", flag:"🇲🇽",
+        shows:[
+          {date:"7 mayo", month:"mayo", songs:["Boy in Luv","So What"]},
+          {date:"9 mayo", month:"mayo", songs:["We Are Bulletproof Pt.2","Just One Day"]},
+          {date:"10 mayo", month:"mayo", songs:["Airplane Pt.2","Spring Day"]}
+        ]
+      },
+      {
+        country:"EE. UU.", city:"Stanford", flag:"🇺🇸",
+        shows:[
+          {date:"16 mayo", month:"mayo", songs:["N.O","Anpanman"]},
+          {date:"17 mayo", month:"mayo", songs:["Dope","Blood, Sweat & Tears"]},
+          {date:"19 mayo", month:"mayo", songs:["I Need U","No More Dream"]}
+        ]
+      },
+      {
+        country:"EE. UU.", city:"Las Vegas", flag:"🇺🇸",
+        shows:[
+          {date:"23 mayo", month:"mayo", songs:["Permission to Dance","Go Go"]},
+          {date:"24 mayo", month:"mayo", songs:["Black Swan","Spine Breaker"]},
+          {date:"27 mayo", month:"mayo", songs:["Anpanman","Attack on Bangtan"]},
+          {date:"28 mayo", month:"mayo", songs:["Danger","Boyz With Fun"]}
+        ]
+      },
+      {
+        country:"Corea del Sur", city:"Busan", flag:"🇰🇷",
+        shows:[
+          {date:"12 junio", note:"show 1", month:"junio", songs:["Paldogangsan","Ma City"], extraLabel:"Canción extra", extraSongs:["One More Night"]},
+          {date:"12 junio", note:"show 2 · aniversario", month:"junio", songs:["Dimple","DDAENG"], extraLabel:"Regalo especial", extraSongs:["Magic Shop","One More Night"]}
+        ]
+      },
+      {
+        country:"España", city:"Madrid", flag:"🇪🇸",
+        shows:[
+          {date:"26 junio", month:"junio", songs:["Airplane Pt.2","Outro: Wings"]},
+          {date:"27 junio", month:"junio", songs:["Mikrokosmos","Best Of Me"]}
+        ]
+      },
+      {
+        country:"Bélgica", city:"Bruselas", flag:"🇧🇪",
+        shows:[
+          {date:"1 julio", month:"julio", songs:["Tomorrow","Boy With Luv"]},
+          {date:"2 julio", month:"julio", songs:["ON","For Youth"]}
+        ]
+      },
+      {
+        country:"Inglaterra", city:"Londres", flag:"🇬🇧",
+        shows:[
+          {date:"6 julio", month:"julio", songs:["Life Goes On","Dionysus"]},
+          {date:"7 julio", month:"julio", songs:["Save Me","Young Forever"]}
+        ]
+      },
+      {
+        country:"Alemania", city:"Múnich", flag:"🇩🇪",
+        shows:[
+          {date:"11 julio", month:"julio", songs:["Silver Spoon","Pied Piper"]},
+          {date:"12 julio", month:"julio", songs:["Blood, Sweat & Tears","Louder Than Bombs"]}
+        ]
+      },
+      {
+        country:"Francia", city:"París", flag:"🇫🇷",
+        shows:[
+          {date:"17 julio", month:"julio", songs:["Boy With Luv","Jump"]},
+          {date:"18 julio", month:"julio", songs:["So What","We Are Bulletproof: The Eternal"]}
+        ]
+      },
+      {
+        country:"EE. UU.", city:"East Rutherford", flag:"🇺🇸",
+        shows:[
+          {date:"1 agosto", month:"agosto", songs:["Dis-ease","Run"]},
+          {date:"2 agosto", month:"agosto", songs:["Autumn Leaves","Go Go"]}
+        ]
+      },
+      {
+        country:"EE. UU.", city:"Foxborough", flag:"🇺🇸",
+        shows:[
+          {date:"5 agosto", month:"agosto", songs:["Paradise","No More Dream"]},
+          {date:"6 agosto", month:"agosto", songs:["Make It Right","N.O"]}
+        ]
+      },
+      {
+        country:"EE. UU.", city:"Baltimore", flag:"🇺🇸",
+        shows:[
+          {date:"10 agosto", month:"agosto", songs:["Telepathy","Boy In Luv"]},
+          {date:"11 agosto", month:"agosto", songs:["Just One Day","Best Of Me"]}
+        ]
+      },
+      {
+        country:"EE. UU.", city:"Arlington", flag:"🇺🇸",
+        shows:[
+          {date:"16 agosto", month:"agosto", songs:["Permission to Dance","Go Go"]},
+          {date:"17 agosto", month:"agosto", songs:["Butterfly","DNA"]}
+        ]
+      },
+      {
+        country:"Canadá", city:"Toronto", flag:"🇨🇦",
+        shows:[
+          {date:"22 agosto", month:"agosto", songs:["Wings","Dope"]},
+          {date:"23 agosto", month:"agosto", songs:["Zero O'Clock","Outro: Tear"]}
+        ]
+      },
+      {
+        country:"EE. UU.", city:"Chicago", flag:"🇺🇸",
+        shows:[
+          {date:"27 agosto", month:"agosto", songs:["Tomorrow","Hip Hop Phile"]},
+          {date:"28 agosto", month:"agosto", songs:["134340","Mikrokosmos"]}
+        ]
+      },
+      {
+        country:"EE. UU.", city:"Los Ángeles", flag:"🇺🇸",
+        shows:[
+          {date:"1 septiembre", month:"septiembre", songs:["Boy In Luv","Magic Shop"]},
+          {date:"2 septiembre", month:"septiembre", songs:["Love Maze","Silver Spoon"]}
+        ]
+      }
+    ];
+
+    const fallbackChileShows = [
+      {label:"Show 1", dateISO:"2026-10-14T00:00:00-03:00", pretty:"14 octubre", venue:"Estadio Nacional"},
+      {label:"Show 2", dateISO:"2026-10-16T00:00:00-03:00", pretty:"16 octubre", venue:"Estadio Nacional"},
+      {label:"Show 3", dateISO:"2026-10-17T00:00:00-03:00", pretty:"17 octubre", venue:"Estadio Nacional"}
+    ];
+    let chileShows = [...fallbackChileShows];
+    let countdownTimer = null;
+
+    const aliasMap = {
+      "boy in luv":"Boy In Luv",
+      "boy with luv":"Boy With Luv",
+      "i need u":"I Need U",
+      "n.o":"N.O",
+      "go go":"Go Go",
+      "spring day":"Spring Day",
+      "permission to dance":"Permission to Dance",
+      "magic shop":"Magic Shop",
+      "best of me":"Best Of Me",
+      "outro: wings":"Outro: Wings"
+    };
+
+    const normalize = s => s.toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g,"")
+      .trim();
+
+    const prettySong = song => aliasMap[normalize(song)] || song;
+
+    function getOccurrences(){
+      const out = [];
+      tourData.forEach(city => {
+        city.shows.forEach(show => {
+          [...show.songs, ...(show.extraSongs || [])].forEach(song => {
+            out.push({
+              song: prettySong(song),
+              key: normalize(song),
+              city: city.city,
+              date: show.date
+            });
+          });
+        });
+      });
+      return out;
+    }
+
+    let occurrences = getOccurrences();
+
+    function buildSongStats(){
+      const map = new Map();
+
+      occurrences.forEach(item => {
+        if(!map.has(item.key)){
+          map.set(item.key,{
+            key:item.key,
+            song:item.song,
+            count:0,
+            cities:new Set(),
+            dates:[]
+          });
+        }
+        const row = map.get(item.key);
+        row.count += 1;
+        row.cities.add(item.city);
+        row.dates.push({date:item.date, city:item.city, url:item.url || ""});
+      });
+
+      return [...map.values()].map(item => ({
+        ...item,
+        cities:[...item.cities]
+      }));
+    }
+
+    let songStats = buildSongStats();
+
+    function renderTopSongs(){
+      const top = [...songStats]
+        .sort((a,b) => b.count - a.count || a.song.localeCompare(b.song))
+        .slice(0,12);
+
+      document.getElementById("topSongs").innerHTML = top.map(item =>
+        `<button class="song-chip" type="button" data-song="${esc(item.song)}"><span>♫</span>${esc(item.song)}<b>${item.count}x</b></button>`
+      ).join("");
+    }
+
+    function renderSongTable(){
+      const q = normalize(document.getElementById("songSearch").value || "");
+      const sort = document.getElementById("sortSongs").value;
+      const filter = document.getElementById("repeatFilter").value;
+
+      let list = songStats.filter(item => {
+        const matchText = !q || normalize(item.song).includes(q);
+        const matchCount =
+          !filter ||
+          (filter === "1" && item.count === 1) ||
+          (filter === "2" && item.count >= 2) ||
+          (filter === "3" && item.count >= 3);
+        return matchText && matchCount;
+      });
+
+      if(sort === "count-desc") list.sort((a,b) => b.count - a.count || a.song.localeCompare(b.song));
+      if(sort === "count-asc") list.sort((a,b) => a.count - b.count || a.song.localeCompare(b.song));
+      if(sort === "name-asc") list.sort((a,b) => a.song.localeCompare(b.song));
+      if(sort === "name-desc") list.sort((a,b) => b.song.localeCompare(a.song));
+
+      document.getElementById("songTableBody").innerHTML = list.map((item,index) => `
+        <tr>
+          <td>${index+1}</td>
+          <td><button class="song-toggle" type="button" aria-expanded="false">${item.song}</button></td>
+          <td><span class="count-pill">${item.count}</span></td>
+          <td colspan="2">
+            <details class="city-details song-cities">
+              <summary>Ciudades</summary>
+              <div class="city-list">
+                ${item.dates.map(entry => {
+                  const inner = `<strong>${esc(entry.city || "")}</strong><span>${esc(entry.date || "")}</span>`;
+                  return entry.url
+                    ? `<a class="city-entry" href="${esc(entry.url)}" target="_blank" rel="noopener" title="Ver este setlist en setlist.fm">${inner}</a>`
+                    : `<div class="city-entry">${inner}</div>`;
+                }).join("")}
+              </div>
+            </details>
+          </td>
+        </tr>
+      `).join("");
+
+      document.getElementById("songSummary").textContent =
+        `${list.length} canciones mostradas de ${songStats.length} en total.`;
+    }
+
+    function formatDateForBet(show){
+      return show.pretty || new Intl.DateTimeFormat("es-CL",{day:"numeric",month:"long"}).format(new Date(show.dateISO));
+    }
+
+    function renderBetDates(){
+      const select = document.getElementById("betDate");
+      if(!select) return;
+      const previous = select.value;
+      select.innerHTML = chileShows.map(show => {
+        const text = formatDateForBet(show);
+        return `<option value="${esc(text)}">${esc(text.replace(/^(\d+) /,"$1 de "))}</option>`;
+      }).join("");
+      if([...select.options].some(o => o.value === previous)) select.value = previous;
+    }
+
+    function renderCountdowns(){
+      const grid = document.getElementById("countdownGrid");
+      grid.innerHTML = chileShows.map((show,index) => `
+        <article class="count-card">
+          <div class="kicker flag-line"><span class="cl-flag" aria-label="Bandera de Chile"></span>${show.label || `Show ${index+1}`}</div>
+          <h3>Santiago, Chile</h3>
+          <p class="flag-line"><span class="cl-flag" aria-hidden="true"></span>${show.pretty}</p>
+          <div class="units" id="units-${index}">
+            <div class="unit"><strong>--</strong><span>días</span></div>
+            <div class="unit"><strong>--</strong><span>horas</span></div>
+            <div class="unit"><strong>--</strong><span>min</span></div>
+            <div class="unit"><strong>--</strong><span>seg</span></div>
+          </div>
+          <div class="done" id="done-${index}">¡Ya llegó la fecha! 💜</div>
+        </article>
+      `).join("");
+
+      const update = () => {
+        chileShows.forEach((show,index) => {
+          const diff = new Date(show.dateISO).getTime() - Date.now();
+          const units = document.getElementById(`units-${index}`);
+          const done = document.getElementById(`done-${index}`);
+          if(!units || !done) return;
+
+          if(diff <= 0){
+            units.style.display = "none";
+            done.style.display = "block";
+            return;
+          }
+
+          units.style.display = "grid";
+          done.style.display = "none";
+          const days = Math.floor(diff / 86400000);
+          const hours = Math.floor((diff / 3600000) % 24);
+          const mins = Math.floor((diff / 60000) % 60);
+          const secs = Math.floor((diff / 1000) % 60);
+
+          units.innerHTML = `
+            <div class="unit"><strong>${days}</strong><span>días</span></div>
+            <div class="unit"><strong>${hours}</strong><span>horas</span></div>
+            <div class="unit"><strong>${mins}</strong><span>min</span></div>
+            <div class="unit"><strong>${secs}</strong><span>seg</span></div>
+          `;
+        });
+      };
+
+      if(countdownTimer) clearInterval(countdownTimer);
+      update();
+      countdownTimer = setInterval(update,1000);
+      renderBetDates();
+    }
+
+    function setSyncStatus(mode, text){
+      const dot = document.getElementById("syncDot");
+      const label = document.getElementById("syncText");
+      if(dot){
+        dot.classList.remove("live","fallback");
+        if(mode) dot.classList.add(mode);
+      }
+      if(label) label.textContent = text;
+    }
+
+    async function loadOfficialTourSchedule(){
+      // En GitHub Pages, data/weverse-tour.json es actualizado automáticamente
+      // por .github/workflows/update-tour.yml. Al abrir el HTML localmente,
+      // el navegador puede bloquear fetch(file://), por eso existe el fallback.
+      try{
+        const response = await fetch(`data/weverse-tour.json?v=${Date.now()}`, {cache:"no-store"});
+        if(!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        if(!data || !Array.isArray(data.shows) || data.shows.length === 0) throw new Error("Sin fechas válidas");
+
+        chileShows = data.shows
+          .filter(show => show && show.dateISO)
+          .sort((a,b) => new Date(a.dateISO) - new Date(b.dateISO));
+        renderCountdowns();
+
+        const changed = data.lastUpdated ? new Date(data.lastUpdated) : null;
+        const when = changed && !Number.isNaN(changed.getTime())
+          ? new Intl.DateTimeFormat("es-CL",{day:"numeric",month:"short",year:"numeric"}).format(changed)
+          : "automático";
+        setSyncStatus("live", `activo · calendario ${when}`);
+      }catch(error){
+        setSyncStatus("fallback", location.protocol === "file:"
+          ? "vista local · al publicarla se sincroniza"
+          : "usando fechas guardadas · reintenta al recargar");
+      }
+    }
+
+    function setSetlistStatus(mode,text){
+      const dot = document.getElementById("setlistDot");
+      const label = document.getElementById("setlistSyncText");
+      if(dot){
+        dot.classList.remove("live","fallback");
+        if(mode) dot.classList.add(mode);
+      }
+      if(label) label.textContent = text;
+    }
+
+    function prettySyncDate(value){
+      const d = value ? new Date(value) : null;
+      if(!d || Number.isNaN(d.getTime())) return "actualización automática";
+      return new Intl.DateTimeFormat("es-CL",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}).format(d);
+    }
+
+    async function loadSetlistTracker(){
+      // data/setlists.json lo genera GitHub Actions usando la API oficial de setlist.fm.
+      // La API key vive como secret del repositorio: nunca queda expuesta en este HTML.
+      try{
+        const response = await fetch(`data/setlists.json?v=${Date.now()}`, {cache:"no-store"});
+        if(!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        if(!data || !Array.isArray(data.specialOccurrences) || data.specialOccurrences.length === 0){
+          throw new Error("Aún no hay datos automáticos de canciones");
+        }
+
+        occurrences = data.specialOccurrences
+          .filter(item => item && item.song && item.city && item.date)
+          .map(item => ({
+            song:prettySong(item.song),
+            key:normalize(item.song),
+            city:item.city,
+            date:item.date,
+            url:item.url || ""
+          }));
+
+        songStats = buildSongStats();
+        renderTopSongs();
+        renderSongTable();
+        renderSongOptions();
+        setSetlistStatus("live", `Song Tracker automático · ${data.completedShows || ""} shows revisados · ${prettySyncDate(data.lastUpdated)}`);
+      }catch(error){
+        setSetlistStatus("fallback", location.protocol === "file:"
+          ? "Song Tracker: vista local · al publicarla usa setlist.fm"
+          : "Song Tracker: usando respaldo local · falta activar/actualizar setlist.fm");
+      }
+    }
+
+    const betsKey = "btsChileArmyBetsV1";
+
+    function getBets(){
+      try{
+        return JSON.parse(localStorage.getItem(betsKey) || "[]");
+      }catch(e){
+        return [];
+      }
+    }
+
+    function setBets(bets){
+      localStorage.setItem(betsKey, JSON.stringify(bets));
+    }
+
+    function esc(value){
+      return String(value).replace(/[&<>"']/g, ch => ({
+        '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'
+      })[ch]);
+    }
+
+    function renderSongOptions(){
+      deluluOptions = [...new Set([
+        ...btsDeluluCatalog,
+        ...songStats.map(item => item.song)
+      ].map(song => prettySong(song)).filter(Boolean))]
+        .sort((a,b) => a.localeCompare(b,"es",{sensitivity:"base"}));
+
+      document.getElementById("songOptions").innerHTML = deluluOptions
+        .map(song => `<option value="${esc(song)}"></option>`)
+        .join("");
+
+      const counter = document.getElementById("deluluCount");
+      if(counter) counter.textContent = `${deluluOptions.length} ideas en el catálogo delulu`;
+    }
+
+    function renderBets(){
+      const bets = getBets();
+      const board = document.getElementById("betsBoard");
+      if(!bets.length){
+        board.innerHTML = `<div class="bets-empty">Todavía no hay apuestas guardadas. Alguien tiene que inaugurar el delulu 👀💜</div>`;
+        return;
+      }
+      board.innerHTML = bets.map((bet,index) => `
+        <article class="bet-card">
+          <div class="bet-card-top">
+            <strong>${esc(bet.name)}</strong>
+            <span class="bet-date">${esc(bet.date)}</span>
+          </div>
+          <ul class="bet-list">
+            <li>💜 <b>Segura:</b> ${esc(bet.safe)}</li>
+            <li>✨ <b>Sorpresa:</b> ${esc(bet.surprise)}</li>
+            <li>🔥 <b>Wild card:</b> ${esc(bet.wild)}</li>
+          </ul>
+          <button class="bet-delete" type="button" data-delete-bet="${index}">Eliminar apuesta</button>
+        </article>
+      `).join("");
+    }
+
+    document.getElementById("betForm").addEventListener("submit", event => {
+      event.preventDefault();
+      const bet = {
+        name:document.getElementById("armyName").value.trim(),
+        date:document.getElementById("betDate").value,
+        safe:document.getElementById("safePick").value.trim(),
+        surprise:document.getElementById("surprisePick").value.trim(),
+        wild:document.getElementById("wildPick").value.trim()
+      };
+      if(!bet.name || !bet.safe || !bet.surprise || !bet.wild) return;
+      const bets = getBets();
+      bets.push(bet);
+      setBets(bets);
+      renderBets();
+      document.getElementById("safePick").value = "";
+      document.getElementById("surprisePick").value = "";
+      document.getElementById("wildPick").value = "";
+      document.getElementById("copyStatus").textContent = "Apuesta guardada 💜";
+    });
+
+    document.getElementById("betsBoard").addEventListener("click", event => {
+      const button = event.target.closest("[data-delete-bet]");
+      if(!button) return;
+      const bets = getBets();
+      bets.splice(Number(button.dataset.deleteBet),1);
+      setBets(bets);
+      renderBets();
+    });
+
+    document.getElementById("copyBets").addEventListener("click", async () => {
+      const bets = getBets();
+      const status = document.getElementById("copyStatus");
+      if(!bets.length){
+        status.textContent = "Primero guardemos al menos una apuesta 💜";
+        return;
+      }
+      const text = [
+        "🔮 ARMY Bets · BTS Santiago 💜",
+        "",
+        ...bets.map(b => `${b.name} · ${b.date}\n💜 Segura: ${b.safe}\n✨ Sorpresa: ${b.surprise}\n🔥 Wild card: ${b.wild}`)
+      ].join("\n\n");
+      try{
+        await navigator.clipboard.writeText(text);
+        status.textContent = "Tablero copiado. Listo para mandarlo al grupo ✨";
+      }catch(e){
+        status.textContent = "No pude copiarlo automáticamente en este navegador.";
+      }
+    });
+
+    document.getElementById("randomDelulu").addEventListener("click", () => {
+      const safe = normalize(document.getElementById("safePick").value || "");
+      const surprise = normalize(document.getElementById("surprisePick").value || "");
+      const pool = deluluOptions.filter(song => ![safe,surprise].includes(normalize(song)));
+      const pick = pool[Math.floor(Math.random() * pool.length)] || "Pied Piper";
+      document.getElementById("wildPick").value = pick;
+      document.getElementById("copyStatus").textContent = `El universo delulu eligió: ${pick} 👀💜`;
+    });
+
+    document.getElementById("songTableBody").addEventListener("click", event => {
+      const button = event.target.closest(".song-toggle");
+      if(!button) return;
+      const row = button.closest("tr");
+      const details = row && row.querySelector(".song-cities");
+      if(!details) return;
+      details.open = !details.open;
+      button.setAttribute("aria-expanded", details.open ? "true" : "false");
+    });
+
+    document.getElementById("topSongs").addEventListener("click", event => {
+      const chip = event.target.closest(".song-chip");
+      if(!chip) return;
+      const title = chip.dataset.song || chip.textContent.trim();
+      const item = songStats.find(s => normalize(s.song) === normalize(title));
+      const peek = document.getElementById("songPeek");
+      document.querySelectorAll("#topSongs .song-chip").forEach(el => el.classList.toggle("selected", el === chip));
+      if(!item || !peek) return;
+      peek.hidden = false;
+      peek.innerHTML = `
+        <div class="peek-title"><span>💜</span><strong>${esc(item.song)}</strong><small>${item.count} ${item.count === 1 ? "aparición" : "apariciones"}</small></div>
+        <div class="peek-cities">${item.dates.map(entry => {
+          const inner = `<b>${esc(entry.city || "")}</b><small>${esc(entry.date || "")}</small>`;
+          return entry.url
+            ? `<a href="${esc(entry.url)}" target="_blank" rel="noopener" title="Ver setlist en setlist.fm">${inner}</a>`
+            : `<span>${inner}</span>`;
+        }).join("")}</div>
+        <button type="button" class="peek-more" data-open-song="${esc(item.song)}">ver en el listado completo →</button>`;
+    });
+
+    document.getElementById("songPeek").addEventListener("click", event => {
+      const button = event.target.closest("[data-open-song]");
+      if(!button) return;
+      const title = button.dataset.openSong;
+      const panel = document.querySelector(".songs-details");
+      panel.open = true;
+      document.getElementById("songSearch").value = title;
+      renderSongTable();
+      requestAnimationFrame(() => {
+        const rowButton = document.querySelector("#songTableBody .song-toggle");
+        const details = document.querySelector("#songTableBody .song-cities");
+        if(details) details.open = true;
+        if(rowButton){ rowButton.setAttribute("aria-expanded","true"); rowButton.scrollIntoView({behavior:"smooth",block:"center"}); }
+      });
+    });
+
+    document.getElementById("songSearch").addEventListener("input",renderSongTable);
+    document.getElementById("sortSongs").addEventListener("input",renderSongTable);
+    document.getElementById("repeatFilter").addEventListener("input",renderSongTable);
+
+    renderCountdowns();
+    renderTopSongs();
+    renderSongTable();
+    renderSongOptions();
+    renderBets();
+    loadOfficialTourSchedule();
+    loadSetlistTracker();
+  </script>
+</body>
+</html>

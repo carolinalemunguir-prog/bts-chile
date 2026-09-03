@@ -1,0 +1,15 @@
+{
+  "source": "https://api.setlist.fm/",
+  "sourceLabel": "setlist.fm API",
+  "artist": "BTS",
+  "artistMbid": "0d79fe8e-ba27-4859-bb8c-2f255f346853",
+  "tour": "ARIRANG",
+  "year": 2026,
+  "lastUpdated": null,
+  "completedShows": 0,
+  "coreThreshold": 0.68,
+  "coreSongs": [],
+  "specialOccurrences": [],
+  "shows": [],
+  "note": "Este archivo se llena automáticamente al configurar el secret SETLISTFM_API_KEY y ejecutar el workflow update-setlists.yml. Mientras esté vacío, la página usa su respaldo local."
+}
