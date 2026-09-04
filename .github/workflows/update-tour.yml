@@ -11,6 +11,7 @@ permissions:
 jobs:
   actualizar-calendario:
     runs-on: ubuntu-latest
+
     steps:
       - name: Descargar sitio
         uses: actions/checkout@v4
@@ -18,19 +19,27 @@ jobs:
       - name: Preparar Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
+
+      - name: Instalar Playwright
+        run: npm install --no-save --package-lock=false playwright
+
+      - name: Instalar navegador Chromium
+        run: npx playwright install --with-deps chromium
 
       - name: Revisar Weverse Spot
         run: node scripts/update-weverse.mjs
 
       - name: Guardar cambios si Weverse modificó el calendario
         run: |
-          if git diff --quiet; then
+          if git diff --quiet -- data/weverse-tour.json; then
             echo "Sin cambios oficiales."
             exit 0
           fi
+
           git config user.name "BTS Chile Auto Update"
           git config user.email "actions@users.noreply.github.com"
+
           git add data/weverse-tour.json
           git commit -m "Actualiza fechas BTS desde Weverse"
           git push
