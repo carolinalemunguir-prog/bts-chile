@@ -1464,7 +1464,7 @@ input,select,button,textarea{max-width:100%}
         <div class="bet-actions">
           <button class="btn btn-primary" type="submit">Guardar mi apuesta 💜</button>
           <button class="btn btn-soft" type="button" id="copyBets">Copiar tablero</button>
-          <p class="bet-note">Se guarda en este navegador. Para que todas vean exactamente el mismo tablero en distintos teléfonos necesitaremos conectarlo a una base compartida.</p>
+          <p class="bet-note" id="betsLiveNote">💜 Tablero ARMY compartido · conectando en vivo…</p>
         </div>
         <div class="copy-status" id="copyStatus" aria-live="polite"></div>
       </form>
@@ -2245,6 +2245,9 @@ input,select,button,textarea{max-width:100%}
     </footer>
   </main>
 
+  <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-database-compat.js"></script>
   <script>
     const btsDeluluCatalog = [
       "2 Cool 4 Skool",
@@ -2939,8 +2942,26 @@ input,select,button,textarea{max-width:100%}
     }
 
     const betsKey = "btsChileArmyBetsV1";
+    const betsMigrationKey = "btsChileArmyBetsFirebaseMigratedV1";
 
-    function getBets(){
+    const firebaseConfig = {
+      apiKey: "AIzaSyCpRjMex5xnbJvmsGnC6oXsW3Q69fVkdZE",
+      authDomain: "bts-chile-army-bets.firebaseapp.com",
+      databaseURL: "https://bts-chile-army-bets-default-rtdb.firebaseio.com",
+      projectId: "bts-chile-army-bets",
+      storageBucket: "bts-chile-army-bets.firebasestorage.app",
+      messagingSenderId: "972353551424",
+      appId: "1:972353551424:web:8e4798229340888737f3a5"
+    };
+
+    let betsMode = "connecting";
+    let currentArmyUid = null;
+    let sharedBets = [];
+    let betsListenerAttached = false;
+    let firebaseDb = null;
+    let firebaseAuth = null;
+
+    function getLocalBets(){
       try{
         return JSON.parse(localStorage.getItem(betsKey) || "[]");
       }catch(e){
@@ -2948,8 +2969,13 @@ input,select,button,textarea{max-width:100%}
       }
     }
 
-    function setBets(bets){
+    function setLocalBets(bets){
       localStorage.setItem(betsKey, JSON.stringify(bets));
+    }
+
+    function setBetsNote(message){
+      const note = document.getElementById("betsLiveNote");
+      if(note) note.textContent = message;
     }
 
     function esc(value){
@@ -2974,30 +3000,145 @@ input,select,button,textarea{max-width:100%}
     }
 
     function renderBets(){
-      const bets = getBets();
       const board = document.getElementById("betsBoard");
+      const bets = sharedBets;
+
       if(!bets.length){
-        board.innerHTML = `<div class="bets-empty">Todavía no hay apuestas guardadas. Alguien tiene que inaugurar el delulu 👀💜</div>`;
+        board.innerHTML = `<div class="bets-empty">Todavía no hay apuestas compartidas. Alguien tiene que inaugurar el delulu 👀💜</div>`;
         return;
       }
-      board.innerHTML = bets.map((bet,index) => `
-        <article class="bet-card">
-          <div class="bet-card-top">
-            <strong>${esc(bet.name)}</strong>
-            <span class="bet-date">${esc(bet.date)}</span>
-          </div>
-          <ul class="bet-list">
-            <li>💜 <b>Segura:</b> ${esc(bet.safe)}</li>
-            <li>✨ <b>Sorpresa:</b> ${esc(bet.surprise)}</li>
-            <li>🔥 <b>Wild card:</b> ${esc(bet.wild)}</li>
-          </ul>
-          <button class="bet-delete" type="button" data-delete-bet="${index}">Eliminar apuesta</button>
-        </article>
-      `).join("");
+
+      board.innerHTML = bets.map(bet => {
+        const canDelete = betsMode === "live" && currentArmyUid && bet.uid === currentArmyUid;
+        return `
+          <article class="bet-card">
+            <div class="bet-card-top">
+              <strong>${esc(bet.name)}</strong>
+              <span class="bet-date">${esc(bet.date)}</span>
+            </div>
+            <ul class="bet-list">
+              <li>💜 <b>Segura:</b> ${esc(bet.safe)}</li>
+              <li>✨ <b>Sorpresa:</b> ${esc(bet.surprise)}</li>
+              <li>🔥 <b>Wild card:</b> ${esc(bet.wild)}</li>
+            </ul>
+            ${canDelete
+              ? `<button class="bet-delete" type="button" data-delete-uid="${esc(bet.uid)}" data-delete-id="${esc(bet.id)}">Eliminar mi apuesta</button>`
+              : `<span class="bet-date">compartida 💜</span>`}
+          </article>`;
+      }).join("");
     }
 
-    document.getElementById("betForm").addEventListener("submit", event => {
+    function flattenFirebaseBets(raw){
+      const out = [];
+      if(!raw || typeof raw !== "object") return out;
+
+      Object.entries(raw).forEach(([uid, userBets]) => {
+        if(!userBets || typeof userBets !== "object") return;
+        Object.entries(userBets).forEach(([id, bet]) => {
+          if(!bet || typeof bet !== "object") return;
+          out.push({
+            uid,
+            id,
+            name:bet.name || "ARMY",
+            date:bet.date || "",
+            safe:bet.safe || "",
+            surprise:bet.surprise || "",
+            wild:bet.wild || "",
+            createdAt:Number(bet.createdAt || 0)
+          });
+        });
+      });
+
+      return out.sort((a,b) => (b.createdAt || 0) - (a.createdAt || 0));
+    }
+
+    async function migrateOldLocalBets(){
+      if(!firebaseDb || !currentArmyUid) return;
+      if(localStorage.getItem(betsMigrationKey) === "1") return;
+
+      const oldBets = getLocalBets();
+      try{
+        for(const oldBet of oldBets){
+          if(!oldBet?.name || !oldBet?.date || !oldBet?.safe || !oldBet?.surprise || !oldBet?.wild) continue;
+          await firebaseDb.ref(`bets/${currentArmyUid}`).push({
+            name:String(oldBet.name).slice(0,28),
+            date:String(oldBet.date),
+            safe:String(oldBet.safe).slice(0,120),
+            surprise:String(oldBet.surprise).slice(0,120),
+            wild:String(oldBet.wild).slice(0,120),
+            createdAt:firebase.database.ServerValue.TIMESTAMP,
+            migratedFromLocal:true
+          });
+        }
+        localStorage.removeItem(betsKey);
+        localStorage.setItem(betsMigrationKey,"1");
+      }catch(error){
+        console.warn("No pude migrar apuestas locales todavía:", error);
+      }
+    }
+
+    function attachBetsListener(){
+      if(!firebaseDb || betsListenerAttached) return;
+      betsListenerAttached = true;
+
+      firebaseDb.ref("bets").on("value", snapshot => {
+        sharedBets = flattenFirebaseBets(snapshot.val());
+        renderBets();
+        setBetsNote(`💜 Tablero ARMY compartido · ${sharedBets.length} ${sharedBets.length === 1 ? "apuesta" : "apuestas"} · actualizado en vivo`);
+      }, error => {
+        console.warn("No pude leer el tablero compartido:", error);
+        betsMode = "fallback";
+        sharedBets = getLocalBets();
+        renderBets();
+        setBetsNote("Modo respaldo local · Firebase no está disponible en este momento.");
+      });
+    }
+
+    async function initSharedBets(){
+      sharedBets = getLocalBets();
+      renderBets();
+
+      try{
+        if(typeof firebase === "undefined") throw new Error("Firebase SDK no cargó");
+
+        if(!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+        firebaseAuth = firebase.auth();
+        firebaseDb = firebase.database();
+
+        await firebaseAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+
+        firebaseAuth.onAuthStateChanged(async user => {
+          try{
+            if(!user){
+              await firebaseAuth.signInAnonymously();
+              return;
+            }
+
+            currentArmyUid = user.uid;
+            betsMode = "live";
+            setBetsNote("💜 Tablero ARMY compartido · conectada en vivo");
+            attachBetsListener();
+            await migrateOldLocalBets();
+          }catch(error){
+            console.warn("Error activando ARMY Bets compartido:", error);
+            betsMode = "fallback";
+            sharedBets = getLocalBets();
+            renderBets();
+            setBetsNote("Modo respaldo local · no pude conectar el tablero compartido.");
+          }
+        });
+      }catch(error){
+        console.warn("Firebase no disponible:", error);
+        betsMode = "fallback";
+        sharedBets = getLocalBets();
+        renderBets();
+        setBetsNote("Modo respaldo local · Firebase no está disponible en este momento.");
+      }
+    }
+
+    document.getElementById("betForm").addEventListener("submit", async event => {
       event.preventDefault();
+
       const bet = {
         name:document.getElementById("armyName").value.trim(),
         date:document.getElementById("betDate").value,
@@ -3005,28 +3146,61 @@ input,select,button,textarea{max-width:100%}
         surprise:document.getElementById("surprisePick").value.trim(),
         wild:document.getElementById("wildPick").value.trim()
       };
+
       if(!bet.name || !bet.safe || !bet.surprise || !bet.wild) return;
-      const bets = getBets();
-      bets.push(bet);
-      setBets(bets);
-      renderBets();
+
+      const status = document.getElementById("copyStatus");
+
+      if(betsMode === "connecting"){
+        status.textContent = "Conectando el tablero ARMY… prueba de nuevo en un segundo 💜";
+        return;
+      }
+
+      if(betsMode === "live" && firebaseDb && currentArmyUid){
+        try{
+          await firebaseDb.ref(`bets/${currentArmyUid}`).push({
+            ...bet,
+            createdAt:firebase.database.ServerValue.TIMESTAMP
+          });
+          status.textContent = "Apuesta compartida con todas las ARMY 💜✨";
+        }catch(error){
+          console.warn("No pude guardar en Firebase:", error);
+          status.textContent = "No pude guardar la apuesta compartida. Intenta otra vez 💜";
+          return;
+        }
+      }else{
+        const localBets = getLocalBets();
+        localBets.push({...bet, createdAt:Date.now()});
+        setLocalBets(localBets);
+        sharedBets = localBets;
+        renderBets();
+        status.textContent = "Apuesta guardada solo en este navegador (modo respaldo) 💜";
+      }
+
       document.getElementById("safePick").value = "";
       document.getElementById("surprisePick").value = "";
       document.getElementById("wildPick").value = "";
-      document.getElementById("copyStatus").textContent = "Apuesta guardada 💜";
     });
 
-    document.getElementById("betsBoard").addEventListener("click", event => {
-      const button = event.target.closest("[data-delete-bet]");
-      if(!button) return;
-      const bets = getBets();
-      bets.splice(Number(button.dataset.deleteBet),1);
-      setBets(bets);
-      renderBets();
+    document.getElementById("betsBoard").addEventListener("click", async event => {
+      const button = event.target.closest("[data-delete-id]");
+      if(!button || betsMode !== "live" || !firebaseDb || !currentArmyUid) return;
+
+      const uid = button.dataset.deleteUid;
+      const id = button.dataset.deleteId;
+      if(uid !== currentArmyUid) return;
+
+      try{
+        await firebaseDb.ref(`bets/${uid}/${id}`).remove();
+        document.getElementById("copyStatus").textContent = "Tu apuesta fue eliminada 💜";
+      }catch(error){
+        console.warn("No pude eliminar la apuesta:", error);
+        document.getElementById("copyStatus").textContent = "No pude eliminarla todavía. Intenta otra vez 💜";
+      }
     });
 
     document.getElementById("copyBets").addEventListener("click", async () => {
-      const bets = getBets();
+      const bets = sharedBets;
       const status = document.getElementById("copyStatus");
       if(!bets.length){
         status.textContent = "Primero guardemos al menos una apuesta 💜";
@@ -3039,7 +3213,7 @@ input,select,button,textarea{max-width:100%}
       ].join("\n\n");
       try{
         await navigator.clipboard.writeText(text);
-        status.textContent = "Tablero copiado. Listo para mandarlo al grupo ✨";
+        status.textContent = "Tablero compartido copiado. Listo para mandarlo al grupo ✨";
       }catch(e){
         status.textContent = "No pude copiarlo automáticamente en este navegador.";
       }
@@ -3108,7 +3282,7 @@ input,select,button,textarea{max-width:100%}
     renderTopSongs();
     renderSongTable();
     renderSongOptions();
-    renderBets();
+    initSharedBets();
     loadOfficialTourSchedule();
     loadSetlistTracker();
   </script>
