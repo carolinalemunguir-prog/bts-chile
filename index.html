@@ -1062,7 +1062,7 @@
     }
     .hero-photo-wrap{position:absolute;right:0;top:0;width:72%;height:100%;overflow:hidden}
     .hero-photo-wrap::before{content:"";position:absolute;z-index:2;inset:0;background:linear-gradient(90deg,#ff807b 0%,rgba(255,128,123,.65) 8%,transparent 29%);pointer-events:none}
-    .hero-photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:center 47%;display:block;filter:saturate(.96) contrast(.98)}
+    .hero-photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:center 43%;display:block;filter:saturate(.96) contrast(.98)}
 
     .paper-note{
       position:absolute;z-index:4;left:42px;top:48px;width:300px;min-height:188px;padding:28px 30px 22px;
@@ -1083,6 +1083,20 @@
     .doodle-star{left:34%;top:35px;font-size:38px;transform:rotate(-12deg)}.doodle-heart{left:39%;top:94px;font-size:30px;transform:rotate(10deg)}.doodle-spark{right:16%;bottom:42px;font-size:28px}
 
     .scrap-pair{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(320px,.85fr);gap:16px;align-items:start}
+    /* v6.3: layout tipo masonry. El tracker comienza inmediatamente debajo del contador,
+       mientras ARMY Bets ocupa la columna derecha. Así eliminamos el gran hueco vacío. */
+    .scrap-layout{
+      display:grid;
+      grid-template-columns:minmax(0,1.65fr) minmax(320px,.85fr);
+      grid-template-areas:
+        "count bets"
+        "tracker bets";
+      gap:16px;
+      align-items:start;
+    }
+    .scrap-layout .countdown-section{grid-area:count}
+    .scrap-layout .bets-section{grid-area:bets}
+    .scrap-layout .tracker-section{grid-area:tracker}
     .section{
       margin:0 0 18px;padding:20px;border-radius:20px;border:1.5px solid #d6c3e7;
       background:rgba(255,253,255,.72);box-shadow:0 8px 20px rgba(88,57,116,.07);backdrop-filter:blur(8px);
@@ -1162,7 +1176,7 @@
     }
     @media(max-width:720px){
       .binder{display:none}.shell.scrap-page{width:min(100% - 16px,1180px);margin:8px auto 18px;padding:10px;border-radius:22px}.scrap-nav{display:flex;justify-content:space-between;padding:5px 6px 12px}.nav-links{gap:9px;overflow:auto;justify-content:flex-start}.nav-links a{font-size:.7rem;white-space:nowrap}.brand{flex:0 0 auto}
-      .scrap-hero{min-height:355px;margin:12px 0 16px}.hero-photo-wrap{width:100%;height:66%;top:auto;bottom:0}.hero-photo-wrap::before{background:linear-gradient(180deg,#ff817c 0%,rgba(255,129,124,.45) 12%,transparent 35%)}.hero-photo-wrap img{object-position:center 48%}.paper-note{left:17px;top:20px;width:214px;min-height:145px;padding:21px 22px 16px}.hero-title{font-size:2.25rem}.hero-title span{font-size:2rem}.hero-subtitle{font-size:.72rem;margin-top:11px}.purple-sticker{width:57px;height:57px;right:14px;top:14px;font-size:1.05rem}.purple-sticker small{font-size:.38rem}.hero-tag{right:14px;bottom:10px;font-size:.57rem}.doodle-star{left:64%;top:85px}.doodle-heart{left:78%;top:118px}.doodle-spark{display:none}
+      .scrap-hero{min-height:355px;margin:12px 0 16px}.hero-photo-wrap{width:100%;height:66%;top:auto;bottom:0}.hero-photo-wrap::before{background:linear-gradient(180deg,#ff817c 0%,rgba(255,129,124,.45) 12%,transparent 35%)}.hero-photo-wrap img{object-position:center 43%}.paper-note{left:17px;top:20px;width:214px;min-height:145px;padding:21px 22px 16px}.hero-title{font-size:2.25rem}.hero-title span{font-size:2rem}.hero-subtitle{font-size:.72rem;margin-top:11px}.purple-sticker{width:57px;height:57px;right:14px;top:14px;font-size:1.05rem}.purple-sticker small{font-size:.38rem}.hero-tag{right:14px;bottom:10px;font-size:.57rem}.doodle-star{left:64%;top:85px}.doodle-heart{left:78%;top:118px}.doodle-spark{display:none}
       .section{padding:17px 13px;border-radius:17px}.countdown-grid{grid-template-columns:1fr}.count-card{display:grid;grid-template-columns:auto 1fr;align-items:center;column-gap:10px}.count-card::before{display:none}.count-card p{grid-column:1;padding:0;margin:0}.count-card .kicker{grid-column:1}.units{grid-column:2;grid-row:1/3}.sync-strip{font-size:.62rem;flex-wrap:wrap}
       .bet-picks{grid-template-columns:1fr}.top-songs{grid-template-columns:repeat(2,minmax(0,1fr))}.tracker-heading{display:block}.mini-sticker{display:inline-block;margin-top:7px}.scrap-footer{flex-wrap:wrap;gap:10px}.scrap-footer p{flex-basis:65%}
     }
@@ -1186,6 +1200,135 @@
     }
     .flag-line{display:inline-flex;align-items:center;gap:0;}
 </style>
+<style id="responsive-fix-v6-2">
+/* Responsive polish v6.2 — desktop stays intact, mobile becomes fluid */
+*,*::before,*::after{box-sizing:border-box}
+img,svg,video,canvas{max-width:100%;height:auto}
+input,select,button,textarea{max-width:100%}
+
+@media (max-width: 900px){
+  .shell.scrap-page{width:min(100% - 20px,1180px);padding:12px 14px 22px}
+    .scrap-pair{grid-template-columns:1fr !important}
+  .scrap-layout{
+    grid-template-columns:1fr !important;
+    grid-template-areas:
+      "count"
+      "bets"
+      "tracker" !important;
+    gap:0 !important;
+  }
+  .bets-section,.countdown-section,.tracker-section{min-width:0}
+}
+
+@media (max-width: 720px){
+  html,body{width:100%;max-width:100%;overflow-x:hidden}
+  .binder{display:none !important}
+  .shell.scrap-page{width:calc(100% - 10px) !important;margin:5px auto 16px !important;padding:8px !important;border-radius:18px !important}
+
+  /* Nav deslizable sin romper ancho */
+  .scrap-nav{display:flex !important;gap:10px !important;align-items:center !important;padding:5px 5px 10px !important;overflow:hidden}
+  .brand{flex:0 0 auto}
+  .nav-links{flex:1 1 auto;display:flex !important;justify-content:flex-start !important;gap:14px !important;overflow-x:auto !important;overscroll-behavior-inline:contain;scrollbar-width:none;padding:2px 2px 5px}
+  .nav-links::-webkit-scrollbar{display:none}
+  .nav-links a{flex:0 0 auto;white-space:nowrap;font-size:.72rem !important}
+  .join-pill{display:none !important}
+
+  /* Hero realmente fluido */
+  .scrap-hero{min-height:360px !important;margin:10px 0 14px !important;border-radius:17px !important;overflow:hidden}
+  .hero-photo-wrap{left:0 !important;right:0 !important;width:100% !important;height:62% !important;top:auto !important;bottom:0 !important}
+  .hero-photo-wrap img{width:100% !important;height:100% !important;object-fit:cover !important;object-position:center 43% !important}
+  .paper-note{left:12px !important;top:14px !important;width:min(61vw,220px) !important;min-height:0 !important;padding:17px 16px 14px !important}
+  .hero-title{font-size:clamp(1.9rem,10vw,2.45rem) !important;line-height:.9}
+  .hero-title span{font-size:clamp(1.65rem,9vw,2.1rem) !important}
+  .hero-subtitle{font-size:.66rem !important;margin-top:8px !important}
+  .purple-sticker{width:52px !important;height:52px !important;right:10px !important;top:10px !important}
+  .hero-tag{right:9px !important;bottom:8px !important;font-size:.54rem !important;max-width:52%;text-align:right}
+
+  .section{padding:15px 11px !important;border-radius:16px !important;margin-bottom:12px !important;min-width:0}
+  .section h2{font-size:clamp(1rem,5vw,1.22rem) !important;line-height:1.2}
+  .lead{font-size:.8rem !important;line-height:1.45}
+
+  /* Contador: conserva la sensación horizontal pero en carrusel táctil */
+  .countdown-grid{
+    display:flex !important;
+    grid-template-columns:none !important;
+    gap:10px !important;
+    overflow-x:auto !important;
+    scroll-snap-type:x mandatory;
+    overscroll-behavior-inline:contain;
+    padding:2px 1px 9px !important;
+    scrollbar-width:none;
+  }
+  .countdown-grid::-webkit-scrollbar{display:none}
+  .count-card{
+    flex:0 0 min(82vw,300px) !important;
+    min-width:min(82vw,300px) !important;
+    width:auto !important;
+    display:block !important;
+    scroll-snap-align:start;
+    min-height:0 !important;
+    padding:13px 11px !important;
+  }
+  .count-card .kicker,.count-card h3,.count-card p{display:block !important;grid-column:auto !important;grid-row:auto !important}
+  .units{display:grid !important;grid-template-columns:repeat(4,minmax(0,1fr)) !important;gap:5px !important;margin-top:8px}
+  .unit{min-width:0;padding:7px 3px !important}
+  .unit strong{font-size:.95rem !important}
+  .unit span{font-size:.48rem !important}
+  .sync-strip{width:100% !important;border-radius:14px !important;justify-content:flex-start !important;padding:8px 9px !important;font-size:.61rem !important;line-height:1.35}
+
+  /* Apuestas */
+  .bets-heading{display:block !important;padding-right:0 !important}
+  .bets-tag{position:static !important;display:inline-block !important;margin:4px 0 8px !important;transform:none !important}
+  .bet-form{display:grid !important;grid-template-columns:1fr !important;gap:10px !important;width:100% !important;min-width:0 !important;padding:0 !important}
+  .bet-field,.bet-picks,.bet-picks .bet-field{min-width:0 !important;width:100% !important}
+  .bet-picks{display:grid !important;grid-template-columns:1fr !important;gap:8px !important}
+  .bet-field input,.bet-field select{width:100% !important;min-width:0 !important;font-size:16px !important;/* evita zoom de iOS */}
+  .delulu-tools{display:flex !important;flex-direction:column !important;align-items:stretch !important;gap:8px !important;min-width:0}
+  .delulu-tools span{min-width:0;overflow-wrap:anywhere}
+  .delulu-tools button{width:100% !important}
+  .bet-actions{display:grid !important;grid-template-columns:1fr !important;gap:8px !important;width:100%}
+  .bet-actions .btn{width:100% !important;flex:none !important}
+  .bet-note{width:100%;margin:2px 0 0 !important;overflow-wrap:anywhere}
+  .bets-board{display:grid !important;grid-template-columns:1fr !important;min-width:0}
+  .bet-card{min-width:0;overflow-wrap:anywhere}
+
+  /* Tracker */
+  .tracker-heading{display:block !important}
+  .mini-sticker{display:inline-block !important;margin-top:6px !important;white-space:normal !important}
+  .setlist-sync{flex-wrap:wrap;line-height:1.35;font-size:.62rem}
+  .top-songs{grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:7px !important}
+  .song-chip{min-width:0 !important;min-height:48px !important;padding:8px 6px !important;font-size:.69rem !important;overflow-wrap:anywhere}
+  .song-peek{padding:11px 10px !important;min-width:0}
+  .peek-title{flex-wrap:wrap !important}
+  .peek-title small{margin-left:0 !important;width:100%}
+  .peek-cities{gap:5px !important}
+
+  /* Listado completo: scroll interno, nunca ensancha la página */
+  .songs-details,.songs-details-body,.table-wrap{width:100%;max-width:100%;min-width:0}
+  .songs-details > summary{font-size:.78rem !important;padding:11px !important}
+  .toolbar{grid-template-columns:1fr !important;width:100%;min-width:0}
+  .toolbar .field,.toolbar .search{grid-column:auto !important;min-width:0;width:100%}
+  .toolbar input,.toolbar select{width:100%;font-size:16px !important}
+  .table-wrap{overflow-x:auto !important;-webkit-overflow-scrolling:touch}
+  .table-wrap table{min-width:620px !important;width:620px !important}
+
+  .scrap-footer{display:grid !important;grid-template-columns:1fr !important;gap:8px !important;padding:14px 10px 8px !important}
+  .footer-note{width:max-content;max-width:100%;white-space:normal !important}
+  .scrap-footer p{font-size:.66rem !important;flex-basis:auto !important}
+  .footer-doodles{font-size:1rem !important;letter-spacing:.2em}
+}
+
+@media (max-width: 420px){
+  .shell.scrap-page{width:calc(100% - 6px) !important;padding:6px !important}
+  .scrap-hero{min-height:335px !important}
+  .paper-note{width:min(64vw,195px) !important;left:9px !important;top:11px !important;padding:15px 13px 12px !important}
+  .purple-sticker{width:46px !important;height:46px !important}
+  .count-card{flex-basis:86vw !important;min-width:86vw !important}
+  .section{padding:13px 9px !important}
+  .top-songs{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+}
+</style>
+
 </head>
 <body>
   <div class="binder" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
@@ -1214,14 +1357,14 @@
         <div class="hero-subtitle">Santiago te espera ♡</div>
       </div>
       <div class="hero-photo-wrap">
-        <img src="assets/bts-santiago.png" alt="BTS en fotografía grupal">
+        <img src="assets/bts-grupal-2026.jpg" alt="BTS en fotografía grupal">
       </div>
       <div class="purple-sticker">💜<small>WE PURPLE<br>YOU</small></div>
       <div class="hero-tag">14 · 16 · 17 OCT 🇨🇱</div>
     </section>
 
 
-    <div class="scrap-pair">
+    <div class="scrap-layout">
     <section class="section countdown-section" id="cuentaRegresiva">
       <span class="corner-sticker">💎</span>
       <h2>⏳ Cuenta regresiva <em>para Santiago</em> ♡</h2>
@@ -1328,8 +1471,6 @@
 
       <div class="bets-board" id="betsBoard"></div>
     </section>
-
-    </div>
 
     <section class="section tracker-section" id="songTracker">
       <div class="tracker-heading"><div><h2>🎧 Song Tracker · <em>gira</em> ♡</h2><p class="hand-note">Toca una canción para ver sus ciudades pequeñitas ↓</p></div><span class="mini-sticker">✦ historial vivo</span></div>
@@ -2094,6 +2235,8 @@
         </div>
       </details>
     </section>
+
+    </div>
 
     <footer class="scrap-footer">
       <div class="footer-note"><span class="washi footer-washi"></span><strong>Borahae ♡</strong></div>
