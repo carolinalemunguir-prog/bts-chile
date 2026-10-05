@@ -5,12 +5,15 @@ const API_KEY = process.env.SETLISTFM_API_KEY || "";
 const BTS_MBID = "0d79fe8e-ba27-4859-bb8c-2f255f346853";
 const TOUR = "ARIRANG";
 const YEAR = 2026;
-const DATA_PATH = path.resolve("data/setlists.json");
 
-// IMPORTANTE: setlist.fm usa /rest/ en la URL real de la API.
+const DATA_PATH = path.resolve("data/setlists.json");
 const API_URL = "https://api.setlist.fm/rest/1.0/search/setlists";
 
 const CORE_THRESHOLD = 0.68;
+
+// Dejamos bastante espacio entre consultas para respetar setlist.fm.
+const REQUEST_GAP_MS = 1200;
+const MAX_RETRIES = 5;
 
 const monthNames = [
   "enero",
@@ -32,27 +35,39 @@ function sleep(ms) {
 }
 
 function parseEventDate(value) {
-  const m = String(value || "").match(/^(\d{2})-(\d{2})-(\d{4})$/);
+  const match = String(value || "").match(
+    /^(\d{2})-(\d{2})-(\d{4})$/
+  );
 
-  if (!m) return null;
+  if (!match) return null;
 
-  const [, dd, mm, yyyy] = m;
+  const [, dd, mm, yyyy] = match;
 
-  return new Date(`${yyyy}-${mm}-${dd}T12:00:00Z`);
+  return new Date(
+    `${yyyy}-${mm}-${dd}T12:00:00Z`
+  );
 }
 
 function prettyDate(value) {
-  const m = String(value || "").match(/^(\d{2})-(\d{2})-(\d{4})$/);
+  const match = String(value || "").match(
+    /^(\d{2})-(\d{2})-(\d{4})$/
+  );
 
-  if (!m) return value || "";
+  if (!match) return value || "";
 
-  return `${Number(m[1])} ${monthNames[Number(m[2]) - 1]}`;
+  return `${Number(match[1])} ${
+    monthNames[Number(match[2]) - 1]
+  }`;
 }
 
 function isoDate(value) {
-  const m = String(value || "").match(/^(\d{2})-(\d{2})-(\d{4})$/);
+  const match = String(value || "").match(
+    /^(\d{2})-(\d{2})-(\d{4})$/
+  );
 
-  return m ? `${m[3]}-${m[2]}-${m[1]}` : "";
+  if (!match) return "";
+
+  return `${match[3]}-${match[2]}-${match[1]}`;
 }
 
 function normalizeSong(song) {
@@ -66,11 +81,16 @@ function normalizeSong(song) {
 }
 
 function flattenSongs(setlist) {
-  const sets = Array.isArray(setlist?.set) ? setlist.set : [];
+  const sets = Array.isArray(setlist?.set)
+    ? setlist.set
+    : [];
+
   const songs = [];
 
   for (const block of sets) {
-    const blockSongs = Array.isArray(block?.song) ? block.song : [];
+    const blockSongs = Array.isArray(block?.song)
+      ? block.song
+      : [];
 
     for (const song of blockSongs) {
       if (!song?.name || song?.tape) continue;
@@ -92,40 +112,77 @@ async function fetchPage(page) {
 
   const url = `${API_URL}?${params.toString()}`;
 
-  console.log(`Consultando setlist.fm · página ${page}...`);
+  for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
 
-  const response = await fetch(url, {
-    headers: {
-      Accept: "application/json",
-      "Accept-Language": "es",
-      "x-api-key": API_KEY,
-      "User-Agent":
-        "BTSChileARMYTracker/1.0 (non-commercial BTS Chile fan project)"
+    console.log(
+      `Consultando setlist.fm · página ${page} · intento ${attempt}...`
+    );
+
+    const response = await fetch(url, {
+      headers: {
+        Accept: "application/json",
+        "Accept-Language": "es",
+        "x-api-key": API_KEY,
+        "User-Agent":
+          "BTSChileARMYTracker/1.0 (non-commercial BTS Chile fan project)"
+      }
+    });
+
+    if (response.ok) {
+      return response.json();
     }
-  });
 
-  if (!response.ok) {
-    const body = await response.text().catch(() => "");
+    if (response.status === 429) {
+      const retryAfter = Number(
+        response.headers.get("retry-after")
+      );
+
+      const waitMs =
+        Number.isFinite(retryAfter) && retryAfter > 0
+          ? retryAfter * 1000
+          : 5000 * attempt;
+
+      console.log(
+        `⏳ setlist.fm pidió esperar. Reintentando en ${
+          Math.round(waitMs / 1000)
+        } segundos...`
+      );
+
+      await sleep(waitMs);
+      continue;
+    }
+
+    const body = await response
+      .text()
+      .catch(() => "");
 
     throw new Error(
-      `setlist.fm HTTP ${response.status}: ${body.slice(0, 400)}`
+      `setlist.fm HTTP ${response.status}: ${body.slice(0, 500)}`
     );
   }
 
-  return response.json();
+  throw new Error(
+    `setlist.fm siguió limitando la página ${page} después de ${MAX_RETRIES} intentos.`
+  );
 }
 
 async function fetchAll() {
   const all = [];
+
   let page = 1;
   let total = Infinity;
 
   while (all.length < total && page <= 20) {
+
     const data = await fetchPage(page);
 
-    const rows = Array.isArray(data.setlist) ? data.setlist : [];
+    const rows = Array.isArray(data.setlist)
+      ? data.setlist
+      : [];
 
-    total = Number(data.total || rows.length || 0);
+    total = Number(
+      data.total || rows.length || 0
+    );
 
     all.push(...rows);
 
@@ -138,7 +195,11 @@ async function fetchAll() {
     page += 1;
 
     if (all.length < total) {
-      await sleep(400);
+      console.log(
+        `Esperando ${REQUEST_GAP_MS} ms antes de la siguiente página...`
+      );
+
+      await sleep(REQUEST_GAP_MS);
     }
   }
 
@@ -151,29 +212,43 @@ if (!API_KEY) {
   );
 }
 
-console.log("🎵 Iniciando actualización del Song Tracker...");
-console.log(`Tour buscado: ${TOUR} ${YEAR}`);
+console.log(
+  "🎵 Iniciando actualización del Song Tracker..."
+);
+
+console.log(
+  `Tour buscado: ${TOUR} ${YEAR}`
+);
 
 const today = new Date();
 
 const all = await fetchAll();
 
-console.log(`Setlists recibidos desde setlist.fm: ${all.length}`);
+console.log(
+  `Setlists recibidos desde setlist.fm: ${all.length}`
+);
 
 const completed = all
   .filter(
     (show) =>
-      String(show?.tour?.name || "").toUpperCase() === TOUR.toUpperCase()
+      String(show?.tour?.name || "").toUpperCase() ===
+      TOUR.toUpperCase()
   )
   .filter((show) => {
+
     const date = parseEventDate(show.eventDate);
     const songs = flattenSongs(show);
 
-    return date && date <= today && songs.length > 0;
+    return (
+      date &&
+      date <= today &&
+      songs.length > 0
+    );
   })
   .sort(
     (a, b) =>
-      parseEventDate(a.eventDate) - parseEventDate(b.eventDate)
+      parseEventDate(a.eventDate) -
+      parseEventDate(b.eventDate)
   );
 
 if (completed.length === 0) {
@@ -182,16 +257,18 @@ if (completed.length === 0) {
   );
 }
 
-console.log(`Shows completos encontrados: ${completed.length}`);
+console.log(
+  `Shows completos encontrados: ${completed.length}`
+);
 
-// Calcula cuántos conciertos contienen cada canción.
-// Una canción cuenta máximo una vez por concierto.
 const songMeta = new Map();
 
 for (const show of completed) {
+
   const uniqueSongs = new Map();
 
   for (const name of flattenSongs(show)) {
+
     const key = normalizeSong(name);
 
     if (key && !uniqueSongs.has(key)) {
@@ -200,54 +277,61 @@ for (const show of completed) {
   }
 
   for (const [key, name] of uniqueSongs) {
-    const current = songMeta.get(key) || {
-      name,
-      count: 0
-    };
+
+    const current =
+      songMeta.get(key) || {
+        name,
+        count: 0
+      };
 
     current.count += 1;
-
-    if (!current.name) {
-      current.name = name;
-    }
 
     songMeta.set(key, current);
   }
 }
 
-// Canciones presentes en al menos el 68% de los shows:
-// se consideran parte estable/base del set.
 const coreSongs = [...songMeta.values()]
   .filter(
     (song) =>
-      song.count / completed.length >= CORE_THRESHOLD
+      song.count / completed.length >=
+      CORE_THRESHOLD
   )
   .map((song) => song.name)
-  .sort((a, b) => a.localeCompare(b));
+  .sort((a, b) =>
+    a.localeCompare(b)
+  );
 
 const coreKeys = new Set(
-  coreSongs.map((song) => normalizeSong(song))
+  coreSongs.map((song) =>
+    normalizeSong(song)
+  )
 );
 
-// Canciones variables/especiales + ciudad/fecha.
 const specialOccurrences = [];
 
 for (const show of completed) {
+
   const city =
     show?.venue?.city?.name ||
     show?.venue?.name ||
     "Ciudad";
 
   const country =
-    show?.venue?.city?.country?.name || "";
+    show?.venue?.city?.country?.name ||
+    "";
 
-  const date = prettyDate(show.eventDate);
-  const dateISO = isoDate(show.eventDate);
+  const date =
+    prettyDate(show.eventDate);
+
+  const dateISO =
+    isoDate(show.eventDate);
 
   const seen = new Set();
 
   for (const song of flattenSongs(show)) {
-    const key = normalizeSong(song);
+
+    const key =
+      normalizeSong(song);
 
     if (!key) continue;
     if (seen.has(key)) continue;
@@ -261,52 +345,107 @@ for (const show of completed) {
       country,
       date,
       dateISO,
-      venue: show?.venue?.name || "",
-      setlistId: show.id || "",
-      versionId: show.versionId || "",
-      url: show.url || ""
+      venue:
+        show?.venue?.name || "",
+      setlistId:
+        show.id || "",
+      versionId:
+        show.versionId || "",
+      url:
+        show.url || ""
     });
   }
 }
 
-// Guardamos también cada concierto completo.
-const shows = completed.map((show) => ({
-  id: show.id || "",
-  versionId: show.versionId || "",
-  eventDate: show.eventDate || "",
-  dateISO: isoDate(show.eventDate),
-  city: show?.venue?.city?.name || "",
-  country: show?.venue?.city?.country?.name || "",
-  venue: show?.venue?.name || "",
-  url: show.url || "",
-  songs: flattenSongs(show)
-}));
+const shows = completed.map(
+  (show) => ({
+    id:
+      show.id || "",
+
+    versionId:
+      show.versionId || "",
+
+    eventDate:
+      show.eventDate || "",
+
+    dateISO:
+      isoDate(show.eventDate),
+
+    city:
+      show?.venue?.city?.name || "",
+
+    country:
+      show?.venue?.city?.country?.name || "",
+
+    venue:
+      show?.venue?.name || "",
+
+    url:
+      show.url || "",
+
+    songs:
+      flattenSongs(show)
+  })
+);
 
 const output = {
-  source: "https://api.setlist.fm/",
-  sourceLabel: "setlist.fm API",
-  artist: "BTS",
-  artistMbid: BTS_MBID,
-  tour: TOUR,
-  year: YEAR,
-  lastUpdated: new Date().toISOString(),
-  completedShows: completed.length,
-  coreThreshold: CORE_THRESHOLD,
+  source:
+    "https://www.setlist.fm/",
+
+  sourceLabel:
+    "setlist.fm",
+
+  artist:
+    "BTS",
+
+  artistMbid:
+    BTS_MBID,
+
+  tour:
+    TOUR,
+
+  year:
+    YEAR,
+
+  lastUpdated:
+    new Date().toISOString(),
+
+  completedShows:
+    completed.length,
+
+  coreThreshold:
+    CORE_THRESHOLD,
+
   coreSongs,
+
   specialOccurrences,
+
   shows
 };
 
 await fs.writeFile(
   DATA_PATH,
-  JSON.stringify(output, null, 2) + "\n",
+  JSON.stringify(
+    output,
+    null,
+    2
+  ) + "\n",
   "utf8"
 );
 
 console.log("");
-console.log("✅ Song Tracker actualizado correctamente.");
-console.log(`Shows procesados: ${completed.length}`);
-console.log(`Canciones base: ${coreSongs.length}`);
+console.log(
+  "✅ Song Tracker actualizado correctamente."
+);
+
+console.log(
+  `Shows procesados: ${completed.length}`
+);
+
+console.log(
+  `Canciones base: ${coreSongs.length}`
+);
+
 console.log(
   `Apariciones de canciones especiales: ${specialOccurrences.length}`
 );
