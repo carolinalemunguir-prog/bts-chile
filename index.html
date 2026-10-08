@@ -958,7 +958,407 @@
     .peek-cities a{display:inline-flex;align-items:baseline;gap:5px;padding:5px 8px;border-radius:999px;background:#fff;border:1px solid #e1d4ec;font-size:.63rem;text-decoration:none;color:inherit;transition:.16s ease}.peek-cities a:hover{transform:translateY(-2px);border-color:#b99add}
     .city-list a.city-entry{text-decoration:none;color:inherit}
 
-  </style>
+  
+
+    /* ===== ARMY Bets · líderes por día ===== */
+    .bets-live-layout{
+      display:grid;
+      grid-template-columns:minmax(0,1.35fr) minmax(250px,.65fr);
+      gap:14px;
+      align-items:start;
+    }
+    .bets-live-main{min-width:0}
+    .daily-votes-panel{
+      position:sticky;
+      top:16px;
+      border:1px solid #d9c7e7;
+      border-radius:18px;
+      padding:14px;
+      background:rgba(255,254,250,.92);
+      box-shadow:5px 6px 0 rgba(181,154,207,.13);
+      min-width:0;
+    }
+    .daily-votes-panel h3{
+      margin:0 0 4px;
+      color:#68477f;
+      font-size:1rem;
+    }
+    .daily-votes-panel > p{
+      margin:0 0 10px;
+      color:#8f7b9d;
+      font-size:.72rem;
+      line-height:1.4;
+    }
+    .daily-vote-list{display:grid;gap:9px}
+    .daily-vote-card{
+      border:1px dashed #d9c7e7;
+      border-radius:14px;
+      padding:10px;
+      background:linear-gradient(135deg,#fff 0%,#faf4fd 100%);
+    }
+    .daily-vote-date{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:8px;
+      margin-bottom:7px;
+      color:#5e4077;
+      font-weight:900;
+      font-size:.8rem;
+    }
+    .daily-vote-date span{
+      border-radius:999px;
+      background:#efe4f7;
+      color:#806392;
+      padding:3px 7px;
+      font-size:.61rem;
+      white-space:nowrap;
+    }
+    .daily-vote-row{
+      display:grid;
+      grid-template-columns:18px minmax(0,1fr) auto;
+      align-items:center;
+      gap:6px;
+      padding:4px 0;
+      font-size:.69rem;
+      color:#745f82;
+    }
+    .daily-vote-row strong{
+      min-width:0;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+      color:#59406c;
+      font-size:.72rem;
+    }
+    .daily-vote-row b{
+      color:#8a70a0;
+      font-size:.62rem;
+      white-space:nowrap;
+    }
+    .daily-vote-empty{
+      padding:13px 9px;
+      border:1px dashed #dacbe4;
+      border-radius:13px;
+      color:#9a86a6;
+      text-align:center;
+      font-size:.72rem;
+      background:#fbf8fc;
+    }
+
+    /* ===== Surprise Lab · Santiago ===== */
+    .insights-section{
+      position:relative;
+      margin-top:18px;
+      overflow:visible;
+    }
+    .insights-section::before{
+      content:"";
+      position:absolute;
+      left:42%;
+      top:-11px;
+      width:92px;
+      height:24px;
+      background:repeating-linear-gradient(45deg,#d7c0ef 0 8px,#f1e7f8 8px 16px);
+      opacity:.86;
+      transform:rotate(-2deg);
+      z-index:4;
+    }
+    .insights-heading{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:18px;
+      margin-bottom:14px;
+    }
+    .insights-heading h2{margin-bottom:5px}
+    .insights-heading .mini-sticker{white-space:nowrap}
+    .insights-grid{
+      display:grid;
+      grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);
+      gap:14px;
+      align-items:start;
+    }
+    .insight-card,
+    .album-panel{
+      border:1px solid #d9c7e7;
+      background:rgba(255,254,250,.9);
+      border-radius:18px;
+      padding:16px;
+      box-shadow:5px 6px 0 rgba(181,154,207,.13);
+      position:relative;
+    }
+    .insight-card h3,
+    .album-panel h3{
+      margin:0 0 4px;
+      color:#6f4f89;
+      font-size:1.05rem;
+    }
+    .insight-sub{
+      margin:0 0 12px;
+      color:#81728d;
+      font-size:.82rem;
+      line-height:1.45;
+    }
+    .bet-stats-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:9px;
+    }
+    .bet-stat{
+      border:1px dashed #d8c4e8;
+      border-radius:13px;
+      padding:11px;
+      background:#fbf7fd;
+      min-width:0;
+    }
+    .bet-stat small{
+      display:block;
+      color:#927ca4;
+      font-size:.68rem;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.05em;
+      margin-bottom:4px;
+    }
+    .bet-stat strong{
+      display:block;
+      color:#5f4178;
+      font-size:.93rem;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .bet-stat span{
+      display:block;
+      color:#a08dad;
+      font-size:.7rem;
+      margin-top:3px;
+    }
+    .army-top-five{
+      margin-top:10px;
+      padding-top:10px;
+      border-top:1px dashed #ddcfe8;
+    }
+    .army-top-five b{font-size:.8rem;color:#75588d}
+    .army-mini-list{
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      margin-top:7px;
+    }
+    .army-mini-list span{
+      border:1px solid #deccec;
+      background:#fff;
+      border-radius:999px;
+      padding:5px 8px;
+      font-size:.7rem;
+      color:#6f557f;
+    }
+    .candidate-list{
+      display:grid;
+      gap:8px;
+    }
+    .candidate-card{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:10px;
+      align-items:center;
+      border:1px solid #dfd0ea;
+      background:linear-gradient(110deg,#fff 0%,#fbf6fd 100%);
+      border-radius:14px;
+      padding:10px 11px;
+      transition:transform .18s ease,box-shadow .18s ease;
+    }
+    .candidate-card:hover{transform:translateY(-2px);box-shadow:0 7px 16px rgba(109,78,132,.12)}
+    .candidate-name{min-width:0}
+    .candidate-name strong{display:block;color:#604276;font-size:.9rem}
+    .candidate-name small{display:block;color:#9988a5;font-size:.67rem;margin-top:2px}
+    .candidate-score{text-align:right;white-space:nowrap}
+    .candidate-score b{display:block;font-size:1.04rem;color:#765292}
+    .candidate-score span{display:block;font-size:.62rem;color:#9986a6}
+    .candidate-label{
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+      margin-top:4px;
+      border-radius:999px;
+      padding:3px 7px;
+      font-size:.61rem;
+      font-weight:800;
+      background:#efe2f7;
+      color:#6f4c87;
+    }
+    .method-note{
+      margin-top:10px;
+      border-radius:11px;
+      background:#f5eef8;
+      padding:8px 10px;
+      color:#856d96;
+      font-size:.68rem;
+      line-height:1.42;
+    }
+    .album-panel{margin-top:14px}
+    .album-panel-head{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:flex-start;
+      margin-bottom:12px;
+    }
+    .album-summary-pill{
+      border:1px solid #d9c7e7;
+      border-radius:999px;
+      padding:6px 10px;
+      font-size:.68rem;
+      color:#765b88;
+      background:#f8f1fb;
+      white-space:nowrap;
+    }
+    .album-stats-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:9px;
+    }
+    .album-card{
+      border:1px solid #dfd2e7;
+      border-radius:14px;
+      background:#fffefa;
+      padding:11px;
+      min-width:0;
+      position:relative;
+    }
+    .album-card.zero{background:#faf7fb;border-style:dashed;opacity:.88}
+    .album-year{font-size:.62rem;color:#aa96b5;font-weight:800}
+    .album-card h4{
+      margin:2px 0 7px;
+      font-size:.82rem;
+      color:#624879;
+      line-height:1.25;
+    }
+    .album-numbers{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      font-size:.66rem;
+      color:#8c769a;
+      margin-bottom:7px;
+    }
+    .album-numbers b{color:#6b4b82}
+    .album-top-song{
+      border-top:1px dashed #e4d7eb;
+      padding-top:7px;
+      font-size:.7rem;
+      color:#6f587f;
+      line-height:1.4;
+    }
+    .album-top-song strong{color:#563c6b}
+    .album-song-list{
+      display:flex;
+      flex-wrap:wrap;
+      gap:4px;
+      margin-top:6px;
+    }
+    .album-song-list span{
+      background:#f1e7f6;
+      border-radius:999px;
+      padding:3px 6px;
+      font-size:.59rem;
+      color:#75598a;
+    }
+    .album-zero-note{font-size:.68rem;color:#9a87a6;font-style:italic}
+    .surprise-source-note{
+      margin-top:10px;
+      text-align:center;
+      color:#9a86a6;
+      font-size:.64rem;
+    }
+    .album-card{
+      padding:0;
+      overflow:hidden;
+      transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease;
+    }
+    .album-card:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(106,78,128,.10)}
+    .album-card > summary{
+      list-style:none;
+      cursor:pointer;
+      display:grid;
+      grid-template-columns:46px minmax(0,1fr) auto;
+      gap:9px;
+      align-items:center;
+      padding:11px;
+      user-select:none;
+    }
+    .album-card > summary::-webkit-details-marker{display:none}
+    .album-disc{
+      width:43px;height:43px;border-radius:50%;
+      display:grid;place-items:center;
+      background:radial-gradient(circle at center,#fff 0 13%,#bda1d1 14% 22%,#6f4f86 23% 28%,#dbc8e8 29% 48%,#8a69a1 49% 55%,#eadff1 56% 100%);
+      box-shadow:inset 0 0 0 1px rgba(93,63,117,.15),0 4px 10px rgba(99,72,119,.12);
+      font-size:1.05rem;
+      flex:0 0 auto;
+    }
+    .album-summary-copy{min-width:0}
+    .album-summary-copy .album-year{display:block;margin-bottom:1px}
+    .album-summary-copy h4{margin:0 0 3px}
+    .album-summary-copy .album-numbers{margin:0}
+    .album-open-mark{
+      color:#8b70a0;
+      font-size:.75rem;
+      transition:transform .18s ease;
+    }
+    .album-card[open] .album-open-mark{transform:rotate(180deg)}
+    .album-fold-body{
+      padding:0 11px 11px 66px;
+      border-top:1px dashed #e4d7eb;
+      background:rgba(251,247,253,.72);
+    }
+    .album-fold-intro{
+      padding-top:8px;
+      margin-bottom:7px;
+      color:#876f96;
+      font-size:.67rem;
+      line-height:1.4;
+    }
+    .album-track-list{display:grid;gap:5px}
+    .album-track-row{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:8px;
+      align-items:center;
+      border-radius:9px;
+      background:#fff;
+      border:1px solid #e7dced;
+      padding:7px 8px;
+    }
+    .album-track-row strong{font-size:.69rem;color:#5d446f;min-width:0}
+    .album-track-row span{font-size:.62rem;color:#8b7399;white-space:nowrap}
+    .album-track-row small{display:block;font-size:.58rem;color:#a390ae;margin-top:2px;font-weight:500}
+    .album-card.zero > summary{opacity:.76}
+    .album-card.zero .album-disc{filter:saturate(.55);opacity:.7}
+    .album-card.zero .album-fold-body{padding-top:9px}
+    @media (max-width:900px){
+      .bets-live-layout{grid-template-columns:1fr}
+      .daily-votes-panel{position:relative;top:auto}
+    }
+    @media (max-width:600px){
+      .album-card > summary{grid-template-columns:40px minmax(0,1fr) auto;padding:9px}
+      .album-disc{width:38px;height:38px;font-size:.95rem}
+      .album-fold-body{padding:0 9px 10px 58px}
+    }
+    @media (max-width:900px){
+      .insights-grid{grid-template-columns:1fr}
+      .album-stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    @media (max-width:600px){
+      .insights-heading,.album-panel-head{display:block}
+      .insights-heading .mini-sticker,.album-summary-pill{display:inline-flex;margin-top:7px}
+      .bet-stats-grid{grid-template-columns:1fr 1fr}
+      .album-stats-grid{grid-template-columns:1fr}
+      .candidate-card{grid-template-columns:minmax(0,1fr) auto}
+    }
+
+</style>
 
   <style id="scrapbook-v5">
     :root{
@@ -1342,6 +1742,7 @@ input,select,button,textarea{max-width:100%}
         <a href="#cuentaRegresiva">Santiago</a>
         <a href="#armyBets">ARMY Bets</a>
         <a href="#songTracker">Canciones</a>
+        <a href="#surpriseLab">Sorpresas</a>
       </div>
       <a class="join-pill" href="#armyBets">Únete al delulu ♡</a>
     </nav>
@@ -1427,49 +1828,61 @@ input,select,button,textarea{max-width:100%}
         <div class="bets-tag">modo delulu: ON ✨</div>
       </div>
 
-      <form class="bet-form" id="betForm">
-        <div class="bet-field">
-          <label for="armyName">Nombre / apodo ARMY</label>
-          <input id="armyName" maxlength="28" placeholder="Ej. Caro 💜" required>
-        </div>
-        <div class="bet-field">
-          <label for="betDate">Fecha</label>
-          <select id="betDate" required>
-            <option value="14 octubre">14 de octubre</option>
-            <option value="16 octubre">16 de octubre</option>
-            <option value="17 octubre">17 de octubre</option>
-          </select>
+      <div class="bets-live-layout">
+        <div class="bets-live-main">
+          <form class="bet-form" id="betForm">
+            <div class="bet-field">
+              <label for="armyName">Nombre / apodo ARMY</label>
+              <input id="armyName" maxlength="28" placeholder="Ej. Caro 💜" required>
+            </div>
+            <div class="bet-field">
+              <label for="betDate">Fecha</label>
+              <select id="betDate" required>
+                <option value="14 octubre">14 de octubre</option>
+                <option value="16 octubre">16 de octubre</option>
+                <option value="17 octubre">17 de octubre</option>
+              </select>
+            </div>
+
+            <div class="bet-picks">
+              <div class="bet-field">
+                <label for="safePick">💜 La segura</label>
+                <input id="safePick" list="songOptions" placeholder="La que sí o sí cantan" required>
+              </div>
+              <div class="bet-field">
+                <label for="surprisePick">✨ La sorpresa</label>
+                <input id="surprisePick" list="songOptions" placeholder="La que nos mataría escuchar" required>
+              </div>
+              <div class="bet-field">
+                <label for="wildPick">🔥 Wild card</label>
+                <input id="wildPick" list="songOptions" placeholder="La apuesta más delulu" required>
+              </div>
+            </div>
+            <datalist id="songOptions"></datalist>
+            <div class="delulu-tools">
+              <span>💿 <b id="deluluCount">catálogo delulu</b> · BTS, unidades, joyitas japonesas y solos. Igual puedes escribir cualquier canción aunque no aparezca ✨</span>
+              <button type="button" id="randomDelulu">🎲 inspiración delulu</button>
+            </div>
+
+            <div class="bet-actions">
+              <button class="btn btn-primary" type="submit">Guardar mi apuesta 💜</button>
+              <button class="btn btn-soft" type="button" id="copyBets">Copiar tablero</button>
+              <p class="bet-note" id="betsLiveNote">💜 Tablero ARMY compartido · conectando en vivo…</p>
+            </div>
+            <div class="copy-status" id="copyStatus" aria-live="polite"></div>
+          </form>
+
+          <div class="bets-board" id="betsBoard"></div>
         </div>
 
-        <div class="bet-picks">
-          <div class="bet-field">
-            <label for="safePick">💜 La segura</label>
-            <input id="safePick" list="songOptions" placeholder="La que sí o sí cantan" required>
+        <aside class="daily-votes-panel" aria-live="polite">
+          <h3>🏆 Más votadas por día</h3>
+          <p>Va cambiando en vivo a medida que ARMY guarda sus apuestas.</p>
+          <div class="daily-vote-list" id="dailyVoteLeaders">
+            <div class="daily-vote-empty">Esperando las primeras apuestas… 💜</div>
           </div>
-          <div class="bet-field">
-            <label for="surprisePick">✨ La sorpresa</label>
-            <input id="surprisePick" list="songOptions" placeholder="La que nos mataría escuchar" required>
-          </div>
-          <div class="bet-field">
-            <label for="wildPick">🔥 Wild card</label>
-            <input id="wildPick" list="songOptions" placeholder="La apuesta más delulu" required>
-          </div>
-        </div>
-        <datalist id="songOptions"></datalist>
-        <div class="delulu-tools">
-          <span>💿 <b id="deluluCount">catálogo delulu</b> · BTS, unidades, joyitas japonesas y solos. Igual puedes escribir cualquier canción aunque no aparezca ✨</span>
-          <button type="button" id="randomDelulu">🎲 inspiración delulu</button>
-        </div>
-
-        <div class="bet-actions">
-          <button class="btn btn-primary" type="submit">Guardar mi apuesta 💜</button>
-          <button class="btn btn-soft" type="button" id="copyBets">Copiar tablero</button>
-          <p class="bet-note" id="betsLiveNote">💜 Tablero ARMY compartido · conectando en vivo…</p>
-        </div>
-        <div class="copy-status" id="copyStatus" aria-live="polite"></div>
-      </form>
-
-      <div class="bets-board" id="betsBoard"></div>
+        </aside>
+      </div>
     </section>
 
     <section class="section tracker-section" id="songTracker">
@@ -2238,6 +2651,29 @@ input,select,button,textarea{max-width:100%}
 
     </div>
 
+
+    <section class="section insights-section" id="surpriseLab">
+      <div class="insights-heading">
+        <div>
+          <h2>💿 Sorpresas por álbum · <em>gira 2026</em> ♡</h2>
+          <p class="lead" style="margin-bottom:0">Solo contamos canciones sorpresa/rotativas de 2026. El set fijo queda fuera para que se vea qué discos están apareciendo de verdad en los momentos sorpresa.</p>
+        </div>
+        <span class="mini-sticker">✨ toca un disco para abrirlo</span>
+      </div>
+
+      <article class="album-panel">
+        <div class="album-panel-head">
+          <div>
+            <h3>Discografía BTS · sorpresas 2026</h3>
+            <p class="insight-sub" style="margin-bottom:0">Cada disco parte plegado. Ábrelo para ver qué canciones sorpresa ya se tocaron y cuántas veces.</p>
+          </div>
+          <span class="album-summary-pill" id="albumSurpriseSummary">calculando…</span>
+        </div>
+        <div class="album-stats-grid" id="albumStatsGrid"></div>
+        <p class="surprise-source-note">Clasificación por lanzamiento de origen · apariciones 2026 tomadas del Surprise Tracker generado desde setlist.fm.</p>
+      </article>
+    </section>
+
     <footer class="scrap-footer">
       <div class="footer-note"><span class="washi footer-washi"></span><strong>Borahae ♡</strong></div>
       <p>Hecho con 💜 para compartir entre ARMY · ¡Nos vemos en Santiago!</p>
@@ -2908,6 +3344,208 @@ input,select,button,textarea{max-width:100%}
       return new Intl.DateTimeFormat("es-CL",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}).format(d);
     }
 
+
+
+    /* ===== Surprise Lab · solo canciones rotativas 2026 ===== */
+    let latestSetlistData = null;
+    let latestSurpriseOccurrences = [];
+
+    // Red de seguridad: aunque un setlist incompleto baje su frecuencia, estas canciones
+    // conocidas del bloque estable nunca se tratarán como "sorpresa".
+    const fixedSafetySongs = [
+      "FAKE LOVE","Run BTS","Not Today","MIC Drop","Fire","IDOL","Butter","Dynamite","Hooligan"
+    ];
+
+    const albumCatalog = [
+      {title:"2 COOL 4 SKOOL", year:2013, songs:["We Are Bulletproof Pt.2","No More Dream","Like","Path","Road"]},
+      {title:"O!RUL8,2?", year:2013, songs:["N.O","We On","If I Ruled the World","Coffee","BTS Cypher Pt.1","Attack on Bangtan","Paldogangsan","Outro: Luv in Skool"]},
+      {title:"SKOOL LUV AFFAIR", year:2014, songs:["Boy In Luv","Just One Day","Tomorrow","BTS Cypher Pt.2: Triptych","Spine Breaker","Jump","Miss Right","Outro: Propose"]},
+      {title:"WAKE UP", year:2014, songs:["Wake Up","The Stars","I Like It Pt.2"]},
+      {title:"DARK & WILD", year:2014, songs:["Danger","War of Hormone","Hip Hop Phile","Let Me Know","Rain","BTS Cypher Pt.3: Killer","Could You Turn Off Your Cell Phone","Embarrassed","24/7=Heaven","Look Here","2nd Grade"]},
+      {title:"The Most Beautiful Moment in Life, Pt.1", year:2015, songs:["I Need U","Hold Me Tight","Dope","Boyz With Fun","Converse High","Moving On"]},
+      {title:"The Most Beautiful Moment in Life, Pt.2", year:2015, songs:["Run","Butterfly","Whalien 52","Ma City","Silver Spoon","Baepsae","Autumn Leaves","House of Cards"]},
+      {title:"YOUTH", year:2016, songs:["For You","Good Day","Wishing on a Star"]},
+      {title:"The Most Beautiful Moment in Life: Young Forever", year:2016, songs:["Fire","Save Me","Epilogue: Young Forever","Young Forever"]},
+      {title:"WINGS", year:2016, songs:["Blood Sweat & Tears","Blood, Sweat & Tears","Begin","Lie","Stigma","First Love","Reflection","MAMA","Awake","Lost","BTS Cypher 4","Am I Wrong","21st Century Girl","2! 3!","Interlude: Wings"]},
+      {title:"YOU NEVER WALK ALONE", year:2017, songs:["Spring Day","Not Today","Outro: Wings","A Supplementary Story: You Never Walk Alone"]},
+      {title:"LOVE YOURSELF 承 'Her'", year:2017, songs:["Serendipity","DNA","Best of Me","Best Of Me","Dimple","Pied Piper","MIC Drop","Go Go","Outro: Her"]},
+      {title:"FACE YOURSELF", year:2018, songs:["Don't Leave Me","Let Go","Crystal Snow"]},
+      {title:"LOVE YOURSELF 轉 'Tear'", year:2018, songs:["Singularity","FAKE LOVE","The Truth Untold","134340","Paradise","Love Maze","Magic Shop","Airplane Pt.2","Airplane pt.2","Anpanman","So What","Outro: Tear"]},
+      {title:"LOVE YOURSELF 結 'Answer'", year:2018, songs:["Euphoria","Epiphany","Trivia: Just Dance","Trivia: Love","Trivia: Seesaw","IDOL","I'm Fine","Answer: Love Myself"]},
+      {title:"MAP OF THE SOUL : PERSONA", year:2019, songs:["Intro: Persona","Boy With Luv","Mikrokosmos","Make It Right","HOME","Jamais Vu","Dionysus"]},
+      {title:"MAP OF THE SOUL : 7", year:2020, songs:["Interlude: Shadow","Black Swan","Filter","My Time","Louder Than Bombs","ON","UGH!","Zero O'Clock","00:00 (Zero O'Clock)","Inner Child","Friends","Moon","Respect","We Are Bulletproof: The Eternal","Outro: Ego"]},
+      {title:"MAP OF THE SOUL : 7 ~ THE JOURNEY ~", year:2020, songs:["Stay Gold","Your Eyes Tell","Lights"]},
+      {title:"BE", year:2020, songs:["Life Goes On","Fly to My Room","Blue & Grey","Telepathy","Dis-ease","Stay","Dynamite"]},
+      {title:"BTS, THE BEST", year:2021, songs:["Film Out"]},
+      {title:"Proof", year:2022, songs:["Yet To Come","Run BTS","For Youth","Born Singer"]},
+      {title:"ARIRANG", year:2026, songs:["Body to Body","Hooligan","Aliens","FYA","2.0","No. 29","SWIM","Merry Go Round","NORMAL","Like Animals","they don't know 'bout us","they don’t know ’bout us","One More Night","Please","Into the Sun"]},
+      {title:"Singles & especiales", year:"—", extra:true, songs:["Butter","Permission to Dance","Take Two","DDAENG","4 O'Clock","Otsukare","Adult Child","Graduation Song","School of Tears","Beautiful","95 Graduation"]}
+    ];
+
+    function albumSongKey(value){
+      return String(value || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g,"")
+        .replace(/[’‘]/g,"'")
+        .replace(/[^a-z0-9]+/g,"")
+        .trim();
+    }
+
+    const songToAlbum = (() => {
+      const map = new Map();
+      albumCatalog.forEach(album => album.songs.forEach(song => map.set(albumSongKey(song), album.title)));
+      return map;
+    })();
+
+    function getAlbumForSong(song){
+      return songToAlbum.get(albumSongKey(song)) || "Otros / por clasificar";
+    }
+
+    function parseAnyTourDate(value){
+      if(!value) return null;
+      const iso = new Date(value);
+      if(!Number.isNaN(iso.getTime())) return iso;
+      const m = String(value).match(/^(\d{2})-(\d{2})-(\d{4})$/);
+      if(m) return new Date(`${m[3]}-${m[2]}-${m[1]}T12:00:00Z`);
+      return null;
+    }
+
+    function prettyEventDate(show){
+      const d = parseAnyTourDate(show.dateISO || show.eventDate);
+      if(!d) return show.eventDate || "";
+      return new Intl.DateTimeFormat("es-CL",{day:"numeric",month:"short"}).format(d).replace(".","");
+    }
+
+    function fixedSongSet(data){
+      return new Set([
+        ...(Array.isArray(data?.coreSongs) ? data.coreSongs : []),
+        ...fixedSafetySongs
+      ].map(albumSongKey));
+    }
+
+    function getSurpriseOccurrences(data){
+      const fixed = fixedSongSet(data);
+      const source = Array.isArray(data?.specialOccurrences) ? data.specialOccurrences : [];
+      return source
+        .filter(item => item && item.song && !fixed.has(albumSongKey(item.song)))
+        .map(item => ({
+          song:prettySong(item.song),
+          city:item.city || "",
+          country:item.country || "",
+          date:item.date || "",
+          dateISO:item.dateISO || "",
+          url:item.url || ""
+        }));
+    }
+
+    function buildSurpriseStats(list){
+      const map = new Map();
+      list.forEach(item => {
+        const key = albumSongKey(item.song);
+        if(!key) return;
+        if(!map.has(key)) map.set(key,{song:item.song,count:0,cities:new Set(),dates:[],album:getAlbumForSong(item.song)});
+        const row = map.get(key);
+        row.count += 1;
+        if(item.city) row.cities.add(item.city);
+        const d = parseAnyTourDate(item.dateISO);
+        row.dates.push({date:d,dateISO:item.dateISO,city:item.city || "",label:item.date || ""});
+      });
+      return [...map.values()].map(row => ({...row,cities:[...row.cities]}));
+    }
+
+    function renderAlbumStats(data){
+      const surprises = getSurpriseOccurrences(data);
+      const stats = buildSurpriseStats(surprises);
+      const byAlbum = new Map();
+      stats.forEach(song => {
+        const title = song.album;
+        if(!byAlbum.has(title)) byAlbum.set(title,[]);
+        byAlbum.get(title).push(song);
+      });
+      const albums = [...albumCatalog, ...(byAlbum.has("Otros / por clasificar") ? [{title:"Otros / por clasificar",year:"—",songs:[],extra:true}] : [])];
+      const grid = document.getElementById("albumStatsGrid");
+      if(!grid) return;
+      let activeAlbums = 0;
+      let distinctSongs = 0;
+      grid.innerHTML = albums.map(album => {
+        const songs = (byAlbum.get(album.title) || []).sort((a,b) => b.count-a.count || a.song.localeCompare(b.song));
+        const total = songs.reduce((sum,s) => sum+s.count,0);
+        if(songs.length){ activeAlbums += 1; distinctSongs += songs.length; }
+        const top = songs[0];
+        const body = songs.length
+          ? `<div class="album-fold-intro">${top ? `🥇 La más repetida: <strong>${esc(top.song)}</strong> · ${top.count}x` : ""}</div>
+             <div class="album-track-list">${songs.map(song => {
+               const cityText = song.cities?.length ? `${song.cities.length} ${song.cities.length===1?"ciudad":"ciudades"}` : "sin ciudades";
+               return `<div class="album-track-row"><div><strong>${esc(song.song)}</strong><small>${esc(cityText)}</small></div><span>${song.count}x</span></div>`;
+             }).join("")}</div>`
+          : `<div class="album-zero-note">Todavía no ha tenido canciones sorpresa en la gira 2026 👀</div>`;
+        return `<details class="album-card ${songs.length?"":"zero"}">
+          <summary>
+            <span class="album-disc" aria-hidden="true">💿</span>
+            <span class="album-summary-copy">
+              <span class="album-year">${esc(album.year)}</span>
+              <h4>${esc(album.title)}</h4>
+              <span class="album-numbers"><span><b>${songs.length}</b> sorpresa${songs.length===1?"":"s"}</span><span><b>${total}</b> aparici${total===1?"ón":"ones"}</span></span>
+            </span>
+            <span class="album-open-mark">⌄</span>
+          </summary>
+          <div class="album-fold-body">${body}</div>
+        </details>`;
+      }).join("");
+      const summary = document.getElementById("albumSurpriseSummary");
+      if(summary) summary.textContent = `${distinctSongs} canciones sorpresa · ${activeAlbums} lanzamientos representados`;
+    }
+
+    function rankBetsForRows(rows, field){
+      const map = new Map();
+      rows.forEach(bet => {
+        const raw = String(bet?.[field] || "").trim();
+        if(!raw) return;
+        const key = albumSongKey(raw);
+        const existing = map.get(key) || {song:prettySong(raw),count:0};
+        existing.count += 1;
+        map.set(key,existing);
+      });
+      return [...map.values()].sort((a,b) => b.count-a.count || a.song.localeCompare(b.song));
+    }
+
+    function renderDailyBetLeaders(){
+      const wrap = document.getElementById("dailyVoteLeaders");
+      if(!wrap) return;
+      const dates = ["14 octubre","16 octubre","17 octubre"];
+      if(!sharedBets.length){
+        wrap.innerHTML = `<div class="daily-vote-empty">Esperando las primeras apuestas… 💜</div>`;
+        return;
+      }
+      wrap.innerHTML = dates.map(date => {
+        const rows = sharedBets.filter(bet => String(bet?.date || "").trim() === date);
+        const safe = rankBetsForRows(rows,"safe")[0];
+        const surprise = rankBetsForRows(rows,"surprise")[0];
+        const wild = rankBetsForRows(rows,"wild")[0];
+        const pretty = date.replace(" octubre"," de octubre");
+        const rowHtml = (icon,label,item) => `<div class="daily-vote-row"><span>${icon}</span><strong title="${esc(item?.song || "Sin votos")}">${esc(item?.song || "Sin votos")}</strong><b>${item ? `${item.count} ${item.count===1?"voto":"votos"}` : "—"}</b></div>`;
+        return `<div class="daily-vote-card">
+          <div class="daily-vote-date">🇨🇱 ${esc(pretty)}<span>${rows.length} ${rows.length===1?"apuesta":"apuestas"}</span></div>
+          ${rowHtml("💜","Segura",safe)}
+          ${rowHtml("✨","Sorpresa",surprise)}
+          ${rowHtml("🔥","Wild",wild)}
+        </div>`;
+      }).join("");
+    }
+
+    function renderBetsStats(){
+      renderDailyBetLeaders();
+    }
+
+    function renderSurpriseLab(data){
+      latestSetlistData = data;
+      latestSurpriseOccurrences = getSurpriseOccurrences(data);
+      renderAlbumStats(data);
+      renderBetsStats();
+    }
+
+
     async function loadSetlistTracker(){
       // data/setlists.json lo genera GitHub Actions usando la API oficial de setlist.fm.
       // La API key vive como secret del repositorio: nunca queda expuesta en este HTML.
@@ -2915,29 +3553,51 @@ input,select,button,textarea{max-width:100%}
         const response = await fetch(`data/setlists.json?v=${Date.now()}`, {cache:"no-store"});
         if(!response.ok) throw new Error(`HTTP ${response.status}`);
         const data = await response.json();
-        if(!data || !Array.isArray(data.specialOccurrences) || data.specialOccurrences.length === 0){
+        if(!data || (!Array.isArray(data.shows) && !Array.isArray(data.specialOccurrences))){
           throw new Error("Aún no hay datos automáticos de canciones");
         }
 
-        occurrences = data.specialOccurrences
-          .filter(item => item && item.song && item.city && item.date)
-          .map(item => ({
-            song:prettySong(item.song),
-            key:normalize(item.song),
-            city:item.city,
-            date:item.date,
-            url:item.url || ""
-          }));
+        // Song Tracker = TODO lo que se ha cantado en la gira.
+        // Surprise Lab = solo data.specialOccurrences, con set fijo excluido.
+        const allOccurrences = [];
+        if(Array.isArray(data.shows) && data.shows.length){
+          data.shows.forEach(show => {
+            const unique = new Map();
+            (Array.isArray(show.songs) ? show.songs : []).forEach(song => {
+              const key = normalize(song);
+              if(key && !unique.has(key)) unique.set(key,prettySong(song));
+            });
+            unique.forEach((song,key) => allOccurrences.push({
+              song,
+              key,
+              city:show.city || "",
+              date:prettyEventDate(show),
+              url:show.url || ""
+            }));
+          });
+        }
+
+        if(allOccurrences.length){
+          occurrences = allOccurrences;
+        }else{
+          occurrences = (data.specialOccurrences || [])
+            .filter(item => item && item.song && item.city)
+            .map(item => ({song:prettySong(item.song),key:normalize(item.song),city:item.city,date:item.date||"",url:item.url||""}));
+        }
 
         songStats = buildSongStats();
         renderTopSongs();
         renderSongTable();
         renderSongOptions();
+        renderSurpriseLab(data);
         setSetlistStatus("live", `Song Tracker automático · ${data.completedShows || ""} shows revisados · ${prettySyncDate(data.lastUpdated)}`);
       }catch(error){
+        console.warn("Song Tracker automático no disponible:",error);
         setSetlistStatus("fallback", location.protocol === "file:"
           ? "Song Tracker: vista local · al publicarla usa setlist.fm"
           : "Song Tracker: usando respaldo local · falta activar/actualizar setlist.fm");
+        // El respaldo local de tourData ya contiene canciones rotativas históricas del prototipo.
+        renderSurpriseLab({specialOccurrences:occurrences,coreSongs:[],completedShows:0,lastUpdated:null});
       }
     }
 
@@ -3005,6 +3665,7 @@ input,select,button,textarea{max-width:100%}
 
       if(!bets.length){
         board.innerHTML = `<div class="bets-empty">Todavía no hay apuestas compartidas. Alguien tiene que inaugurar el delulu 👀💜</div>`;
+        renderBetsStats();
         return;
       }
 
@@ -3026,6 +3687,7 @@ input,select,button,textarea{max-width:100%}
               : `<span class="bet-date">compartida 💜</span>`}
           </article>`;
       }).join("");
+      renderBetsStats();
     }
 
     function flattenFirebaseBets(raw){
@@ -3282,6 +3944,7 @@ input,select,button,textarea{max-width:100%}
     renderTopSongs();
     renderSongTable();
     renderSongOptions();
+    renderSurpriseLab({specialOccurrences:occurrences,coreSongs:[],completedShows:0,lastUpdated:null});
     initSharedBets();
     loadOfficialTourSchedule();
     loadSetlistTracker();
