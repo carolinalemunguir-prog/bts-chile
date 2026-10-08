@@ -1073,6 +1073,77 @@
       .daily-vote-list{grid-template-columns:1fr;}
     }
 
+    /* ===== Apuestas guardadas · plegables ===== */
+    .bets-history-details{
+      margin-top:14px;
+      border:1px dashed #d5c2e5;
+      border-radius:16px;
+      background:rgba(255,255,255,.5);
+      overflow:hidden;
+    }
+    .bets-history-details > summary{
+      list-style:none;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      color:#654884;
+      font-family:var(--hand);
+      font-weight:800;
+      font-size:.84rem;
+      user-select:none;
+    }
+    .bets-history-details > summary::-webkit-details-marker{display:none}
+    .bets-history-details > summary::after{
+      content:"＋";
+      width:26px;height:26px;border-radius:50%;
+      display:grid;place-items:center;
+      background:#efe4f7;color:#785793;
+      font-family:system-ui;font-weight:800;flex:0 0 auto;
+    }
+    .bets-history-details[open] > summary::after{content:"−"}
+    .bets-history-details[open] > summary{border-bottom:1px dashed #dac9e7}
+    .bets-history-summary-left{display:flex;align-items:center;gap:8px;min-width:0}
+    .bets-history-count{
+      padding:4px 8px;border-radius:999px;background:#eee2f6;color:#856b98;
+      font:800 .62rem system-ui;white-space:nowrap;
+    }
+    .bets-history-details .bets-board{padding:13px;margin:0}
+
+    /* ===== Bloque fijo 2026 ===== */
+    .fixed-setlist-section{overflow:visible}
+    .fixed-setlist-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px}
+    .fixed-setlist-note{font-size:.72rem;color:#8a7796;line-height:1.45;margin:4px 0 0}
+    .fixed-setlist-wrap{
+      border:1px solid #dac8e8;border-radius:17px;background:rgba(255,254,250,.75);overflow:hidden;
+    }
+    .fixed-setlist-wrap > summary{
+      list-style:none;cursor:pointer;padding:13px 15px;display:flex;align-items:center;justify-content:space-between;gap:10px;
+      font-family:var(--hand);font-weight:900;color:#62447e;user-select:none;
+    }
+    .fixed-setlist-wrap > summary::-webkit-details-marker{display:none}
+    .fixed-setlist-wrap > summary::after{content:"＋";display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#efe4f7;color:#76548f;font-family:system-ui;font-weight:900}
+    .fixed-setlist-wrap[open] > summary::after{content:"−"}
+    .fixed-setlist-body{padding:4px 13px 14px;border-top:1px dashed #decee9}
+    .fixed-acts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:12px}
+    .fixed-act{min-width:0}
+    .fixed-act h3{font-size:.82rem;color:#654984;margin:0 0 8px}
+    .fixed-song-list{display:grid;gap:7px}
+    .fixed-song-card{border:1px solid #e0d2eb;border-radius:12px;background:#fff;overflow:hidden;min-width:0}
+    .fixed-song-card > summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px;padding:8px 9px;color:#5f4b6c;font-size:.71rem;font-weight:800}
+    .fixed-song-card > summary::-webkit-details-marker{display:none}
+    .fixed-song-title{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .fixed-song-count{border-radius:999px;background:#f0e6f7;color:#806294;padding:3px 7px;font-size:.58rem;white-space:nowrap}
+    .fixed-song-more{padding:0 9px 9px;color:#8b7897;font-size:.65rem;line-height:1.4}
+    .fixed-song-links{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}
+    .fixed-song-links a{display:inline-flex;align-items:center;gap:4px;text-decoration:none;border:1px solid #d8c5e8;border-radius:999px;background:#faf5ff;color:#694a86;padding:5px 8px;font-size:.6rem;font-weight:800}
+    .fixed-song-links a:hover{background:#f2e7fa}
+    .fixed-surprise-gap{margin:7px 0;padding:7px 8px;border:1px dashed #ddcbea;border-radius:10px;background:#faf6fc;color:#886d9c;font:700 .62rem var(--hand);text-align:center}
+    .lyrics-rights-note{margin:10px 0 0;color:#9a879f;font-size:.62rem;line-height:1.45}
+    @media (max-width:800px){.fixed-acts{grid-template-columns:1fr}.fixed-setlist-head{display:block}}
+
     /* ===== Surprise Lab · Santiago ===== */
     .insights-section{
       position:relative;
@@ -1518,13 +1589,15 @@
       grid-template-areas:
         "count"
         "bets"
-        "tracker";
+        "tracker"
+        "fixed";
       gap:0;
       align-items:start;
     }
     .scrap-layout .countdown-section{grid-area:count}
     .scrap-layout .bets-section{grid-area:bets}
     .scrap-layout .tracker-section{grid-area:tracker}
+    .scrap-layout .fixed-setlist-section{grid-area:fixed}
     .section{
       margin:0 0 18px;padding:20px;border-radius:20px;border:1.5px solid #d6c3e7;
       background:rgba(255,253,255,.72);box-shadow:0 8px 20px rgba(88,57,116,.07);backdrop-filter:blur(8px);
@@ -1929,7 +2002,12 @@ input,select,button,textarea{max-width:100%}
             <div class="copy-status" id="copyStatus" aria-live="polite"></div>
           </form>
 
-          <div class="bets-board" id="betsBoard"></div>
+          <details class="bets-history-details">
+            <summary>
+              <span class="bets-history-summary-left">💜 Ver apuestas guardadas <span class="bets-history-count" id="betsHistoryCount">0</span></span>
+            </summary>
+            <div class="bets-board" id="betsBoard"></div>
+          </details>
         </div>
 
         <aside class="daily-votes-panel" aria-live="polite">
@@ -2706,6 +2784,24 @@ input,select,button,textarea{max-width:100%}
       </details>
     </section>
 
+    <section class="section fixed-setlist-section" id="fixedSetlist">
+      <div class="fixed-setlist-head">
+        <div>
+          <h2>💜 Bloque fijo de la gira · <em>lo que viene sí o sí hasta ahora</em></h2>
+          <p class="fixed-setlist-note">Estas son las canciones que forman el bloque estable de ARIRANG 2026 en los shows revisados. Las sorpresas cambian entre <b>Dynamite</b> y el cierre con <b>Please / Into the Sun</b>.</p>
+        </div>
+        <span class="mini-sticker">🎤 21 fijas</span>
+      </div>
+
+      <details class="fixed-setlist-wrap">
+        <summary><span>Ver setlist fijo + accesos a letras</span></summary>
+        <div class="fixed-setlist-body">
+          <div class="fixed-acts" id="fixedSetlistGrid"></div>
+          <p class="lyrics-rights-note">Las letras completas no se incrustan en la página por derechos de autor. Al abrir cada canción tendrás accesos para buscar la letra y la versión romanizada/pronunciación en una fuente externa.</p>
+        </div>
+      </details>
+    </section>
+
     </div>
 
 
@@ -3403,6 +3499,50 @@ input,select,button,textarea{max-width:100%}
 
 
 
+    /* ===== Bloque fijo ARIRANG 2026 ===== */
+    const fixedSetlistActs = [
+      {title:"Acto 1 · Bloque inicial", songs:["Hooligan","Aliens","Run BTS","they don't know 'bout us","Like Animals","FAKE LOVE","SWIM","Merry Go Round"]},
+      {title:"Acto 2 · Energía", songs:["2.0","NORMAL","Not Today","MIC Drop","FYA","Fire","Body to Body","IDOL"]},
+      {title:"Encore · Cierre fijo", songs:["Come Over","Butter","Dynamite","Please","Into the Sun"], surpriseGap:true}
+    ];
+
+    function fixedSetlistCount(song){
+      const key = normalize(song);
+      const row = songStats.find(item => item.key === key || normalize(item.song) === key);
+      return row?.count || 0;
+    }
+
+    function fixedSongLinks(song){
+      const lyricsQuery = encodeURIComponent(`BTS ${song} lyrics`);
+      const romanizedQuery = encodeURIComponent(`BTS ${song} romanized lyrics pronunciation`);
+      return `
+        <div class="fixed-song-links">
+          <a href="https://www.google.com/search?q=${lyricsQuery}" target="_blank" rel="noopener">📖 Buscar letra ↗</a>
+          <a href="https://www.google.com/search?q=${romanizedQuery}" target="_blank" rel="noopener">🗣️ Romanización ↗</a>
+        </div>`;
+    }
+
+    function renderFixedSetlist(){
+      const grid = document.getElementById("fixedSetlistGrid");
+      if(!grid) return;
+      grid.innerHTML = fixedSetlistActs.map(act => {
+        const cards = act.songs.map((song,index) => {
+          const count = fixedSetlistCount(song);
+          const gap = act.surpriseGap && index === 3
+            ? `<div class="fixed-surprise-gap">✨ acá entra el bloque de canciones sorpresa ✨</div>`
+            : "";
+          return `${gap}<details class="fixed-song-card">
+            <summary><span class="fixed-song-title">♫ ${esc(song)}</span><span class="fixed-song-count">${count ? `${count} shows` : "bloque fijo"}</span></summary>
+            <div class="fixed-song-more">
+              <b>${esc(song)}</b> forma parte del bloque estable de la gira 2026.
+              ${fixedSongLinks(song)}
+            </div>
+          </details>`;
+        }).join("");
+        return `<div class="fixed-act"><h3>${esc(act.title)}</h3><div class="fixed-song-list">${cards}</div></div>`;
+      }).join("");
+    }
+
     /* ===== Surprise Lab · solo canciones rotativas 2026 ===== */
     let latestSetlistData = null;
     let latestSurpriseOccurrences = [];
@@ -3727,6 +3867,7 @@ input,select,button,textarea{max-width:100%}
         renderTopSongs();
         renderSongTable();
         renderSongOptions();
+        renderFixedSetlist();
         renderSurpriseLab(data);
         setSetlistStatus("live", `Song Tracker automático · ${data.completedShows || ""} shows revisados · ${prettySyncDate(data.lastUpdated)}`);
       }catch(error){
@@ -3735,6 +3876,7 @@ input,select,button,textarea{max-width:100%}
           ? "Song Tracker: vista local · al publicarla usa setlist.fm"
           : "Song Tracker: usando respaldo local · falta activar/actualizar setlist.fm");
         // El respaldo local de tourData ya contiene canciones rotativas históricas del prototipo.
+        renderFixedSetlist();
         renderSurpriseLab({specialOccurrences:occurrences,coreSongs:[],completedShows:0,lastUpdated:null});
       }
     }
@@ -3800,6 +3942,8 @@ input,select,button,textarea{max-width:100%}
     function renderBets(){
       const board = document.getElementById("betsBoard");
       const bets = sharedBets;
+      const historyCount = document.getElementById("betsHistoryCount");
+      if(historyCount) historyCount.textContent = `${bets.length} ${bets.length===1?"apuesta":"apuestas"}`;
 
       if(!bets.length){
         board.innerHTML = `<div class="bets-empty">Todavía no hay apuestas compartidas. Alguien tiene que inaugurar el delulu 👀💜</div>`;
