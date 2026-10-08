@@ -1046,6 +1046,33 @@
       background:#fbf8fc;
     }
 
+    /* v8.1: evita que el panel de líderes se monte sobre el formulario.
+       ARMY Bets ya vive en una columna estrecha del scrapbook, así que usamos
+       el ancho REAL de la sección (container query), no el ancho de la pantalla. */
+    .bets-section{container-type:inline-size;}
+    .bets-live-main,.daily-votes-panel{max-width:100%;min-width:0;}
+    @container (max-width:760px){
+      .bets-live-layout{
+        grid-template-columns:1fr;
+        gap:12px;
+      }
+      .daily-votes-panel{
+        position:relative;
+        top:auto;
+        width:100%;
+      }
+      .daily-vote-list{
+        grid-template-columns:repeat(3,minmax(0,1fr));
+        gap:8px;
+      }
+      .daily-vote-card{min-width:0;}
+      .daily-vote-date{align-items:flex-start;flex-wrap:wrap;}
+      .daily-vote-row strong{white-space:normal;overflow:visible;text-overflow:clip;}
+    }
+    @container (max-width:520px){
+      .daily-vote-list{grid-template-columns:1fr;}
+    }
+
     /* ===== Surprise Lab · Santiago ===== */
     .insights-section{
       position:relative;
