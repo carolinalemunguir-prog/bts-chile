@@ -5,8 +5,8 @@
   "artistMbid": "0d79fe8e-ba27-4859-bb8c-2f255f346853",
   "tour": "ARIRANG",
   "year": 2026,
-  "lastUpdated": "2026-10-07T20:46:51.799Z",
-  "completedShows": 50,
+  "lastUpdated": "2026-10-08T01:19:47.165Z",
+  "completedShows": 51,
   "coreThreshold": 0.68,
   "coreSongs": [
     "2.0",
@@ -2916,6 +2916,21 @@
         "Mikrokosmos",
         "Please",
         "Into the Sun"
+      ]
+    },
+    {
+      "id": "1b763d30",
+      "versionId": "g730886f1",
+      "eventDate": "07-10-2026",
+      "dateISO": "2026-10-07",
+      "city": "Lima",
+      "country": "Perú",
+      "venue": "Estadio San Marcos",
+      "url": "https://www.setlist.fm/setlist/bts/2026/estadio-san-marcos-lima-peru-1b763d30.html",
+      "songs": [
+        "Hooligan",
+        "Aliens",
+        "Run BTS"
       ]
     }
   ]
