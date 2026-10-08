@@ -2021,11 +2021,11 @@ input,select,button,textarea{max-width:100%}
     </section>
 
     <section class="section tracker-section" id="songTracker">
-      <div class="tracker-heading"><div><h2>🎧 Song Tracker · <em>gira</em> ♡</h2><p class="hand-note">Toca una canción para ver sus ciudades pequeñitas ↓</p></div><span class="mini-sticker">✦ historial vivo</span></div>
-      <p class="lead tracker-lead">Las más repetidas quedan arriba. El listado completo sigue guardado debajo para buscar, ordenar y revisar cada fecha.</p>
+      <div class="tracker-heading"><div><h2>✨ Surprise Tracker · <em>gira 2026</em> ♡</h2><p class="hand-note">Solo canciones sorpresa / rotativas · toca una para ver dónde apareció ↓</p></div><span class="mini-sticker">✦ historial vivo</span></div>
+      <p class="lead tracker-lead">Acá dejamos fuera el set fijo: solo contamos las canciones sorpresa que han ido rotando durante la gira 2026.</p>
       <div class="setlist-sync" aria-live="polite">
         <span class="setlist-dot" id="setlistDot"></span>
-        <span id="setlistSyncText">Song Tracker: usando respaldo local</span>
+        <span id="setlistSyncText">Surprise Tracker: usando respaldo local</span>
         <span>·</span>
         <a href="https://www.setlist.fm/setlists/bts-3bdd50e4.html" target="_blank" rel="noopener">datos de setlist.fm ↗</a>
       </div>
@@ -2046,11 +2046,11 @@ input,select,button,textarea{max-width:100%}
       <div class="song-peek" id="songPeek" hidden aria-live="polite"></div>
 
       <details class="songs-details">
-        <summary>Ver listado completo de canciones</summary>
+        <summary>Ver todas las canciones sorpresa</summary>
         <div class="songs-details-body">
           <div class="toolbar">
             <div class="field search">
-              <input id="songSearch" type="search" placeholder="🔎 Buscar canción... ej. Spring Day, Magic Shop, Dope">
+              <input id="songSearch" type="search" placeholder="🔎 Buscar sorpresa... ej. Spring Day, Magic Shop, Dope">
             </div>
             <div class="field">
               <select id="sortSongs">
@@ -2779,7 +2779,7 @@ input,select,button,textarea{max-width:100%}
               </tbody>
             </table>
           </div>
-          <div class="summary" id="songSummary">58 canciones en total.</div>
+          <div class="summary" id="songSummary">Canciones sorpresa de la gira 2026.</div>
         </div>
       </details>
     </section>
@@ -3321,6 +3321,7 @@ input,select,button,textarea{max-width:100%}
     }
 
     let songStats = buildSongStats();
+    let allSongStats = [...songStats];
 
     function renderTopSongs(){
       const top = [...songStats]
@@ -3508,7 +3509,7 @@ input,select,button,textarea{max-width:100%}
 
     function fixedSetlistCount(song){
       const key = normalize(song);
-      const row = songStats.find(item => item.key === key || normalize(item.song) === key);
+      const row = allSongStats.find(item => item.key === key || normalize(item.song) === key);
       return row?.count || 0;
     }
 
@@ -3549,9 +3550,9 @@ input,select,button,textarea{max-width:100%}
 
     // Red de seguridad: aunque un setlist incompleto baje su frecuencia, estas canciones
     // conocidas del bloque estable nunca se tratarán como "sorpresa".
-    const fixedSafetySongs = [
-      "FAKE LOVE","Run BTS","Not Today","MIC Drop","Fire","IDOL","Butter","Dynamite","Hooligan"
-    ];
+    const fixedSafetySongs = [...new Set(
+      fixedSetlistActs.flatMap(act => act.songs)
+    )];
 
     const albumCatalog = [
       {title:"2 COOL 4 SKOOL", year:2013, songs:["Intro: 2 Cool 4 Skool","We Are Bulletproof Pt.2","No More Dream","Interlude","Like","Outro: Circle Room Cypher","Path"]},
@@ -3835,8 +3836,8 @@ input,select,button,textarea{max-width:100%}
           throw new Error("Aún no hay datos automáticos de canciones");
         }
 
-        // Song Tracker = TODO lo que se ha cantado en la gira.
-        // Surprise Lab = solo data.specialOccurrences, con set fijo excluido.
+        // Guardamos TODO el repertorio únicamente para contar el bloque fijo.
+        // El tracker visible de esta sección muestra SOLO sorpresas / rotativas.
         const allOccurrences = [];
         if(Array.isArray(data.shows) && data.shows.length){
           data.shows.forEach(show => {
@@ -3857,10 +3858,22 @@ input,select,button,textarea{max-width:100%}
 
         if(allOccurrences.length){
           occurrences = allOccurrences;
-        }else{
-          occurrences = (data.specialOccurrences || [])
-            .filter(item => item && item.song && item.city)
-            .map(item => ({song:prettySong(item.song),key:normalize(item.song),city:item.city,date:item.date||"",url:item.url||""}));
+          allSongStats = buildSongStats();
+        }
+
+        const surpriseOccurrences = getSurpriseOccurrences(data)
+          .filter(item => item && item.song)
+          .map(item => ({
+            song:prettySong(item.song),
+            key:normalize(item.song),
+            city:item.city || "",
+            date:item.date || "",
+            url:item.url || ""
+          }));
+
+        // Si setlist.fm aún no trae specialOccurrences, conservamos el respaldo local.
+        if(surpriseOccurrences.length){
+          occurrences = surpriseOccurrences;
         }
 
         songStats = buildSongStats();
@@ -3869,12 +3882,12 @@ input,select,button,textarea{max-width:100%}
         renderSongOptions();
         renderFixedSetlist();
         renderSurpriseLab(data);
-        setSetlistStatus("live", `Song Tracker automático · ${data.completedShows || ""} shows revisados · ${prettySyncDate(data.lastUpdated)}`);
+        setSetlistStatus("live", `Surprise Tracker automático · ${songStats.length} sorpresas distintas · ${data.completedShows || ""} shows revisados · ${prettySyncDate(data.lastUpdated)}`);
       }catch(error){
         console.warn("Song Tracker automático no disponible:",error);
         setSetlistStatus("fallback", location.protocol === "file:"
-          ? "Song Tracker: vista local · al publicarla usa setlist.fm"
-          : "Song Tracker: usando respaldo local · falta activar/actualizar setlist.fm");
+          ? "Surprise Tracker: vista local · al publicarla usa setlist.fm"
+          : "Surprise Tracker: usando respaldo local · falta activar/actualizar setlist.fm");
         // El respaldo local de tourData ya contiene canciones rotativas históricas del prototipo.
         renderFixedSetlist();
         renderSurpriseLab({specialOccurrences:occurrences,coreSongs:[],completedShows:0,lastUpdated:null});
