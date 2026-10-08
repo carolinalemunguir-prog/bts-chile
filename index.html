@@ -1514,11 +1514,12 @@
        mientras ARMY Bets ocupa la columna derecha. Así eliminamos el gran hueco vacío. */
     .scrap-layout{
       display:grid;
-      grid-template-columns:minmax(0,1.65fr) minmax(320px,.85fr);
+      grid-template-columns:1fr;
       grid-template-areas:
-        "count bets"
-        "tracker bets";
-      gap:16px;
+        "count"
+        "bets"
+        "tracker";
+      gap:0;
       align-items:start;
     }
     .scrap-layout .countdown-section{grid-area:count}
@@ -1626,6 +1627,35 @@
       font-family:Arial,sans-serif; font-size:5.5px; line-height:8px; text-align:center; color:white;
     }
     .flag-line{display:inline-flex;align-items:center;gap:0;}
+
+    /* v9 · distribución amplia: cada bloque usa todo el ancho del scrapbook */
+    .bets-live-layout{
+      grid-template-columns:minmax(0,1fr) minmax(290px,340px);
+      gap:18px;
+      align-items:start;
+    }
+    .bets-board{grid-template-columns:repeat(3,minmax(0,1fr));}
+    .daily-votes-panel{position:sticky;top:16px;}
+    .tracker-section{margin-top:0;}
+    .album-track-row.played{background:#fffdf7;border-color:#dfcdea;}
+    .album-track-row.unplayed{background:#fbf9fc;border-style:dashed;opacity:.86;}
+    .album-track-row.fixed{background:#f8f3ff;border-color:#d8c5eb;}
+    .track-count-badge{
+      display:inline-flex;align-items:center;justify-content:center;min-width:54px;
+      border-radius:999px;padding:4px 7px;font-size:.6rem;font-weight:900;
+      background:#f1e7f6;color:#6d4d82;white-space:nowrap;
+    }
+    .track-count-badge.zero{background:#f3eff5;color:#a18da9;}
+    .track-count-badge.fixed{background:#eadffc;color:#6d4ea0;}
+    @media (max-width:1000px){
+      .bets-live-layout{grid-template-columns:1fr;}
+      .daily-votes-panel{position:relative;top:auto;}
+      .bets-board{grid-template-columns:repeat(2,minmax(0,1fr));}
+    }
+    @media (max-width:650px){
+      .bets-board{grid-template-columns:1fr;}
+    }
+
 </style>
 <style id="responsive-fix-v6-2">
 /* Responsive polish v6.2 — desktop stays intact, mobile becomes fluid */
@@ -2691,13 +2721,13 @@ input,select,button,textarea{max-width:100%}
       <article class="album-panel">
         <div class="album-panel-head">
           <div>
-            <h3>Discografía BTS · sorpresas 2026</h3>
-            <p class="insight-sub" style="margin-bottom:0">Cada disco parte plegado. Ábrelo para ver qué canciones sorpresa ya se tocaron y cuántas veces.</p>
+            <h3>Discografía BTS · mapa de sorpresas 2026</h3>
+            <p class="insight-sub" style="margin-bottom:0">Cada disco parte plegado. Ábrelo para ver <strong>todas sus canciones</strong>: ✨ cuántas veces aparecieron como sorpresa, 💜 cuáles pertenecen al set fijo y cuáles siguen en 0.</p>
           </div>
           <span class="album-summary-pill" id="albumSurpriseSummary">calculando…</span>
         </div>
         <div class="album-stats-grid" id="albumStatsGrid"></div>
-        <p class="surprise-source-note">Clasificación por lanzamiento de origen · apariciones 2026 tomadas del Surprise Tracker generado desde setlist.fm.</p>
+        <p class="surprise-source-note">Clasificación por lanzamiento de origen · conteos de la gira 2026 tomados del Song Tracker de setlist.fm. El set fijo se identifica aparte para que no se confunda con una sorpresa.</p>
       </article>
     </section>
 
@@ -3384,31 +3414,30 @@ input,select,button,textarea{max-width:100%}
     ];
 
     const albumCatalog = [
-      {title:"2 COOL 4 SKOOL", year:2013, songs:["We Are Bulletproof Pt.2","No More Dream","Like","Path","Road"]},
-      {title:"O!RUL8,2?", year:2013, songs:["N.O","We On","If I Ruled the World","Coffee","BTS Cypher Pt.1","Attack on Bangtan","Paldogangsan","Outro: Luv in Skool"]},
-      {title:"SKOOL LUV AFFAIR", year:2014, songs:["Boy In Luv","Just One Day","Tomorrow","BTS Cypher Pt.2: Triptych","Spine Breaker","Jump","Miss Right","Outro: Propose"]},
-      {title:"WAKE UP", year:2014, songs:["Wake Up","The Stars","I Like It Pt.2"]},
-      {title:"DARK & WILD", year:2014, songs:["Danger","War of Hormone","Hip Hop Phile","Let Me Know","Rain","BTS Cypher Pt.3: Killer","Could You Turn Off Your Cell Phone","Embarrassed","24/7=Heaven","Look Here","2nd Grade"]},
-      {title:"The Most Beautiful Moment in Life, Pt.1", year:2015, songs:["I Need U","Hold Me Tight","Dope","Boyz With Fun","Converse High","Moving On"]},
-      {title:"The Most Beautiful Moment in Life, Pt.2", year:2015, songs:["Run","Butterfly","Whalien 52","Ma City","Silver Spoon","Baepsae","Autumn Leaves","House of Cards"]},
-      {title:"YOUTH", year:2016, songs:["For You","Good Day","Wishing on a Star"]},
-      {title:"The Most Beautiful Moment in Life: Young Forever", year:2016, songs:["Fire","Save Me","Epilogue: Young Forever","Young Forever"]},
-      {title:"WINGS", year:2016, songs:["Blood Sweat & Tears","Blood, Sweat & Tears","Begin","Lie","Stigma","First Love","Reflection","MAMA","Awake","Lost","BTS Cypher 4","Am I Wrong","21st Century Girl","2! 3!","Interlude: Wings"]},
-      {title:"YOU NEVER WALK ALONE", year:2017, songs:["Spring Day","Not Today","Outro: Wings","A Supplementary Story: You Never Walk Alone"]},
-      {title:"LOVE YOURSELF 承 'Her'", year:2017, songs:["Serendipity","DNA","Best of Me","Best Of Me","Dimple","Pied Piper","MIC Drop","Go Go","Outro: Her"]},
-      {title:"FACE YOURSELF", year:2018, songs:["Don't Leave Me","Let Go","Crystal Snow"]},
-      {title:"LOVE YOURSELF 轉 'Tear'", year:2018, songs:["Singularity","FAKE LOVE","The Truth Untold","134340","Paradise","Love Maze","Magic Shop","Airplane Pt.2","Airplane pt.2","Anpanman","So What","Outro: Tear"]},
-      {title:"LOVE YOURSELF 結 'Answer'", year:2018, songs:["Euphoria","Epiphany","Trivia: Just Dance","Trivia: Love","Trivia: Seesaw","IDOL","I'm Fine","Answer: Love Myself"]},
-      {title:"MAP OF THE SOUL : PERSONA", year:2019, songs:["Intro: Persona","Boy With Luv","Mikrokosmos","Make It Right","HOME","Jamais Vu","Dionysus"]},
-      {title:"MAP OF THE SOUL : 7", year:2020, songs:["Interlude: Shadow","Black Swan","Filter","My Time","Louder Than Bombs","ON","UGH!","Zero O'Clock","00:00 (Zero O'Clock)","Inner Child","Friends","Moon","Respect","We Are Bulletproof: The Eternal","Outro: Ego"]},
-      {title:"MAP OF THE SOUL : 7 ~ THE JOURNEY ~", year:2020, songs:["Stay Gold","Your Eyes Tell","Lights"]},
-      {title:"BE", year:2020, songs:["Life Goes On","Fly to My Room","Blue & Grey","Telepathy","Dis-ease","Stay","Dynamite"]},
+      {title:"2 COOL 4 SKOOL", year:2013, songs:["Intro: 2 Cool 4 Skool","We Are Bulletproof Pt.2","No More Dream","Interlude","Like","Outro: Circle Room Cypher","Path"]},
+      {title:"O!RUL8,2?", year:2013, songs:["Intro: O!RUL8,2?","N.O","We On","If I Ruled the World","Coffee","BTS Cypher Pt.1","Attack on Bangtan","Paldogangsan","Outro: Luv in Skool"]},
+      {title:"SKOOL LUV AFFAIR", year:2014, songs:["Intro: Skool Luv Affair","Boy In Luv","Where You From","Just One Day","Tomorrow","BTS Cypher Pt.2: Triptych","Spine Breaker","Jump","Outro: Propose","Miss Right","Like (Slow Jam Remix)"]},
+      {title:"WAKE UP", year:2014, songs:["Intro.","The Stars","Jump (Japanese Ver.)","Danger (Japanese Ver.)","Boy In Luv (Japanese Ver.)","Just One Day (Japanese Ver.)","Line! Pt.2 -Ano Bashode-","Wake Up","Outro."]},
+      {title:"DARK & WILD", year:2014, songs:["Intro: What Am I to You","Danger","War of Hormone","Hip Hop Phile","Let Me Know","Rain","BTS Cypher Pt.3: Killer","Interlude: What Are You Doing Now","Could You Turn Off Your Cell Phone","Embarrassed","24/7=Heaven","Look Here","2nd Grade","Outro: Does That Make Sense?"]},
+      {title:"The Most Beautiful Moment in Life, Pt.1", year:2015, songs:["Intro: The Most Beautiful Moment in Life","I Need U","Hold Me Tight","Dope","Boyz With Fun","Converse High","Moving On","Outro: Love Is Not Over"]},
+      {title:"The Most Beautiful Moment in Life, Pt.2", year:2015, songs:["Intro: Never Mind","Run","Butterfly","Whalien 52","Ma City","Silver Spoon","Autumn Leaves","Outro: House of Cards"]},
+      {title:"The Most Beautiful Moment in Life: Young Forever", year:2016, songs:["House of Cards","Love Is Not Over","Fire","Save Me","Epilogue: Young Forever"]},
+      {title:"YOUTH", year:2016, songs:["Introduction: Youth","Run (Japanese Ver.)","Fire (Japanese Ver.)","Dope (Japanese Ver.)","Good Day","Save Me (Japanese Ver.)","Boyz With Fun (Japanese Ver.)","Silver Spoon (Japanese Ver.)","Wishing on a Star","Butterfly (Japanese Ver.)","For You"]},
+      {title:"WINGS", year:2016, songs:["Intro: Boy Meets Evil","Blood Sweat & Tears","Begin","Lie","Stigma","First Love","Reflection","MAMA","Awake","Lost","BTS Cypher 4","Am I Wrong","21st Century Girl","2! 3!","Interlude: Wings"]},
+      {title:"YOU NEVER WALK ALONE", year:2017, songs:["Spring Day","Not Today","Wings","A Supplementary Story: You Never Walk Alone"]},
+      {title:"LOVE YOURSELF 承 'Her'", year:2017, songs:["Serendipity","DNA","Best of Me","Dimple","Pied Piper","MIC Drop","Go Go","Outro: Her","Sea"]},
+      {title:"FACE YOURSELF", year:2018, songs:["Intro: Ringwanderung","Best of Me (Japanese Ver.)","Blood Sweat & Tears (Japanese Ver.)","DNA (Japanese Ver.)","Not Today (Japanese Ver.)","MIC Drop (Japanese Ver.)","Don't Leave Me","Go Go (Japanese Ver.)","Crystal Snow","Spring Day (Japanese Ver.)","Let Go","Outro: Crack"]},
+      {title:"LOVE YOURSELF 轉 'Tear'", year:2018, songs:["Singularity","FAKE LOVE","The Truth Untold","134340","Paradise","Love Maze","Magic Shop","Airplane Pt.2","Anpanman","So What","Outro: Tear"]},
+      {title:"LOVE YOURSELF 結 'Answer'", year:2018, songs:["Euphoria","Trivia: Just Dance","Trivia: Love","Trivia: Seesaw","Epiphany","I'm Fine","IDOL","Answer: Love Myself"]},
+      {title:"MAP OF THE SOUL : PERSONA", year:2019, songs:["Persona","Boy With Luv","Mikrokosmos","Make It Right","HOME","Jamais Vu","Dionysus"]},
+      {title:"MAP OF THE SOUL : 7", year:2020, songs:["Interlude: Shadow","Black Swan","Filter","My Time","Louder Than Bombs","ON","UGH!","00:00 (Zero O'Clock)","Inner Child","Friends","Moon","Respect","We Are Bulletproof: The Eternal","Outro: Ego"]},
+      {title:"MAP OF THE SOUL : 7 ~ THE JOURNEY ~", year:2020, songs:["Intro: Calling","Stay Gold","Boy With Luv (Japanese Ver.)","Make It Right (Japanese Ver.)","Dionysus (Japanese Ver.)","IDOL (Japanese Ver.)","Airplane Pt.2 (Japanese Ver.)","FAKE LOVE (Japanese Ver.)","Black Swan (Japanese Ver.)","ON (Japanese Ver.)","Lights","Your Eyes Tell","Outro: The Journey"]},
+      {title:"BE", year:2020, songs:["Life Goes On","Fly to My Room","Blue & Grey","Telepathy","Dis-ease","Stay"]},
       {title:"BTS, THE BEST", year:2021, songs:["Film Out"]},
-      {title:"Proof", year:2022, songs:["Yet To Come","Run BTS","For Youth","Born Singer"]},
-      {title:"ARIRANG", year:2026, songs:["Body to Body","Hooligan","Aliens","FYA","2.0","No. 29","SWIM","Merry Go Round","NORMAL","Like Animals","they don't know 'bout us","they don’t know ’bout us","One More Night","Please","Into the Sun"]},
-      {title:"Singles & especiales", year:"—", extra:true, songs:["Butter","Permission to Dance","Take Two","DDAENG","4 O'Clock","Otsukare","Adult Child","Graduation Song","School of Tears","Beautiful","95 Graduation"]}
+      {title:"Proof", year:2022, songs:["Born Singer","Yet To Come","Run BTS","For Youth"]},
+      {title:"ARIRANG", year:2026, songs:["Body to Body","Hooligan","Aliens","FYA","2.0","No. 29","SWIM","Merry Go Round","NORMAL","Like Animals","they don't know 'bout us","One More Night","Please","Into the Sun","Come Over"]},
+      {title:"Singles & especiales", year:"—", extra:true, songs:["Dynamite","Butter","Permission to Dance","Take Two","The Planet","DDAENG","Come Back Home","With Seoul","Arirang","Heartbeat","Dream Glow","A Brand New Day","All Night","Waste It on Me","Savage Love (BTS Remix)","My Universe","Bad Decisions","Otsukare","4 O'Clock","Adult Child","Graduation Song","School of Tears","Beautiful","95 Graduation"]}
     ];
-
     function albumSongKey(value){
       return String(value || "")
         .toLowerCase()
@@ -3417,6 +3446,29 @@ input,select,button,textarea{max-width:100%}
         .replace(/[’‘]/g,"'")
         .replace(/[^a-z0-9]+/g,"")
         .trim();
+    }
+
+    const albumCountAliases = new Map([
+      ["baepsae","silverspoon"],
+      ["youngforever","epilogueyoungforever"],
+      ["outrowings","wings"],
+      ["interludewings","wings"],
+      ["introserendipity","serendipity"],
+      ["introsingularity","singularity"],
+      ["intropersona","persona"],
+      ["shadow","interludeshadow"],
+      ["ego","outroego"],
+      ["zeroclock","0000zeroclock"],
+      ["houseofcardsfulllengthedition","houseofcards"],
+      ["outrohouseofcards","houseofcards"],
+      ["loveisnotoverfulllengthedition","loveisnotover"],
+      ["outroloveisnotover","loveisnotover"],
+      ["ilikeitpt2inthatplace","ilikeitpt2"],
+      ["ilikeitpt2anobashode","ilikeitpt2"]
+    ]);
+    function albumCountKey(value){
+      const key = albumSongKey(value);
+      return albumCountAliases.get(key) || key;
     }
 
     const songToAlbum = (() => {
@@ -3481,9 +3533,38 @@ input,select,button,textarea{max-width:100%}
       return [...map.values()].map(row => ({...row,cities:[...row.cities]}));
     }
 
+    function buildAllTourSongCounts(data){
+      const counts = new Map();
+      const shows = Array.isArray(data?.shows) ? data.shows : [];
+      shows.forEach(show => {
+        const seen = new Set();
+        (Array.isArray(show?.songs) ? show.songs : []).forEach(raw => {
+          const key = albumCountKey(raw);
+          if(!key || seen.has(key)) return;
+          seen.add(key);
+          counts.set(key,(counts.get(key)||0)+1);
+        });
+      });
+      return counts;
+    }
+
+    function uniqueAlbumTracks(album){
+      const seen = new Set();
+      return (album.songs || []).filter(song => {
+        const key = albumCountKey(song);
+        if(!key || seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+    }
+
     function renderAlbumStats(data){
       const surprises = getSurpriseOccurrences(data);
       const stats = buildSurpriseStats(surprises);
+      const allTourCounts = buildAllTourSongCounts(data);
+      const fixed = fixedSongSet(data);
+      const fixedCountKeys = new Set([...fixed].map(key => albumCountAliases.get(key) || key));
+      const surpriseByKey = new Map(stats.map(row => [albumCountKey(row.song),row]));
       const byAlbum = new Map();
       stats.forEach(song => {
         const title = song.album;
@@ -3496,32 +3577,62 @@ input,select,button,textarea{max-width:100%}
       let activeAlbums = 0;
       let distinctSongs = 0;
       grid.innerHTML = albums.map(album => {
-        const songs = (byAlbum.get(album.title) || []).sort((a,b) => b.count-a.count || a.song.localeCompare(b.song));
-        const total = songs.reduce((sum,s) => sum+s.count,0);
-        if(songs.length){ activeAlbums += 1; distinctSongs += songs.length; }
-        const top = songs[0];
-        const body = songs.length
-          ? `<div class="album-fold-intro">${top ? `🥇 La más repetida: <strong>${esc(top.song)}</strong> · ${top.count}x` : ""}</div>
-             <div class="album-track-list">${songs.map(song => {
-               const cityText = song.cities?.length ? `${song.cities.length} ${song.cities.length===1?"ciudad":"ciudades"}` : "sin ciudades";
-               return `<div class="album-track-row"><div><strong>${esc(song.song)}</strong><small>${esc(cityText)}</small></div><span>${song.count}x</span></div>`;
-             }).join("")}</div>`
-          : `<div class="album-zero-note">Todavía no ha tenido canciones sorpresa en la gira 2026 👀</div>`;
-        return `<details class="album-card ${songs.length?"":"zero"}">
+        const surpriseSongs = (byAlbum.get(album.title) || []).sort((a,b) => b.count-a.count || a.song.localeCompare(b.song));
+        const totalSurpriseAppearances = surpriseSongs.reduce((sum,row) => sum+row.count,0);
+        if(surpriseSongs.length){ activeAlbums += 1; distinctSongs += surpriseSongs.length; }
+        const top = surpriseSongs[0];
+        const tracks = uniqueAlbumTracks(album);
+
+        const bodyRows = tracks.map(track => {
+          const key = albumCountKey(track);
+          const surprise = surpriseByKey.get(key);
+          const totalPlayed = allTourCounts.get(key) || 0;
+          const isFixed = fixedCountKeys.has(key);
+          const surpriseCount = surprise?.count || 0;
+          let badge = `<span class="track-count-badge zero">0x</span>`;
+          let rowClass = 'unplayed';
+          let detail = 'Aún no aparece como sorpresa en 2026';
+
+          if(isFixed){
+            rowClass = 'fixed';
+            badge = `<span class="track-count-badge fixed">💜 set fijo · ${totalPlayed}x</span>`;
+            detail = totalPlayed ? `Parte del bloque estable · ${totalPlayed} show${totalPlayed===1?'':'s'}` : 'Marcada como parte del set fijo';
+          }else if(surpriseCount){
+            rowClass = 'played';
+            badge = `<span class="track-count-badge">✨ ${surpriseCount}x</span>`;
+            const cities = surprise?.cities?.length || 0;
+            detail = `${surpriseCount} aparici${surpriseCount===1?'ón':'ones'} sorpresa${cities ? ` · ${cities} ${cities===1?'ciudad':'ciudades'}` : ''}`;
+          }else if(totalPlayed){
+            rowClass = 'played';
+            badge = `<span class="track-count-badge">🎵 ${totalPlayed}x</span>`;
+            detail = `Tocada ${totalPlayed} ${totalPlayed===1?'vez':'veces'} en 2026`;
+          }
+
+          return `<div class="album-track-row ${rowClass}"><div><strong>${esc(track)}</strong><small>${esc(detail)}</small></div>${badge}</div>`;
+        }).join('');
+
+        const intro = surpriseSongs.length
+          ? `${top ? `🥇 Sorpresa más repetida: <strong>${esc(top.song)}</strong> · ${top.count}x` : ''}`
+          : `👀 Este lanzamiento todavía no aporta sorpresas a la gira 2026.`;
+
+        return `<details class="album-card ${surpriseSongs.length?'':'zero'}">
           <summary>
             <span class="album-disc" aria-hidden="true">💿</span>
             <span class="album-summary-copy">
               <span class="album-year">${esc(album.year)}</span>
               <h4>${esc(album.title)}</h4>
-              <span class="album-numbers"><span><b>${songs.length}</b> sorpresa${songs.length===1?"":"s"}</span><span><b>${total}</b> aparici${total===1?"ón":"ones"}</span></span>
+              <span class="album-numbers"><span><b>${surpriseSongs.length}</b> sorpresa${surpriseSongs.length===1?'':'s'}</span><span><b>${totalSurpriseAppearances}</b> aparici${totalSurpriseAppearances===1?'ón':'ones'}</span><span><b>${tracks.length}</b> canciones</span></span>
             </span>
             <span class="album-open-mark">⌄</span>
           </summary>
-          <div class="album-fold-body">${body}</div>
+          <div class="album-fold-body">
+            <div class="album-fold-intro">${intro}</div>
+            <div class="album-track-list">${bodyRows || '<div class="album-zero-note">Sin canciones cargadas para este lanzamiento.</div>'}</div>
+          </div>
         </details>`;
       }).join("");
       const summary = document.getElementById("albumSurpriseSummary");
-      if(summary) summary.textContent = `${distinctSongs} canciones sorpresa · ${activeAlbums} lanzamientos representados`;
+      if(summary) summary.textContent = `${distinctSongs} sorpresas · ${activeAlbums} discos con sorpresas`;
     }
 
     function rankBetsForRows(rows, field){
