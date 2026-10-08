@@ -5,7 +5,7 @@
   "artistMbid": "0d79fe8e-ba27-4859-bb8c-2f255f346853",
   "tour": "ARIRANG",
   "year": 2026,
-  "lastUpdated": "2026-10-08T01:19:47.165Z",
+  "lastUpdated": "2026-10-08T10:55:52.341Z",
   "completedShows": 51,
   "coreThreshold": 0.68,
   "coreSongs": [
@@ -1164,6 +1164,28 @@
       "setlistId": "6b495afe",
       "versionId": "g5b0b0724",
       "url": "https://www.setlist.fm/setlist/bts/2026/estadio-el-campin-bogota-colombia-6b495afe.html"
+    },
+    {
+      "song": "HOME",
+      "city": "Lima",
+      "country": "Perú",
+      "date": "7 octubre",
+      "dateISO": "2026-10-07",
+      "venue": "Estadio San Marcos",
+      "setlistId": "1b763d30",
+      "versionId": "g4b08ff16",
+      "url": "https://www.setlist.fm/setlist/bts/2026/estadio-san-marcos-lima-peru-1b763d30.html"
+    },
+    {
+      "song": "Outro: Wings",
+      "city": "Lima",
+      "country": "Perú",
+      "date": "7 octubre",
+      "dateISO": "2026-10-07",
+      "venue": "Estadio San Marcos",
+      "setlistId": "1b763d30",
+      "versionId": "g4b08ff16",
+      "url": "https://www.setlist.fm/setlist/bts/2026/estadio-san-marcos-lima-peru-1b763d30.html"
     }
   ],
   "shows": [
@@ -2920,7 +2942,7 @@
     },
     {
       "id": "1b763d30",
-      "versionId": "g730886f1",
+      "versionId": "g4b08ff16",
       "eventDate": "07-10-2026",
       "dateISO": "2026-10-07",
       "city": "Lima",
@@ -2930,7 +2952,27 @@
       "songs": [
         "Hooligan",
         "Aliens",
-        "Run BTS"
+        "Run BTS",
+        "they don't know 'bout us",
+        "Like Animals",
+        "FAKE LOVE",
+        "SWIM",
+        "Merry Go Round",
+        "2.0",
+        "NORMAL",
+        "Not Today",
+        "MIC Drop",
+        "FYA",
+        "Fire",
+        "Body to Body",
+        "IDOL",
+        "Come Over",
+        "Butter",
+        "Dynamite",
+        "HOME",
+        "Outro: Wings",
+        "Please",
+        "Into the Sun"
       ]
     }
   ]
