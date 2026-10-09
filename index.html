@@ -1859,6 +1859,55 @@ input,select,button,textarea{max-width:100%}
 }
 </style>
 
+
+<style id="mobile-layout-emergency-fix">
+/* v9.2 mobile: evita que CSS Grid cree columnas implícitas al tener el bloque fijo. */
+@media (max-width: 900px){
+  .scrap-layout{
+    grid-template-columns:1fr !important;
+    grid-template-areas:
+      "count"
+      "bets"
+      "tracker"
+      "fixed" !important;
+  }
+  .countdown-section,.bets-section,.tracker-section,.fixed-setlist-section{min-width:0 !important;}
+}
+@media (max-width: 720px){
+  html,body{width:100% !important;max-width:100% !important;overflow-x:hidden !important;}
+  .binder{display:none !important;}
+  .shell.scrap-page{
+    display:block !important;
+    width:calc(100% - 10px) !important;
+    max-width:none !important;
+    min-width:0 !important;
+    margin:5px auto 16px !important;
+    padding:8px !important;
+  }
+  .scrap-layout{
+    display:block !important;
+    width:100% !important;
+    min-width:0 !important;
+    max-width:100% !important;
+  }
+  .scrap-layout > .section,
+  .insights-section,
+  .countdown-section,
+  .bets-section,
+  .tracker-section,
+  .fixed-setlist-section{
+    display:block !important;
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    margin-left:0 !important;
+    margin-right:0 !important;
+  }
+  .bets-live-layout{display:block !important;width:100% !important;min-width:0 !important;}
+  .bets-live-main,.daily-votes-panel{width:100% !important;max-width:100% !important;min-width:0 !important;}
+  .daily-votes-panel{margin-top:12px !important;}
+}
+</style>
 </head>
 <body>
   <div class="binder" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
