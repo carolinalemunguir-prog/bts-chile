@@ -5,7 +5,7 @@
   "artistMbid": "0d79fe8e-ba27-4859-bb8c-2f255f346853",
   "tour": "ARIRANG",
   "year": 2026,
-  "lastUpdated": "2026-10-08T19:00:53.514Z",
+  "lastUpdated": "2026-10-09T01:26:55.160Z",
   "completedShows": 51,
   "coreThreshold": 0.68,
   "coreSongs": [
@@ -1173,7 +1173,7 @@
       "dateISO": "2026-10-07",
       "venue": "Estadio San Marcos",
       "setlistId": "1b763d30",
-      "versionId": "g4b08ff16",
+      "versionId": "g5b08ebb4",
       "url": "https://www.setlist.fm/setlist/bts/2026/estadio-san-marcos-lima-peru-1b763d30.html"
     },
     {
@@ -1184,7 +1184,7 @@
       "dateISO": "2026-10-07",
       "venue": "Estadio San Marcos",
       "setlistId": "1b763d30",
-      "versionId": "g4b08ff16",
+      "versionId": "g5b08ebb4",
       "url": "https://www.setlist.fm/setlist/bts/2026/estadio-san-marcos-lima-peru-1b763d30.html"
     }
   ],
@@ -2942,7 +2942,7 @@
     },
     {
       "id": "1b763d30",
-      "versionId": "g4b08ff16",
+      "versionId": "g5b08ebb4",
       "eventDate": "07-10-2026",
       "dateISO": "2026-10-07",
       "city": "Lima",
