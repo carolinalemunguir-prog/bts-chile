@@ -5,8 +5,8 @@
   "artistMbid": "0d79fe8e-ba27-4859-bb8c-2f255f346853",
   "tour": "ARIRANG",
   "year": 2026,
-  "lastUpdated": "2026-10-09T22:54:02.944Z",
-  "completedShows": 51,
+  "lastUpdated": "2026-10-10T06:22:52.458Z",
+  "completedShows": 52,
   "coreThreshold": 0.68,
   "coreSongs": [
     "2.0",
@@ -1186,6 +1186,28 @@
       "setlistId": "1b763d30",
       "versionId": "g5b08ebb4",
       "url": "https://www.setlist.fm/setlist/bts/2026/estadio-san-marcos-lima-peru-1b763d30.html"
+    },
+    {
+      "song": "Paldogangsan",
+      "city": "Lima",
+      "country": "Perú",
+      "date": "9 octubre",
+      "dateISO": "2026-10-09",
+      "venue": "Estadio San Marcos",
+      "setlistId": "63495af7",
+      "versionId": "g4b08372e",
+      "url": "https://www.setlist.fm/setlist/bts/2026/estadio-san-marcos-lima-peru-63495af7.html"
+    },
+    {
+      "song": "We are Bulletproof : the Eternal",
+      "city": "Lima",
+      "country": "Perú",
+      "date": "9 octubre",
+      "dateISO": "2026-10-09",
+      "venue": "Estadio San Marcos",
+      "setlistId": "63495af7",
+      "versionId": "g4b08372e",
+      "url": "https://www.setlist.fm/setlist/bts/2026/estadio-san-marcos-lima-peru-63495af7.html"
     }
   ],
   "shows": [
@@ -2971,6 +2993,41 @@
         "Dynamite",
         "HOME",
         "Outro: Wings",
+        "Please",
+        "Into the Sun"
+      ]
+    },
+    {
+      "id": "63495af7",
+      "versionId": "g4b08372e",
+      "eventDate": "09-10-2026",
+      "dateISO": "2026-10-09",
+      "city": "Lima",
+      "country": "Perú",
+      "venue": "Estadio San Marcos",
+      "url": "https://www.setlist.fm/setlist/bts/2026/estadio-san-marcos-lima-peru-63495af7.html",
+      "songs": [
+        "Hooligan",
+        "Aliens",
+        "Run BTS",
+        "they don't know 'bout us",
+        "Like Animals",
+        "FAKE LOVE",
+        "SWIM",
+        "Merry Go Round",
+        "2.0",
+        "NORMAL",
+        "Not Today",
+        "MIC Drop",
+        "FYA",
+        "Fire",
+        "Body to Body",
+        "IDOL",
+        "Come Over",
+        "Butter",
+        "Dynamite",
+        "Paldogangsan",
+        "We are Bulletproof : the Eternal",
         "Please",
         "Into the Sun"
       ]
