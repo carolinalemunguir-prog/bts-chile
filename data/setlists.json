@@ -5,8 +5,8 @@
   "artistMbid": "0d79fe8e-ba27-4859-bb8c-2f255f346853",
   "tour": "ARIRANG",
   "year": 2026,
-  "lastUpdated": "2026-10-14T21:57:02.156Z",
-  "completedShows": 53,
+  "lastUpdated": "2026-10-15T05:11:58.363Z",
+  "completedShows": 54,
   "coreThreshold": 0.68,
   "coreSongs": [
     "2.0",
@@ -1195,7 +1195,7 @@
       "dateISO": "2026-10-09",
       "venue": "Estadio San Marcos",
       "setlistId": "63495af7",
-      "versionId": "g4b08372e",
+      "versionId": "gb09859a",
       "url": "https://www.setlist.fm/setlist/bts/2026/estadio-san-marcos-lima-peru-63495af7.html"
     },
     {
@@ -1206,7 +1206,7 @@
       "dateISO": "2026-10-09",
       "venue": "Estadio San Marcos",
       "setlistId": "63495af7",
-      "versionId": "g4b08372e",
+      "versionId": "gb09859a",
       "url": "https://www.setlist.fm/setlist/bts/2026/estadio-san-marcos-lima-peru-63495af7.html"
     },
     {
@@ -1230,6 +1230,28 @@
       "setlistId": "7b495af4",
       "versionId": "g5b0813b0",
       "url": "https://www.setlist.fm/setlist/bts/2026/estadio-san-marcos-lima-peru-7b495af4.html"
+    },
+    {
+      "song": "RUN",
+      "city": "Santiago",
+      "country": "Chile",
+      "date": "14 octubre",
+      "dateISO": "2026-10-14",
+      "venue": "Estadio Nacional",
+      "setlistId": "13763ddd",
+      "versionId": "g13098591",
+      "url": "https://www.setlist.fm/setlist/bts/2026/estadio-nacional-santiago-chile-13763ddd.html"
+    },
+    {
+      "song": "Save ME",
+      "city": "Santiago",
+      "country": "Chile",
+      "date": "14 octubre",
+      "dateISO": "2026-10-14",
+      "venue": "Estadio Nacional",
+      "setlistId": "13763ddd",
+      "versionId": "g13098591",
+      "url": "https://www.setlist.fm/setlist/bts/2026/estadio-nacional-santiago-chile-13763ddd.html"
     }
   ],
   "shows": [
@@ -3021,7 +3043,7 @@
     },
     {
       "id": "63495af7",
-      "versionId": "g4b08372e",
+      "versionId": "gb09859a",
       "eventDate": "09-10-2026",
       "dateISO": "2026-10-09",
       "city": "Lima",
@@ -3085,6 +3107,41 @@
         "Dynamite",
         "Outro: House of Cards",
         "UGH!",
+        "Please",
+        "Into the Sun"
+      ]
+    },
+    {
+      "id": "13763ddd",
+      "versionId": "g13098591",
+      "eventDate": "14-10-2026",
+      "dateISO": "2026-10-14",
+      "city": "Santiago",
+      "country": "Chile",
+      "venue": "Estadio Nacional",
+      "url": "https://www.setlist.fm/setlist/bts/2026/estadio-nacional-santiago-chile-13763ddd.html",
+      "songs": [
+        "Hooligan",
+        "Aliens",
+        "Run BTS",
+        "they don't know 'bout us",
+        "Like Animals",
+        "FAKE LOVE",
+        "SWIM",
+        "Merry Go Round",
+        "2.0",
+        "NORMAL",
+        "Not Today",
+        "MIC Drop",
+        "FYA",
+        "Fire",
+        "Body to Body",
+        "IDOL",
+        "Come Over",
+        "Butter",
+        "Dynamite",
+        "RUN",
+        "Save ME",
         "Please",
         "Into the Sun"
       ]
