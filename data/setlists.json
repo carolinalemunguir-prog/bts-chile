@@ -5,8 +5,8 @@
   "artistMbid": "0d79fe8e-ba27-4859-bb8c-2f255f346853",
   "tour": "ARIRANG",
   "year": 2026,
-  "lastUpdated": "2026-10-16T21:43:00.510Z",
-  "completedShows": 54,
+  "lastUpdated": "2026-10-17T04:59:38.129Z",
+  "completedShows": 55,
   "coreThreshold": 0.68,
   "coreSongs": [
     "2.0",
@@ -1252,6 +1252,28 @@
       "setlistId": "13763ddd",
       "versionId": "g13098591",
       "url": "https://www.setlist.fm/setlist/bts/2026/estadio-nacional-santiago-chile-13763ddd.html"
+    },
+    {
+      "song": "Telepathy",
+      "city": "Santiago",
+      "country": "Chile",
+      "date": "16 octubre",
+      "dateISO": "2026-10-16",
+      "venue": "Estadio Nacional",
+      "setlistId": "73495ae9",
+      "versionId": "g6309c2ef",
+      "url": "https://www.setlist.fm/setlist/bts/2026/estadio-nacional-santiago-chile-73495ae9.html"
+    },
+    {
+      "song": "Heartbeat",
+      "city": "Santiago",
+      "country": "Chile",
+      "date": "16 octubre",
+      "dateISO": "2026-10-16",
+      "venue": "Estadio Nacional",
+      "setlistId": "73495ae9",
+      "versionId": "g6309c2ef",
+      "url": "https://www.setlist.fm/setlist/bts/2026/estadio-nacional-santiago-chile-73495ae9.html"
     }
   ],
   "shows": [
@@ -3142,6 +3164,41 @@
         "Dynamite",
         "RUN",
         "Save ME",
+        "Please",
+        "Into the Sun"
+      ]
+    },
+    {
+      "id": "73495ae9",
+      "versionId": "g6309c2ef",
+      "eventDate": "16-10-2026",
+      "dateISO": "2026-10-16",
+      "city": "Santiago",
+      "country": "Chile",
+      "venue": "Estadio Nacional",
+      "url": "https://www.setlist.fm/setlist/bts/2026/estadio-nacional-santiago-chile-73495ae9.html",
+      "songs": [
+        "Hooligan",
+        "Aliens",
+        "Run BTS",
+        "they don't know 'bout us",
+        "Like Animals",
+        "FAKE LOVE",
+        "SWIM",
+        "Merry Go Round",
+        "2.0",
+        "NORMAL",
+        "Not Today",
+        "MIC Drop",
+        "FYA",
+        "Fire",
+        "Body to Body",
+        "IDOL",
+        "Come Over",
+        "Butter",
+        "Dynamite",
+        "Telepathy",
+        "Heartbeat",
         "Please",
         "Into the Sun"
       ]
