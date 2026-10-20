@@ -5,7 +5,7 @@
   "artistMbid": "0d79fe8e-ba27-4859-bb8c-2f255f346853",
   "tour": "ARIRANG",
   "year": 2026,
-  "lastUpdated": "2026-10-20T17:31:26.447Z",
+  "lastUpdated": "2026-10-20T21:52:50.648Z",
   "completedShows": 56,
   "coreThreshold": 0.68,
   "coreSongs": [
@@ -1239,7 +1239,7 @@
       "dateISO": "2026-10-14",
       "venue": "Estadio Nacional",
       "setlistId": "13763ddd",
-      "versionId": "g13098591",
+      "versionId": "g4b094b1a",
       "url": "https://www.setlist.fm/setlist/bts/2026/estadio-nacional-santiago-chile-13763ddd.html"
     },
     {
@@ -1250,7 +1250,7 @@
       "dateISO": "2026-10-14",
       "venue": "Estadio Nacional",
       "setlistId": "13763ddd",
-      "versionId": "g13098591",
+      "versionId": "g4b094b1a",
       "url": "https://www.setlist.fm/setlist/bts/2026/estadio-nacional-santiago-chile-13763ddd.html"
     },
     {
@@ -3157,7 +3157,7 @@
     },
     {
       "id": "13763ddd",
-      "versionId": "g13098591",
+      "versionId": "g4b094b1a",
       "eventDate": "14-10-2026",
       "dateISO": "2026-10-14",
       "city": "Santiago",
