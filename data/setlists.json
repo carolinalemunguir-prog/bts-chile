@@ -5,8 +5,8 @@
   "artistMbid": "0d79fe8e-ba27-4859-bb8c-2f255f346853",
   "tour": "ARIRANG",
   "year": 2026,
-  "lastUpdated": "2026-10-21T21:58:35.276Z",
-  "completedShows": 56,
+  "lastUpdated": "2026-10-22T05:21:48.547Z",
+  "completedShows": 57,
   "coreThreshold": 0.68,
   "coreSongs": [
     "2.0",
@@ -1296,6 +1296,28 @@
       "setlistId": "63495aef",
       "versionId": "g53091bb5",
       "url": "https://www.setlist.fm/setlist/bts/2026/estadio-nacional-santiago-chile-63495aef.html"
+    },
+    {
+      "song": "Hold Me Tight",
+      "city": "La Plata",
+      "country": "Argentina",
+      "date": "21 octubre",
+      "dateISO": "2026-10-21",
+      "venue": "Estadio Ciudad de La Plata",
+      "setlistId": "1b763518",
+      "versionId": "g6b36a6ca",
+      "url": "https://www.setlist.fm/setlist/bts/2026/estadio-ciudad-de-la-plata-la-plata-argentina-1b763518.html"
+    },
+    {
+      "song": "Dionysus",
+      "city": "La Plata",
+      "country": "Argentina",
+      "date": "21 octubre",
+      "dateISO": "2026-10-21",
+      "venue": "Estadio Ciudad de La Plata",
+      "setlistId": "1b763518",
+      "versionId": "g6b36a6ca",
+      "url": "https://www.setlist.fm/setlist/bts/2026/estadio-ciudad-de-la-plata-la-plata-argentina-1b763518.html"
     }
   ],
   "shows": [
@@ -3257,6 +3279,41 @@
         "Dynamite",
         "JUMP",
         "Spine Breaker",
+        "Please",
+        "Into the Sun"
+      ]
+    },
+    {
+      "id": "1b763518",
+      "versionId": "g6b36a6ca",
+      "eventDate": "21-10-2026",
+      "dateISO": "2026-10-21",
+      "city": "La Plata",
+      "country": "Argentina",
+      "venue": "Estadio Ciudad de La Plata",
+      "url": "https://www.setlist.fm/setlist/bts/2026/estadio-ciudad-de-la-plata-la-plata-argentina-1b763518.html",
+      "songs": [
+        "Hooligan",
+        "Aliens",
+        "Run BTS",
+        "they don't know 'bout us",
+        "Like Animals",
+        "FAKE LOVE",
+        "SWIM",
+        "Merry Go Round",
+        "2.0",
+        "NORMAL",
+        "Not Today",
+        "MIC Drop",
+        "FYA",
+        "Fire",
+        "Body to Body",
+        "IDOL",
+        "Come Over",
+        "Butter",
+        "Dynamite",
+        "Hold Me Tight",
+        "Dionysus",
         "Please",
         "Into the Sun"
       ]
