@@ -5,8 +5,8 @@
   "artistMbid": "0d79fe8e-ba27-4859-bb8c-2f255f346853",
   "tour": "ARIRANG",
   "year": 2026,
-  "lastUpdated": "2026-10-24T00:03:44.736Z",
-  "completedShows": 57,
+  "lastUpdated": "2026-10-24T05:01:38.957Z",
+  "completedShows": 58,
   "coreThreshold": 0.68,
   "coreSongs": [
     "2.0",
@@ -1318,6 +1318,28 @@
       "setlistId": "1b763518",
       "versionId": "g6b36a6ca",
       "url": "https://www.setlist.fm/setlist/bts/2026/estadio-ciudad-de-la-plata-la-plata-argentina-1b763518.html"
+    },
+    {
+      "song": "Attack on Bangtan",
+      "city": "La Plata",
+      "country": "Argentina",
+      "date": "23 octubre",
+      "dateISO": "2026-10-23",
+      "venue": "Estadio Ciudad de La Plata",
+      "setlistId": "73495ad9",
+      "versionId": "g2336e4a3",
+      "url": "https://www.setlist.fm/setlist/bts/2026/estadio-ciudad-de-la-plata-la-plata-argentina-73495ad9.html"
+    },
+    {
+      "song": "Epilogue: Young Forever",
+      "city": "La Plata",
+      "country": "Argentina",
+      "date": "23 octubre",
+      "dateISO": "2026-10-23",
+      "venue": "Estadio Ciudad de La Plata",
+      "setlistId": "73495ad9",
+      "versionId": "g2336e4a3",
+      "url": "https://www.setlist.fm/setlist/bts/2026/estadio-ciudad-de-la-plata-la-plata-argentina-73495ad9.html"
     }
   ],
   "shows": [
@@ -3314,6 +3336,41 @@
         "Dynamite",
         "Hold Me Tight",
         "Dionysus",
+        "Please",
+        "Into the Sun"
+      ]
+    },
+    {
+      "id": "73495ad9",
+      "versionId": "g2336e4a3",
+      "eventDate": "23-10-2026",
+      "dateISO": "2026-10-23",
+      "city": "La Plata",
+      "country": "Argentina",
+      "venue": "Estadio Ciudad de La Plata",
+      "url": "https://www.setlist.fm/setlist/bts/2026/estadio-ciudad-de-la-plata-la-plata-argentina-73495ad9.html",
+      "songs": [
+        "Hooligan",
+        "Aliens",
+        "Run BTS",
+        "they don't know 'bout us",
+        "Like Animals",
+        "FAKE LOVE",
+        "SWIM",
+        "Merry Go Round",
+        "2.0",
+        "NORMAL",
+        "Not Today",
+        "MIC Drop",
+        "FYA",
+        "Fire",
+        "Body to Body",
+        "IDOL",
+        "Come Over",
+        "Butter",
+        "Dynamite",
+        "Attack on Bangtan",
+        "Epilogue: Young Forever",
         "Please",
         "Into the Sun"
       ]
