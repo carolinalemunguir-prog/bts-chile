@@ -5,8 +5,8 @@
   "artistMbid": "0d79fe8e-ba27-4859-bb8c-2f255f346853",
   "tour": "ARIRANG",
   "year": 2026,
-  "lastUpdated": "2026-10-28T22:51:04.956Z",
-  "completedShows": 59,
+  "lastUpdated": "2026-10-29T06:27:58.502Z",
+  "completedShows": 60,
   "coreThreshold": 0.68,
   "coreSongs": [
     "2.0",
@@ -1362,6 +1362,28 @@
       "setlistId": "7b495adc",
       "versionId": "g5b36c390",
       "url": "https://www.setlist.fm/setlist/bts/2026/estadio-ciudad-de-la-plata-la-plata-argentina-7b495adc.html"
+    },
+    {
+      "song": "Black Swan",
+      "city": "São Paulo",
+      "country": "Brasil",
+      "date": "28 octubre",
+      "dateISO": "2026-10-28",
+      "venue": "MorumBIS",
+      "setlistId": "73495ad1",
+      "versionId": "g13364155",
+      "url": "https://www.setlist.fm/setlist/bts/2026/morumbis-sao-paulo-brazil-73495ad1.html"
+    },
+    {
+      "song": "Silver Spoon",
+      "city": "São Paulo",
+      "country": "Brasil",
+      "date": "28 octubre",
+      "dateISO": "2026-10-28",
+      "venue": "MorumBIS",
+      "setlistId": "73495ad1",
+      "versionId": "g13364155",
+      "url": "https://www.setlist.fm/setlist/bts/2026/morumbis-sao-paulo-brazil-73495ad1.html"
     }
   ],
   "shows": [
@@ -3428,6 +3450,41 @@
         "Dynamite",
         "Lost",
         "BTS Cypher 4",
+        "Please",
+        "Into the Sun"
+      ]
+    },
+    {
+      "id": "73495ad1",
+      "versionId": "g13364155",
+      "eventDate": "28-10-2026",
+      "dateISO": "2026-10-28",
+      "city": "São Paulo",
+      "country": "Brasil",
+      "venue": "MorumBIS",
+      "url": "https://www.setlist.fm/setlist/bts/2026/morumbis-sao-paulo-brazil-73495ad1.html",
+      "songs": [
+        "Hooligan",
+        "Aliens",
+        "Run BTS",
+        "they don't know 'bout us",
+        "Like Animals",
+        "FAKE LOVE",
+        "SWIM",
+        "Merry Go Round",
+        "2.0",
+        "NORMAL",
+        "Not Today",
+        "MIC Drop",
+        "FYA",
+        "Fire",
+        "Body to Body",
+        "IDOL",
+        "Come Over",
+        "Butter",
+        "Dynamite",
+        "Black Swan",
+        "Silver Spoon",
         "Please",
         "Into the Sun"
       ]
