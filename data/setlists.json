@@ -5,8 +5,8 @@
   "artistMbid": "0d79fe8e-ba27-4859-bb8c-2f255f346853",
   "tour": "ARIRANG",
   "year": 2026,
-  "lastUpdated": "2026-11-01T00:26:10.806Z",
-  "completedShows": 61,
+  "lastUpdated": "2026-11-01T06:51:22.786Z",
+  "completedShows": 62,
   "coreThreshold": 0.68,
   "coreSongs": [
     "2.0",
@@ -1371,7 +1371,7 @@
       "dateISO": "2026-10-28",
       "venue": "MorumBIS",
       "setlistId": "73495ad1",
-      "versionId": "g13364155",
+      "versionId": "g3b37e8e8",
       "url": "https://www.setlist.fm/setlist/bts/2026/morumbis-sao-paulo-brazil-73495ad1.html"
     },
     {
@@ -1382,7 +1382,7 @@
       "dateISO": "2026-10-28",
       "venue": "MorumBIS",
       "setlistId": "73495ad1",
-      "versionId": "g13364155",
+      "versionId": "g3b37e8e8",
       "url": "https://www.setlist.fm/setlist/bts/2026/morumbis-sao-paulo-brazil-73495ad1.html"
     },
     {
@@ -1393,7 +1393,7 @@
       "dateISO": "2026-10-30",
       "venue": "MorumBIS",
       "setlistId": "7b495ad0",
-      "versionId": "g23378457",
+      "versionId": "g2b37e8fe",
       "url": "https://www.setlist.fm/setlist/bts/2026/morumbis-sao-paulo-brazil-7b495ad0.html"
     },
     {
@@ -1404,8 +1404,30 @@
       "dateISO": "2026-10-30",
       "venue": "MorumBIS",
       "setlistId": "7b495ad0",
-      "versionId": "g23378457",
+      "versionId": "g2b37e8fe",
       "url": "https://www.setlist.fm/setlist/bts/2026/morumbis-sao-paulo-brazil-7b495ad0.html"
+    },
+    {
+      "song": "Ddaeng",
+      "city": "São Paulo",
+      "country": "Brasil",
+      "date": "31 octubre",
+      "dateISO": "2026-10-31",
+      "venue": "MorumBIS",
+      "setlistId": "63495ad7",
+      "versionId": "g6b37e6aa",
+      "url": "https://www.setlist.fm/setlist/bts/2026/morumbis-sao-paulo-brazil-63495ad7.html"
+    },
+    {
+      "song": "Cypher Pt.3: Killer",
+      "city": "São Paulo",
+      "country": "Brasil",
+      "date": "31 octubre",
+      "dateISO": "2026-10-31",
+      "venue": "MorumBIS",
+      "setlistId": "63495ad7",
+      "versionId": "g6b37e6aa",
+      "url": "https://www.setlist.fm/setlist/bts/2026/morumbis-sao-paulo-brazil-63495ad7.html"
     }
   ],
   "shows": [
@@ -3478,7 +3500,7 @@
     },
     {
       "id": "73495ad1",
-      "versionId": "g13364155",
+      "versionId": "g3b37e8e8",
       "eventDate": "28-10-2026",
       "dateISO": "2026-10-28",
       "city": "São Paulo",
@@ -3513,7 +3535,7 @@
     },
     {
       "id": "7b495ad0",
-      "versionId": "g23378457",
+      "versionId": "g2b37e8fe",
       "eventDate": "30-10-2026",
       "dateISO": "2026-10-30",
       "city": "São Paulo",
@@ -3542,6 +3564,41 @@
         "Dynamite",
         "Airplane pt.2",
         "I Need U",
+        "Please",
+        "Into the Sun"
+      ]
+    },
+    {
+      "id": "63495ad7",
+      "versionId": "g6b37e6aa",
+      "eventDate": "31-10-2026",
+      "dateISO": "2026-10-31",
+      "city": "São Paulo",
+      "country": "Brasil",
+      "venue": "MorumBIS",
+      "url": "https://www.setlist.fm/setlist/bts/2026/morumbis-sao-paulo-brazil-63495ad7.html",
+      "songs": [
+        "Hooligan",
+        "Aliens",
+        "Run BTS",
+        "they don't know 'bout us",
+        "Like Animals",
+        "FAKE LOVE",
+        "SWIM",
+        "Merry Go Round",
+        "2.0",
+        "NORMAL",
+        "Not Today",
+        "MIC Drop",
+        "FYA",
+        "Fire",
+        "Body to Body",
+        "IDOL",
+        "Come Over",
+        "Butter",
+        "Dynamite",
+        "Ddaeng",
+        "Cypher Pt.3: Killer",
         "Please",
         "Into the Sun"
       ]
