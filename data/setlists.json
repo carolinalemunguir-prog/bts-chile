@@ -5,8 +5,8 @@
   "artistMbid": "0d79fe8e-ba27-4859-bb8c-2f255f346853",
   "tour": "ARIRANG",
   "year": 2026,
-  "lastUpdated": "2026-11-19T12:08:39.397Z",
-  "completedShows": 62,
+  "lastUpdated": "2026-11-19T20:58:32.522Z",
+  "completedShows": 63,
   "coreThreshold": 0.68,
   "coreSongs": [
     "2.0",
@@ -1428,6 +1428,28 @@
       "setlistId": "63495ad7",
       "versionId": "g4334f7e3",
       "url": "https://www.setlist.fm/setlist/bts/2026/morumbis-sao-paulo-brazil-63495ad7.html"
+    },
+    {
+      "song": "DNA",
+      "city": "Kaohsiung City",
+      "country": "Taiwán",
+      "date": "19 noviembre",
+      "dateISO": "2026-11-19",
+      "venue": "Kaohsiung National Stadium",
+      "setlistId": "33746469",
+      "versionId": "g1b35714c",
+      "url": "https://www.setlist.fm/setlist/bts/2026/kaohsiung-national-stadium-kaohsiung-city-taiwan-33746469.html"
+    },
+    {
+      "song": "Answer: Love Myself",
+      "city": "Kaohsiung City",
+      "country": "Taiwán",
+      "date": "19 noviembre",
+      "dateISO": "2026-11-19",
+      "venue": "Kaohsiung National Stadium",
+      "setlistId": "33746469",
+      "versionId": "g1b35714c",
+      "url": "https://www.setlist.fm/setlist/bts/2026/kaohsiung-national-stadium-kaohsiung-city-taiwan-33746469.html"
     }
   ],
   "shows": [
@@ -3599,6 +3621,41 @@
         "Dynamite",
         "Ddaeng",
         "Cypher Pt.3: Killer",
+        "Please",
+        "Into the Sun"
+      ]
+    },
+    {
+      "id": "33746469",
+      "versionId": "g1b35714c",
+      "eventDate": "19-11-2026",
+      "dateISO": "2026-11-19",
+      "city": "Kaohsiung City",
+      "country": "Taiwán",
+      "venue": "Kaohsiung National Stadium",
+      "url": "https://www.setlist.fm/setlist/bts/2026/kaohsiung-national-stadium-kaohsiung-city-taiwan-33746469.html",
+      "songs": [
+        "Hooligan",
+        "Aliens",
+        "Run BTS",
+        "they don't know 'bout us",
+        "Like Animals",
+        "FAKE LOVE",
+        "SWIM",
+        "Merry Go Round",
+        "2.0",
+        "NORMAL",
+        "Not Today",
+        "MIC Drop",
+        "FYA",
+        "Fire",
+        "Body to Body",
+        "IDOL",
+        "Come Over",
+        "Butter",
+        "Dynamite",
+        "DNA",
+        "Answer: Love Myself",
         "Please",
         "Into the Sun"
       ]
