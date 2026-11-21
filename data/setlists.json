@@ -5,8 +5,8 @@
   "artistMbid": "0d79fe8e-ba27-4859-bb8c-2f255f346853",
   "tour": "ARIRANG",
   "year": 2026,
-  "lastUpdated": "2026-11-21T11:46:51.485Z",
-  "completedShows": 63,
+  "lastUpdated": "2026-11-21T19:47:08.105Z",
+  "completedShows": 64,
   "coreThreshold": 0.68,
   "coreSongs": [
     "2.0",
@@ -1450,6 +1450,28 @@
       "setlistId": "33746469",
       "versionId": "g1b35714c",
       "url": "https://www.setlist.fm/setlist/bts/2026/kaohsiung-national-stadium-kaohsiung-city-taiwan-33746469.html"
+    },
+    {
+      "song": "Sea",
+      "city": "Kaohsiung City",
+      "country": "Taiwán",
+      "date": "21 noviembre",
+      "dateISO": "2026-11-21",
+      "venue": "Kaohsiung National Stadium",
+      "setlistId": "3b746468",
+      "versionId": "g3332b4b1",
+      "url": "https://www.setlist.fm/setlist/bts/2026/kaohsiung-national-stadium-kaohsiung-city-taiwan-3b746468.html"
+    },
+    {
+      "song": "Boy in Luv",
+      "city": "Kaohsiung City",
+      "country": "Taiwán",
+      "date": "21 noviembre",
+      "dateISO": "2026-11-21",
+      "venue": "Kaohsiung National Stadium",
+      "setlistId": "3b746468",
+      "versionId": "g3332b4b1",
+      "url": "https://www.setlist.fm/setlist/bts/2026/kaohsiung-national-stadium-kaohsiung-city-taiwan-3b746468.html"
     }
   ],
   "shows": [
@@ -3656,6 +3678,41 @@
         "Dynamite",
         "DNA",
         "Answer: Love Myself",
+        "Please",
+        "Into the Sun"
+      ]
+    },
+    {
+      "id": "3b746468",
+      "versionId": "g3332b4b1",
+      "eventDate": "21-11-2026",
+      "dateISO": "2026-11-21",
+      "city": "Kaohsiung City",
+      "country": "Taiwán",
+      "venue": "Kaohsiung National Stadium",
+      "url": "https://www.setlist.fm/setlist/bts/2026/kaohsiung-national-stadium-kaohsiung-city-taiwan-3b746468.html",
+      "songs": [
+        "Hooligan",
+        "Aliens",
+        "Run BTS",
+        "they don't know 'bout us",
+        "Like Animals",
+        "FAKE LOVE",
+        "SWIM",
+        "Merry Go Round",
+        "2.0",
+        "NORMAL",
+        "Not Today",
+        "MIC Drop",
+        "FYA",
+        "Fire",
+        "Body to Body",
+        "IDOL",
+        "Come Over",
+        "Butter",
+        "Dynamite",
+        "Sea",
+        "Boy in Luv",
         "Please",
         "Into the Sun"
       ]
